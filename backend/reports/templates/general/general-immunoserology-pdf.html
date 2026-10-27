@@ -1,0 +1,100 @@
+{% extends 'layouts/pdf_base_cleaned_letter_portrait.html' %}
+{% load utils %}
+{% block title %}
+    Liberacion Lista
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Rango de Fechas</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE GENERAL</td>
+                <td class="text-center"><b>{{ date_init| date:'d/m/Y' }} a {{ date_end| date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>IMMUNOSEROLOGIA</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="30"><b>#</b></td>
+                <td class="border text-center" width="60"><b>FECHA</b></td>
+                <td class="border text-center" width="50"><b>CODIGO</b></td>
+                <td class="border text-center" width="80"><b>CHAGAS HAI</b></td>
+                <td class="border text-center" width="80"><b>HIV</b></td>
+                <td class="border text-center" width="80"><b>HBsAg.</b></td>
+                <td class="border text-center" width="80"><b>HVC</b></td>
+                <td class="border text-center" width="80"><b>CHEIA</b></td>
+                <td class="border text-center" width="80"><b>RPR</b></td>
+                <td class="border text-center" width="80"><b>RESPONSABLE</b></td>
+            </tr>
+            {% for immunoserology in immunoserologies %}
+                <tr>
+                    <td class="border text-center">
+                        {{ forloop.counter }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunoserology.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunoserology.donation.donor.code }}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.chagas_hai %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.hiv %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.hbsag %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.hvc %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.cheia %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_react_type immunoserology.rpr %}
+                    </td>
+
+                    <td class="border text-center">
+                        {{ immunoserology.employee | fullInitialName }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

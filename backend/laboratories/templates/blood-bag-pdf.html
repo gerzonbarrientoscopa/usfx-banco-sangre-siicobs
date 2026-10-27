@@ -1,0 +1,213 @@
+{% extends 'layouts/pdf_base_bags.html' %}
+{% load qr_code %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Etiqueta de Bolsa de Sangre
+{% endblock %}
+
+{% block layout %}
+
+    <div id="header_content">
+        <table class="table" style="border-collapse: collapse; border-spacing: 0; width: 100%;" cellspacing="0"
+               cellpadding="0">
+            <tbody>
+            <tr>
+                <td class="no-border text-center" width="20%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="" width="30px">
+                </td>
+                <td class="no-border subtitle text-center" width="60%">
+                    BANCO DE SANGRE CHUQUISACA
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <table class="table"
+               style="border-top: 1px solid black;border-spacing: 0;"
+               cellspacing="0"
+               cellpadding="0">
+            <tr>
+                <td class="border text-center" width="30%">
+                    Código de Bolsa <br>
+                    <b>{{ donor_code }}</b>
+                </td>
+                <td class="border text-center" width="70%">
+                    <table>
+                        <tr>
+                            <td class="no-border text-center" width="90%">
+                                <img src="media/laboratory/{{ donor_code }}.png" alt="bg" height="55px"><br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table" cellspacing="0"
+               cellpadding="0">
+            <tbody>
+            <tr>
+                <td class="cgr border" width="20%"><b>{{ itemfragmentation.typehemocomponent.acronym }} </b></td>
+                <td class="cgr-name border" width="80%">
+                    <b style="line-height: 7px">{{ itemfragmentation.typehemocomponent.name }} </b><br>
+                    Venc. <strong>{{ itemfragmentation.expiration_date|date:"d/m/Y" }}</strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border" width="160px">N&deg; de Extracción:
+                    <b>{{ itemfragmentation.fragmentation.extraction.id }}</b>
+                </td>
+                <td class="border text-center" colspan="2" rowspan="2">
+                    <div class="text-center" style="font-weight: bold">
+                        <span class="title-main"> {{ blood_group|safe }}</span>
+                        <br>
+                        <span class="title-rh">{{ factor_rh_text|safe }}</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="border">
+                    Fecha De Donación:
+                    <b>{{ itemfragmentation.fragmentation.extraction.register_at|date:"d/m/Y" }}</b><br>
+                    Volumen: <b>{% if itemfragmentation.weight != 0.0 %}{{ itemfragmentation.weight }}ml.{% endif %}</b><br>
+                    Almacenar A: <b>{{ itemfragmentation.typehemocomponent.temperature_save }} &deg;C</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border" colspan="5">
+                    <span>Fenotipos: <b>
+                        {{ itemfragmentation.fragmentation.extraction.donation.immunohematology.phenotype }}
+                        </b><br>
+                        Anticuerpos Irregulares: <b>{% if immunohematology.exists_irregular_antibodies %}
+                            Positivo, {% get_message_type_irregular_antibody itemfragmentation %}{% else %}
+                            Negativo{% endif %}
+                        </b>
+                    </span>
+                </td>
+                <td class="border">
+                    Kell:
+                    <b>{% if itemfragmentation.fragmentation.extraction.donation.immunohematology.antikell != "-" %}
+                        Positivo
+                    {% else %}
+                        Negativo
+                    {% endif %}</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border">
+                    <span class="spacing-barcode">Serología no reactiva para:
+                        <b>CHAGAS HAI - CHAGAS-EIA - SIFILIS - HEPATITIS B - HEPATITIS C - HIV</b>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border">
+                    Prod. Nro.
+                    <img src="media/laboratory/{{ production_bc_file_name }}.png" alt="bg" height="60px"><br>
+                </td>
+                <td class="border" style="font-size: 15px">
+                    Tub.: <b>
+                    {% if itemfragmentation.tubing %}
+                        {{ itemfragmentation.tubing }}
+                    {% else %}
+                        {{ itemfragmentation.fragmentation.extraction.tubing }}
+                    {% endif %}
+                </b><br>
+                    Lote: <b>
+                    {% if itemfragmentation.lot %}
+                        {{ itemfragmentation.lot }}
+                    {% else %}
+                        {{ itemfragmentation.fragmentation.extraction.lot }}
+                    {% endif %}</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border" colspan="6">Tipo de Anticoagulante:
+                    <b>{{ itemfragmentation.typehemocomponent.typecoagulation }}</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table" ellspacing=”0” cellpadding=”0”>
+            <tbody>
+            <tr>
+                <td class="border" colspan="6" style="line-height: 2px; text-align: justify">
+                    {% if itemfragmentation.fragmentation.extraction.donation.is_covid_19 %}
+                        <p style="margin-bottom: 1px">{% get_message_antikell itemfragmentation.fragmentation.extraction.donation.immunohematology %}</p>
+                        <p style="margin-bottom: 1px">
+                            Se certifica que este producto ha pasado estrictos Controles de Calidad durante el proceso
+                            de tamizaje serológico e inmunohematológico.</p>
+                        <b>{{ itemfragmentation.typehemocomponent.description | cleanValue }}</b>
+                        <div style="margin-top: 1px">
+                            <b>PRECAUCION: MEDICAMENTO NUEVO, TRATAMIENTO BAJO INVESTIGACION.</b>
+                        </div>
+                    {% else %}
+                        <p style="margin-bottom: 1px">
+                            {{ itemfragmentation.typehemocomponent.description | cleanValue }}
+                            {% autoescape off %}
+                                <br>
+                                {% get_message_antikell itemfragmentation.fragmentation.extraction.donation.immunohematology %}
+                            {% endautoescape %}
+                        </p>
+                        <p style="margin-bottom: 1px">
+                            Ext.: {{ donation.extraction.employee | full_initials_employee }} -
+                            Frac.: {{ fragmentation.employee | full_initials_employee }} -
+                            Ser.: {{ immunoserology.employee | full_initials_employee }} -
+                            Hem.: {{ immunohematology.employee | full_initials_employee }} -
+                            Lib.: {{ release.employee | full_initials_employee }}
+                            <br>
+                            C. Urriolagoitia N 155, 591-4-6455071
+                        </p>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="footer_content">
+        <table class="table"
+               style="border-top: 1px solid black;border-spacing: 0;"
+               cellspacing="0"
+               cellpadding="0">
+            <tr>
+                <td class="no-border-qr text-center" width="70%">
+                    <table>
+                        <tr>
+                            <td class="no-border text-center" width="90%">
+                                <img src="media/laboratory/{{ donor_code }}.png" alt="bg" height="70px"><br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="no-border-qr text-center" width="30%">
+                    Debe Despegar esta parte de la etiqueta y pegarla en la historia clínica del paciente
+                </td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

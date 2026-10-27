@@ -1,0 +1,180 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Historia Clínica
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border-header text-center subtitle-no-bold " width="62%">BANCO DE SANGRE DE REFERENCIA
+                    DEPARTAMENTAL SUCRE
+                </td>
+                <td class="border-qr text-center" rowspan="3" width="13%">
+                    <img class="qr" src="media/clinical-history/{{ donor.code }}.png" alt="qr">
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="border-header text-center subtitle">CUESTIONARIO REFERENTE AL DONANTE DE PLASMA
+                    CONVALECIENTE
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">
+                    Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <br>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td width="250px">{% get_verbose_field_name donor_model 'code' %}</td>
+                <td width="350px"><b>{{ donor.code }}</b></td>
+                <td width="150px">{% get_verbose_field_name donor_model 'first_name' %}</td>
+                <td width="550px"><b>{{ donor.middle_name }} {{ donor.last_name }} {{ donor.first_name }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+        Fecha de inicio de síntomas: <b>{{ questionnaire.symptoms_start_date | cleanValue }}</b>
+    <br>
+    Toma de muestras:
+    <br>
+    <table class="table" width="100%">
+        <thead>
+        <tr>
+            <td width="100px" style="border-bottom: 1px solid #ccc" class="text-center">MUESTRA</td>
+            <td width="100px" style="border-bottom: 1px solid #ccc" class="text-center">FECHA</td>
+            <td width="150px" style="border-bottom: 1px solid #ccc" class="text-center">TECNICA</td>
+            <td style="border-bottom: 1px solid #ccc" class="text-center">RESULTADO</td>
+        </tr>
+        <tr>
+            <td class="separator"></td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for cs in questionnaire.capture_sample %}
+            <tr>
+                <td class="text-center">
+                    {{ forloop.counter }}
+                </td>
+                <td class="text-center">
+                    <strong>{{ cs.date }}</strong>
+                </td>
+                <td class="text-center">
+                    <strong>{{ cs.procedure }}</strong>
+                </td>
+                <td class="text-center">
+                    <strong>{{ cs.result }}</strong>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    <p>
+        La pregunta es con el objeto de tener una referencia clínica si el donante de plasma cursa con títulos de
+        anticuerpos altos para su uso terapéutico. Se adjunta la hoja de registro del donante.
+    </p>
+    <div class="card">
+
+        <table class="table" width="100%">
+            <thead>
+            <tr>
+                <td style="border-bottom: 1px solid #ccc"><strong>No. Preguntas</strong></td>
+                <td width="100px" style="border-bottom: 1px solid #ccc"> Resp. Observación</td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for ch in questionnaire.responses %}
+                {% if ch.type == 'RADIO' %}
+                    {% if ch.sub_type == 'TEXT' %}
+                        <tr>
+                            <td>
+                                {{ forloop.counter }}. {{ ch.title }}
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.value }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 7px" colspan="2">
+                                {{ ch.sub_title }}: <strong>{{ ch.sub_value }}</strong>
+                            </td>
+                        </tr>
+                    {% elif ch.sub_type == 'RADIO' %}
+                        <tr>
+                            <td align="left">
+                                {{ forloop.counter }}. {{ ch.title }}: <strong>{{ ch.value }}</strong>
+                                {{ ch.sub_title }}:
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.sub_value }}</strong>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td align="left">
+                                {{ forloop.counter }}. {{ ch.title }}
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.value }}</strong>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% elif ch.type == 'TEXT' %}
+                    <tr>
+                        <td colspan="2" align="left">
+                            {{ forloop.counter }}. {{ ch.title }}: {{ ch.value }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <p style="text-align: justify">
+            <strong>Observaciones: </strong>
+            <b>{{ questionnaire.observations | cleanValue }}</b><br>
+        </p>
+        <br/>
+        <p style="text-align: right">
+            Firma del Donante .......................................................
+            <br>
+            Cédula de identidad: <b>{{ donor.ci | cleanValue }}</b>
+        </p>
+    </div>
+{% endblock %}

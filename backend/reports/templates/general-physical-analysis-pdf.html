@@ -1,0 +1,117 @@
+{% extends 'layouts/pdf_base_large.html' %}
+{% load utils %}
+{% load static %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border text-center" width="75%">BANCO DE SANGRE DE
+                    REFERENCIA DEPARTAMENTAL SUCRE
+                </td>
+            </tr>
+            <tr>
+                <td class="border text-center title-main">REPORTE GENERAL <span class="subtitle">(De {{ date_init }} a {{ date_end }})</span></td>
+            </tr>
+            <tr>
+                <td class="border text-center title-main">ANALISIS FISICO</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="25">#</td>
+                <td class="border text-center" width="70"><b>FECHA</b></td>
+                <td class="border text-center" width="50"><b>CODIGO</b></td>
+                <td class="border text-center" width="200"><b>NOMBRES Y APELLIDOS</b></td>
+                <td class="border text-center" width="70"><b>SISTOLICA</b></td>
+                <td class="border text-center" width="70"><b>DIASTOLICA</b></td>
+                <td class="border text-center" width="60"><b>PULSO</b></td>
+                <td class="border text-center" width="60"><b>TALLA</b></td>
+                <td class="border text-center" width="60"><b>PESO</b></td>
+                <td class="border text-center" width="60"><b>TEMPER.</b></td>
+
+                <!--
+                 <td class="border text-center" width="65"><b>HEMATOCRITO</b></td>
+                 <td class="border text-center" width="65"><b>HEMOGLOBINA</b></td>
+                 -->
+
+                <td class="border text-center" width="180"><b>RESPONSABLE</b></td>
+            </tr>
+        </table>
+    </div>
+
+        <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+         <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> de <pdf:pagecount/></td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            {% for pa in physicalAnalysis %}
+                <tr>
+                    <td class="border" width="25">
+                        {{ forloop.counter }}
+                    </td>
+                    <td class="border text-center" width="70">
+                        {{ pa.created_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {{ pa.donation.donor.code }}
+                    </td>
+                    <td class="border" width="200">
+                        {{ pa.donation.donor.first_name }} {{ pa.donation.donor.middle_name }} {{ pa.donation.donor.last_name }}
+                    </td>
+                    <td class="border text-center" width="70">
+                        {{ pa.systolic | cleanValue }} {% if pa.systolic %}mmHg{% endif %}
+                    </td>
+                    <td class="border text-center" width="70">
+                        {{ pa.diastolic | cleanValue }} {% if pa.diastolic %}mmHg{% endif %}
+                    </td>
+                    <td class="border text-center" width="60">
+                        {{ pa.pulse | cleanValue }} {% if pa.pulse %}/min.{% endif %}
+                    </td>
+                    <td class="border text-center" width="60">
+                        {{ pa.tall | cleanValue }} {% if pa.tall %}m.{% endif %}
+                    </td>
+                    <td class="border text-center" width="60">
+                        {{ pa.weight | cleanValue }} {% if pa.weight %}Kg.{% endif %}
+                    </td>
+                    <td class="border text-center" width="60">
+                        {{ pa.temperature | cleanValue }} {% if pa.temperature %}°C{% endif %}
+                    </td>
+
+                    <!--
+                    {% get_exam_hematocrit pa.donation.id  as hematocrit %}
+                    {% get_exam_hemoglobin pa.donation.id  as hemoglobin %}
+                    <td class="border text-center" width="65">
+                        {{ hematocrit | cleanValue }} {% if hematocrit %}%{% endif %}
+                    </td>
+                    <td class="border text-center" width="65">
+                        {{ hemoglobin | cleanValue }} {% if hemoglobin %} gr/dl{% endif %}
+                    </td>
+                    -->
+
+                    <td class="border" width="180">
+                        {{ pa.employee.first_name }} {{ pa.employee.middle_name }} {{ pa.employee.last_name }}
+                    </td>
+                </tr>
+                {% if forloop.counter|divisibleby:10 %}
+                    </table>
+                    <table class="table">
+                {% endif %}
+            {% endfor %}
+            </table>
+    </div>
+{% endblock %}

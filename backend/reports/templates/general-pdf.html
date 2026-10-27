@@ -1,0 +1,254 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Historia Clínica
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border-header subtitle-no-bold text-center" width="75%">BANCO DE SANGRE DE REFERENCIA
+                    DEPARTAMENTAL SUCRE
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">REPORTE GENERAL</td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">{{ date_init }} a {{ date_end }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2>POR GENERO</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="500"></td>
+                <td class="border" width="300">FEMENINO</td>
+                <td class="border" width="150"><b>{{ by_gender.0 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">MASCULINO</td>
+                <td class="border" width="150"><b>{{ by_gender.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL</td>
+                <td class="border" width="150"><b>{{ by_gender.2 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>POR COLECTA</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="500"></td>
+                <td class="border" width="300">PUESTO FIJO</td>
+                <td class="border" width="150"><b>{{ by_event.0 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">PUESTO MOVIL</td>
+                <td class="border" width="150"><b>{{ by_event.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL</td>
+                <td class="border" width="150"><b>{{ by_event.2 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>POR TIPO DE DONACION</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="5" width="500"></td>
+                <td class="border" width="300">VOLUNTARIA ALTRUISTA</td>
+                <td class="border" width="150"><b>{{ by_typeDonation.0 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">REPOSICION SOLIDARIA</td>
+                <td class="border" width="150"><b>{{ by_typeDonation.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">REPOSICION EXIGIDA</td>
+                <td class="border" width="150"><b>{{ by_typeDonation.2 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">DONACION AUTOLOGA</td>
+                <td class="border" width="150"><b>{{ by_typeDonation.3 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL</td>
+                <td class="border" width="150"><b>{{ by_typeDonation.4 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>POR TIPO DE PROCEDIMIENTO</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="4" width="500"></td>
+                <td class="border" width="300">NORMAL</td>
+                <td class="border" width="150"><b>{{ by_typeProcess.0 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">AFERESIS NORMAL</td>
+                <td class="border" width="150"><b>{{ by_typeProcess.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">COVID-19</td>
+                <td class="border" width="150"><b>{{ by_typeProcess.2 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">AFERESIS COVID-19</td>
+                <td class="border" width="150"><b>{{ by_typeProcess.3 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>POR GRUPO ETARIO</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="7" width="500"></td>
+                <td class="border" width="300">18-25</td>
+                <td class="border" width="150"><b>{{ by_etary.0 }}</b></td>
+            <tr>
+                <td class="border" width="300">26-30</td>
+                <td class="border" width="150"><b>{{ by_etary.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">31-40</td>
+                <td class="border" width="150"><b>{{ by_etary.2 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">41-50</td>
+                <td class="border"><b>{{ by_etary.3 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">51-60</td>
+                <td class="border"><b>{{ by_etary.4 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">60-65</td>
+                <td class="border" width="150"><b>{{ by_etary.5 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL</td>
+                <td class="border" width="150"><b>{{ by_etary.6 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>POR DIFERIDOS</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="5" width="500"></td>
+                <td class="border" width="300">TOTAL LOS NO DIFERIDOS</td>
+                <td class="border" width="150"><b>{{ by_reasonRejected.0 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL LOS DIFERIDOS</td>
+                <td class="border" width="150"><b>{{ by_reasonRejected.1 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">DIFERIDOS TEMPORALES</td>
+                <td class="border" width="150"><b>{{ by_reasonRejected.2 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">DIFERIDOS PERMANENTES</td>
+                <td class="border" width="150"><b>{{ by_reasonRejected.3 }}</b></td>
+            </tr>
+            <tr>
+                <td class="border" width="300">TOTAL</td>
+                <td class="border" width="150"><b>{{ by_reasonRejected.4 }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <pdf:nextpage/>
+    </div>
+    <h1>Producción</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <td class="border" width="750"><b>Hemocomponente</b></td>
+            <td class="border" width="150"><b>Con Predescarte</b></td>
+            <td class="border" width="150"><b>Sin Predescarte</b></td>
+            <td class="border" width="150"><b>Total</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in production %}
+            <tr>
+                <td class="border" width="750">{{ p.0 }}</td>
+                <td class="border" width="150">{{ p.1 }}</td>
+                <td class="border" width="150">{{ p.2 }}</td>
+                <td class="border" width="150"><b>{{ p.3 }}</b></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <pdf:nextpage/>
+    </div>
+    <h1>Imnunoserología</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td class="border"><b>Prueba</b></td>
+            <td class="border"><b>Reactivo</b></td>
+            <td class="border"><b>No Reactivo</b></td>
+            <td class="border"><b>Sin Resultado</b></td>
+            <td class="border"><b>Total</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in serologies %}
+            <tr>
+                <td class="border" width="100">{{ p.0 }}</td>
+                <td class="border">{{ p.1 }}</td>
+                <td class="border">{{ p.2 }}</td>
+                <td class="border">{{ p.3 }}</td>
+                <td class="border"><b>{{ p.4 }}</b></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <pdf:nextpage/>
+    </div>
+{% endblock %}

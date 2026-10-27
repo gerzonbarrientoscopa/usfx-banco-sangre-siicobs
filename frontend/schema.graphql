@@ -1,0 +1,2494 @@
+# This file was generated. Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+directive @base64(
+  "Action to perform: \"encode\" or \"decode\""
+  op: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+CamelCase result.
+"""
+directive @camel_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with its first character capitalized and the rest lowercased.
+"""
+directive @capitalize on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Ceils value. Supports both String and Float fields.
+"""
+directive @ceil on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return centered in a string of length width. Padding is done using the specified fillchar
+The original string is returned if width is less than or equal to len(s).
+"""
+directive @center(
+  "Value to fill the returned str"
+  fillchar: String,
+  "Value to returned str lenght"
+  width: Int!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+directive @currency(
+  "Currency symbol (default: $)"
+  symbol: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Format the date from resolving the field by dateutil module.
+"""
+directive @date(
+  "A format given by dateutil module"
+  format: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Default to given value if None or ""
+"""
+directive @default(
+  "Value to default to"
+  to: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Floors value. Supports both String and Float fields.
+"""
+directive @floor on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+KebabCase result.
+"""
+directive @kebab_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Lowercases result.
+"""
+directive @lowercase on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+String formatting like a specify Python number formatting
+"""
+directive @number(
+  "Value to default to"
+  as: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with all occurrences of substring old replaced by new.
+If the optional argument count is given, only the first count occurrences are replaced.
+"""
+directive @replace(
+  "Value to returned str lenght"
+  count: Int,
+  "Value of new character to replace"
+  new: String!,
+  "Value of old character to replace"
+  old: String!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+directive @sample(
+  "Value to default to"
+  k: Int!
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Shuffle the list in place
+"""
+directive @shuffle on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+SnakeCase result.
+"""
+directive @snake_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with the leading and trailing characters removed.
+The chars argument is a string specifying the set of characters to be removed.
+If omitted or None, the chars argument defaults to removing whitespace.
+The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped.
+"""
+directive @strip(
+  "Value to specify the set of characters to be removed"
+  chars: String
+) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a copy of the string with uppercase characters converted to lowercase and vice versa.
+"""
+directive @swap_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Return a titlecased version of the string where words start with an
+uppercase character and the remaining characters are lowercase.
+"""
+directive @title_case on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+
+Uppercases result.
+"""
+directive @uppercase on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+type AdverseReactionListType {
+  "AdverseReaction list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [AdverseReactionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type AdverseReactionType {
+  "Conducta Tomada"
+  behavior_taken: String
+  "Detección"
+  detection: AdverseReactionDetectionEnum
+  "Responsable"
+  employee: EmployeeType
+  "Evolución"
+  evolution: AdverseReactionEvolutionEnum
+  "Donación"
+  extraction: ExtractionType
+  "Lugar de Extracción"
+  extraction_place: AdverseReactionExtractionPlaceEnum
+  id: Int
+  "Observaciones"
+  observations: String
+  "Fecha de registro"
+  register_at: CustomDateTime
+  "Tipo de Reacción Adversa"
+  type: [TypeAdverseReactionType!]
+}
+
+type ClinicalHistoryAnswerListType {
+  "ClinicalHistoryAnswer list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ClinicalHistoryAnswerType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ClinicalHistoryAnswerType {
+  "Donación"
+  donation: DonationType
+  "Empleado"
+  employee: EmployeeType
+  id: Int
+  "Observaciones"
+  observations: String
+  "Cuestionario"
+  questionnaire: ClinicalHistoryQuestionType
+  "Registrador"
+  register: EmployeeType
+  "Fecha de Registro"
+  register_at: CustomDate
+  responses: GenericScalar
+}
+
+type ClinicalHistoryQuestionListType {
+  "ClinicalHistoryQuestion list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ClinicalHistoryQuestionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ClinicalHistoryQuestionType {
+  clinicalhistoryanswer: [ClinicalHistoryAnswerType!]
+  id: Int
+  is_active: Boolean
+  questions: GenericScalar
+  "Fecha de Registro"
+  register_at: CustomDate
+  "Título"
+  title: String
+}
+
+type CreateAdverseReaction {
+  adversereaction: AdverseReactionType
+}
+
+type CreateClinicalHistoryAnswer {
+  clinicalhistoryanswer: ClinicalHistoryAnswerType
+}
+
+type CreateClinicalHistoryQuestion {
+  clinicalhistoryquestion: ClinicalHistoryQuestionType
+}
+
+type CreateDiscard {
+  discard: DiscardType
+}
+
+type CreateDistribution {
+  distribution: DistributionType
+}
+
+type CreateDonation {
+  donation: DonationType
+}
+
+type CreateDonor {
+  donor: DonorType
+}
+
+type CreateDonorHistory {
+  donorhistory: DonorHistoryType
+}
+
+type CreateEmployee {
+  employee: EmployeeType
+}
+
+type CreateEvent {
+  event: EventType
+}
+
+type CreateExam {
+  exam: ExamType
+}
+
+type CreateExtraction {
+  extraction: ExtractionType
+}
+
+type CreateExtractionRefreshment {
+  extractionrefreshment: ExtractionRefreshmentType
+}
+
+type CreateFragmentation {
+  fragmentation: FragmentationType
+}
+
+type CreateImmunohematology {
+  immunohematology: ImmunohematologyType
+}
+
+type CreateImmunoserology {
+  immunoserology: ImmunoserologyType
+}
+
+type CreateInstitution {
+  institution: InstitutionType
+}
+
+type CreateItemDistributionRefunded {
+  distribution_item_fragmentation_refunded: DistributionItemFragmentationRefundedType
+}
+
+type CreateMassiveDiscard {
+  discard: DiscardType
+}
+
+type CreateMassiveRelease {
+  release: ReleaseType
+}
+
+type CreateMedical {
+  medical: MedicalType
+}
+
+type CreateMenu {
+  menu: MenuType
+}
+
+type CreatePackage {
+  package: PackageType
+}
+
+type CreatePatient {
+  patient: PatientType
+}
+
+type CreatePhysicalAnalysis {
+  physicalanalysis: PhysicalAnalysisType
+}
+
+type CreateProvision {
+  provision: ProvisionType
+}
+
+type CreateRejected {
+  rejected: RejectedType
+}
+
+type CreateRelease {
+  release: ReleaseType
+}
+
+type CreateReleaseRequest {
+  releaserequest: ReleaseRequestType
+}
+
+type CreateSelfExclusion {
+  selfexclusion: SelfExclusionType
+}
+
+type CreateSerologyProtocol {
+  serologyprotocol: SerologyProtocolType
+}
+
+type CreateTypeAdverseReaction {
+  typeadversereaction: TypeAdverseReactionType
+}
+
+type CreateTypeDiscard {
+  type_discard: TypeDiscardType
+}
+
+type CreateTypeHemocomponent {
+  typehemocomponent: TypeHemocomponentType
+}
+
+type CreateUser {
+  user: UserType
+}
+
+type DeleteDiscard {
+  discard: DiscardType
+}
+
+type DeleteEvent {
+  event: EventType
+}
+
+type DeleteExtractionRefreshment {
+  extractionrefreshment: ExtractionRefreshmentType
+}
+
+type DeleteRejected {
+  rejected: RejectedType
+}
+
+type DeleteRelease {
+  release: ReleaseType
+}
+
+type DeleteSerologyProtocol {
+  serologyprotocol: SerologyProtocolType
+}
+
+type DiscardListType {
+  "Discard list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [DiscardType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type DiscardType {
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Item Fragmentación"
+  itemfragmentation: ItemFragmentationType
+  "Observaciones"
+  observations: String
+  "Causas de Descarte"
+  reason: String
+  "Registrador"
+  register: EmployeeType
+  "Fecha Registro"
+  register_at: CustomDate
+}
+
+type DistributionItemFragmentationListType {
+  "DistributionItemFragmentation list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [DistributionItemFragmentationType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type DistributionItemFragmentationRefundedType {
+  "Distribución"
+  distributionitemfragmentation: DistributionItemFragmentationType
+  id: Int
+  "Razon"
+  reason: String
+  "Fecha de registro"
+  register_at: CustomDateTime
+}
+
+type DistributionItemFragmentationType {
+  blood_group: String
+  "Distribución"
+  distribution: DistributionType
+  distributionitemfragmentationrefunded: DistributionItemFragmentationRefundedType
+  id: Int
+  "Item de Fraccionamiento"
+  itemfragmentation: ItemFragmentationType
+}
+
+type DistributionListType {
+  "Distribution list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [DistributionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type DistributionType {
+  "Edad actual del Paciente"
+  age_patient: Int
+  "Fecha de Entrega"
+  delivered_at: CustomDateTime
+  "Empleado"
+  employee: EmployeeType
+  id: Int
+  "Institución"
+  institution: InstitutionType
+  invoice_number: BigInt
+  is_delivered: Boolean
+  is_donation: Boolean
+  itemfragmentations: [DistributionItemFragmentationType!]
+  "Médico Solicitante"
+  medical: MedicalType
+  "Observaciones"
+  observations: String
+  "Paciente"
+  patient: PatientType
+  "Hora de ingreso"
+  register_at: CustomDateTime
+  "Servicio Transfusional"
+  service_transfunctional: String
+  status: String
+  total_itemfragmentations: Int
+  type_payment: String
+  "uuid"
+  uuid: UUID
+}
+
+type DonationListType {
+  "Donation list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [DonationType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type DonationType {
+  "Edad actual del Donante"
+  age_donor: Int
+  clinicalhistoryanswer: ClinicalHistoryAnswerType
+  "Fecha de Creación"
+  created_at: CustomDateTime
+  "Donante"
+  donor: DonorType
+  "Responsable"
+  employee: EmployeeType
+  "Evento o Institución"
+  event: EventType
+  exam: ExamType
+  extraction: ExtractionType
+  id: Int
+  immunohematology: ImmunohematologyType
+  immunoserology: ImmunoserologyType
+  "Fecha de última Donación"
+  last_donation_at: CustomDate
+  "Nombres y Apellidos Receptor"
+  patient: PatientType
+  physicalanalysis: PhysicalAnalysisType
+  "Lugar de Extracción"
+  place: PlaceType
+  "Registrador"
+  register: EmployeeType
+  "Fecha de Donación"
+  register_at: CustomDate
+  rejected: RejectedType
+  "Tipo de Donación"
+  type_donation: DonationTypeDonationEnum
+  "Tipo de Proceso"
+  type_process: DonationTypeProcessEnum
+}
+
+type DonorHistoryType {
+  "Fecha de Creación"
+  created_at: CustomDateTime
+  "Donante"
+  donor: DonorType
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Razón"
+  reason: String
+  "Fecha de Donación"
+  register_at: CustomDate
+}
+
+type DonorListType {
+  "Donor list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [DonorType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type DonorType {
+  "Edad"
+  age: Int
+  "Fecha Nacimiento"
+  birth_date: CustomDate
+  can_donate: Boolean
+  "Doc. de Ident./DNI"
+  ci: String
+  "Extensión de CI"
+  ci_extension: DonorCiExtensionEnum
+  "Estado Civil"
+  civil_status: DonorCivilStatusEnum
+  "Código del Donante"
+  code: Int
+  "Códigos Secundarios"
+  code_other: String
+  country: String
+  "Fecha de Registro"
+  created_at: CustomDateTime
+  "Grado Intrucción"
+  degree_instruction: DonorDegreeInstructionEnum
+  "Departamento"
+  department: DonorDepartmentEnum
+  donations: [DonationType!]
+  donorhistory: [DonorHistoryType!]
+  "Correo Electrónico"
+  email: String
+  factor_rh: String
+  "Tel. Familiar"
+  family_phone: String
+  "Nombres"
+  first_name: String
+  gender: String
+  group_abo: String
+  id: Int
+  "Imagen"
+  image: String
+  is_available_for_new_donation: Boolean
+  is_volunteer: Boolean
+  "Trabajo"
+  job: String
+  "Dirección"
+  job_address: String
+  last_effective_donation_at: Date
+  "Apellido Materno"
+  last_name: String
+  "Apellido Paterno"
+  middle_name: String
+  "Tel. Celular"
+  mobile_phone: String
+  "Teléfono"
+  phone: String
+  "Profesion/Ocupación"
+  profession: String
+  "Ciudad/Provincia"
+  province: String
+  provisions: [ProvisionType!]
+  quantity_provision: Int
+  quantity_va_donation: Int
+  "Domicilio"
+  residence: String
+  "Zona"
+  zone: String
+}
+
+type EmployeeListType {
+  "Employee list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [EmployeeType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type EmployeeType {
+  adversereaction: [AdverseReactionType!]
+  ci: BigInt
+  clinicalhistoryanswer: [ClinicalHistoryAnswerType!]
+  clinicalhistoryanswer_register: [ClinicalHistoryAnswerType!]
+  "Nro. Matrícula"
+  code_licence: String
+  discard: [DiscardType!]
+  discard_register: [DiscardType!]
+  distribution: [DistributionType!]
+  donation: [DonationType!]
+  donation_register: [DonationType!]
+  donorhistory: [DonorHistoryType!]
+  "Exam list"
+  exam(
+    donation: Int,
+    "Django object unique identification field"
+    id: ID
+  ): [ExamType]
+  "Exam list"
+  exam_register(
+    donation: Int,
+    "Django object unique identification field"
+    id: ID
+  ): [ExamType]
+  extraction: [ExtractionType!]
+  extraction_register: [ExtractionType!]
+  extractionrefreshment: [ExtractionRefreshmentType!]
+  "Nombres"
+  first_name: String
+  fragmentation: [FragmentationType!]
+  fragmentation_register: [FragmentationType!]
+  "Género"
+  gender: EmployeeGenderEnum
+  "Dirección"
+  home_address: String
+  id: Int
+  immunohematology: [ImmunohematologyType!]
+  immunoserology: [ImmunoserologyType!]
+  "Institución"
+  institution: InstitutionType
+  "Apellido Materno"
+  last_name: String
+  "Apellido Paterno"
+  middle_name: String
+  "Nro. de Celular"
+  mobile_phone: Int
+  physicalanalysis: [PhysicalAnalysisType!]
+  physicalanalysis_register: [PhysicalAnalysisType!]
+  provision: [ProvisionType!]
+  "Fecha de registro"
+  register_at: CustomDateTime
+  rejected: [RejectedType!]
+  release: [ReleaseType!]
+  release_register: [ReleaseType!]
+  releaserequest: [ReleaseRequestType!]
+  releaserequest_attendant: [ReleaseRequestType!]
+  selfexclusion: [SelfExclusionType!]
+  selfexclusion_register: [SelfExclusionType!]
+  serologyprotocol: [SerologyProtocolType!]
+  "user"
+  user: UserType
+}
+
+type EventListType {
+  "Event list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [EventType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type EventType {
+  donation: [DonationType!]
+  "Fecha y Hora de Finalizacíon"
+  end_at: CustomDateTime
+  id: Int
+  "Fecha y Hora de Inicio"
+  init_at: CustomDateTime
+  is_active: Boolean
+  "Nombre"
+  name: String
+  "Fecha de registro"
+  register_at: CustomDateTime
+}
+
+type ExamListType {
+  "Exam list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ExamType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ExamType {
+  blood_group: String
+  chagas: String
+  "Donación"
+  donation: DonationType
+  "Responsable"
+  employee: EmployeeType
+  "Hematocrito"
+  hematocrit: Float
+  "Hemoglobina"
+  hemoglobin: Float
+  history: GenericScalar
+  id: Int
+  "Observaciones"
+  observations: String
+  "Registrador"
+  register: EmployeeType
+  "Fecha de registro"
+  register_at: CustomDate
+  rpr: String
+}
+
+type ExtractionListType {
+  "Extraction list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ExtractionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ExtractionRefreshmentListType {
+  "ExtractionRefreshment list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ExtractionRefreshmentType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ExtractionRefreshmentType {
+  "Responsable"
+  employee: EmployeeType
+  "Extracción"
+  extraction: ExtractionType
+  id: Int
+  "Menu de Refrigerio"
+  menu: MenuType
+  "Fecha de registro"
+  register_at: CustomDate
+}
+
+type ExtractionType {
+  adversereaction: AdverseReactionType
+  "Brazo"
+  arm: ExtractionArmEnum
+  "Tipo de Bolsa"
+  bags_quantity: Int
+  "Código de barras"
+  barcode: String
+  "Fecha de Creación de Sistema"
+  created_at: CustomDateTime
+  "Donación"
+  donation: DonationType
+  "Responsable"
+  employee: EmployeeType
+  "Hora Conclusion de Extracción"
+  end_time: CustomTime
+  extractionrefreshment: ExtractionRefreshmentType
+  fragmentation: FragmentationType
+  id: Int
+  "Hora Inicial de Extracción"
+  initial_time: CustomTime
+  "Nro. de Lote"
+  lot: String
+  "Observaciones"
+  observations: String
+  "Registrador"
+  register: EmployeeType
+  "Fecha de registro"
+  register_at: CustomDate
+  selfexclusion: SelfExclusionType
+  "Tiempo Total"
+  total_time: Float
+  "Nro. de Tubuladura"
+  tubing: String
+  "Lugar de Extracción"
+  type_place: ExtractionTypePlaceEnum
+  "Tipo de Anticoagulante"
+  typeanticoagulant: TypeAnticoagulantType
+  "Peso"
+  weight: Float
+}
+
+type FragmentationListType {
+  "Fragmentation list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [FragmentationType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type FragmentationType {
+  donor_code: Int
+  "Responsable"
+  employee: EmployeeType
+  "Extracción"
+  extraction: ExtractionType
+  id: Int
+  itemfragmentations: [ItemFragmentationType!]
+  "Observaciones"
+  observations: String
+  "Calidad de bolsa"
+  quality_bag: FragmentationQualityBagEnum
+  "Registrador"
+  register: EmployeeType
+  "Hora de ingreso"
+  register_at: CustomDateTime
+  "Total HC"
+  total_hc: Float
+  total_itemfragmentations: Int
+}
+
+type GroupListType {
+  "Group list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [GroupType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type GroupType {
+  id: Int
+  "nombre"
+  name: String
+  "permisos"
+  permissions: [PermissionType!]
+  user: [UserType!]
+}
+
+type ImmunohematologyListType {
+  "Immunohematology list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ImmunohematologyType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ImmunohematologyType {
+  alb: String
+  antikell: String
+  coombs: String
+  direct_abo: String
+  "Donación"
+  donation: DonationType
+  "Empleado"
+  employee: EmployeeType
+  exist_irregular_antibody: Boolean
+  factor_rh: String
+  fsi: String
+  id: Int
+  inverse_abo: String
+  liss: String
+  "Observaciones"
+  observations: String
+  p2alb: String
+  p2coombs: String
+  p2fsi: String
+  p2liss: String
+  p3alb: String
+  p3coombs: String
+  p3fsi: String
+  p3liss: String
+  phenotype: String
+  "Fecha de Registro"
+  register_at: CustomDate
+  type_irregular_antibody: TypeIrregularAntiBodyType
+}
+
+type ImmunoserologyListType {
+  "Immunoserology list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ImmunoserologyType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ImmunoserologyType {
+  "CHAGAS HAI"
+  chagas_hai: ImmunoserologyChagasHaiEnum
+  "CHEIA"
+  cheia: ImmunoserologyCheiaEnum
+  "Donación"
+  donation: DonationType
+  "Empleado"
+  employee: EmployeeType
+  "HBsAg"
+  hbsag: ImmunoserologyHbsagEnum
+  "Historial de Cambios"
+  history: JSONString
+  "HIV"
+  hiv: ImmunoserologyHivEnum
+  "HVC"
+  hvc: ImmunoserologyHvcEnum
+  id: Int
+  "Observaciones"
+  observations: String
+  "Fecha de Registro"
+  register_at: CustomDate
+  "RPR"
+  rpr: ImmunoserologyRprEnum
+}
+
+type InstitutionListType {
+  "Institution list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [InstitutionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type InstitutionType {
+  "Dirección"
+  address: String
+  department: String
+  distribution: [DistributionType!]
+  employee: [EmployeeType!]
+  id: Int
+  is_public: Boolean
+  logo: String
+  medical: [MedicalType!]
+  "Nombre"
+  name: String
+  "NIT"
+  nit: String
+  patient: [PatientType!]
+  "teléfono"
+  phone: Int
+  "Fecha de registro"
+  register_at: CustomDateTime
+}
+
+type ItemFragmentationListType {
+  "ItemFragmentation list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ItemFragmentationType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ItemFragmentationType {
+  discard: DiscardType
+  distributionitemfragmentations: [DistributionItemFragmentationType!]
+  "Código de Donante"
+  donor_code: Int
+  "Fecha de Expiración"
+  expiration_date: CustomDateTime
+  "Fraccionamiento"
+  fragmentation: FragmentationType
+  id: Int
+  is_max_expiration_days: Boolean
+  is_satellite_bag: Boolean
+  "Nro. de Lote"
+  lot: String
+  "Observaciones"
+  observations: String
+  "Fecha Registro"
+  register_at: CustomDate
+  release: ReleaseType
+  status: String
+  "Nro. de Tubuladura"
+  tubing: String
+  "Tipo de Descarte"
+  type_irregular_antibody: TypeIrregularAntiBodyType
+  "Tipo de Descarte"
+  typediscard: TypeDiscardType
+  "Tipo de Hemocomponente"
+  typehemocomponent: TypeHemocomponentType
+  "Peso (Volumen)"
+  weight: Float
+}
+
+type JoinDonor {
+  donor: DonorType
+}
+
+type MedicalListType {
+  "Medical list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [MedicalType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type MedicalType {
+  distribution: [DistributionType!]
+  "Nombres"
+  first_name: String
+  id: Int
+  "Institución"
+  institution: InstitutionType
+  "Apellido Materno"
+  last_name: String
+  "Apellido Paterno"
+  middle_name: String
+  "Fecha de registro"
+  register_at: CustomDateTime
+  releaserequest: [ReleaseRequestType!]
+}
+
+type MenuListType {
+  "Menu list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [MenuType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type MenuType {
+  extractionrefreshment: [ExtractionRefreshmentType!]
+  id: Int
+  "Nombre"
+  name: String
+  only_volunteer: Boolean
+  "Fecha"
+  register_at: CustomDateTime
+}
+
+type Mutation {
+  create_adversereaction(behavior_taken: String, detection: String!, employee_id: Int!, evolution: String!, extraction_id: Int!, extraction_place: String!, observations: String, register_at: DateTime!, type_id: GenericScalar!): CreateAdverseReaction
+  create_clinicalhistoryanswer(donation_id: Int!, employee_id: Int!, observations: String, questionnaire_id: Int!, register_at: Date, register_id: Int!, responses: GenericScalar): CreateClinicalHistoryAnswer
+  create_clinicalhistoryquestion(is_active: Boolean!, questions: GenericScalar, register_at: Date, title: String!): CreateClinicalHistoryQuestion
+  create_discard(employee_id: Int!, itemfragmentation_id: Int!, observations: String, reason: String!, register_at: Date!, register_id: Int!): CreateDiscard
+  create_distribution(employee_id: Int!, institution_id: Int!, is_donation: Boolean, itemfragmentations: [DistributionItemInput], medical_id: Int!, observations: String, patient_id: Int, register_at: DateTime!, service_transfunctional: String, status: String, type_payment: String!): CreateDistribution
+  create_distribution_item_fragmentation_refunded(id: Int!, reason: String!): CreateItemDistributionRefunded
+  create_donation(donor_id: Int!, employee_id: Int!, event_id: Int, last_donation_at: Date, patient_id: Int, place_id: Int!, register_at: Date!, register_id: Int!, type_donation: String!, type_process: String!): CreateDonation
+  create_donor(birth_date: Date!, ci: String, ci_extension: String, civil_status: String, code: String!, code_other: String, country: String!, degree_instruction: String!, department: String!, email: String, family_phone: Int, first_name: String!, gender: String!, is_volunteer: Boolean, job: String, job_address: String, last_name: String!, middle_name: String, mobile_phone: Int, phone: Int, profession: String, province: String, residence: String!, zone: String): CreateDonor
+  create_donorhistory(donor_id: Int!, employee_id: Int!, reason: String!, register_at: Date!): CreateDonorHistory
+  create_employee(ci: Int!, code_licence: String, first_name: String!, gender: String!, home_address: String, institution_id: Int!, last_name: String, middle_name: String, mobile_phone: Int): CreateEmployee
+  create_event(end_at: DateTime, init_at: DateTime!, is_active: Boolean, name: String!): CreateEvent
+  create_exam(blood_group: String, chagas: String, donation_id: Int!, employee_id: Int!, hematocrit: Float, hemoglobin: Float, observations: String, register_at: Date!, register_id: Int!, rpr: String): CreateExam
+  create_extraction(arm: String, bags_quantity: Int!, barcode: String, donation_id: Int!, employee_id: Int!, end_time: Time, initial_time: Time!, lot: String!, observations: String, register_at: Date!, register_id: Int!, total_time: Float, tubing: String, type_place: String!, typeanticoagulant_id: Int!, weight: Float): CreateExtraction
+  create_extractionrefreshment(employee_id: Int!, extraction_id: Int!, menu_id: Int!, register_at: Date!): CreateExtractionRefreshment
+  create_fragmentation(donor_code: Int!, employee_id: Int!, extraction_id: Int, itemfragmentations: GenericScalar, observations: String, quality_bag: String!, register_at: DateTime!, register_id: Int!, total_hc: Float!): CreateFragmentation
+  create_immunohematology(alb: String, antikell: String, coombs: String, direct_abo: String, donation_id: Int!, employee_id: Int!, factor_rh: String, fsi: String, inverse_abo: String, liss: String, observations: String, p2alb: String, p2coombs: String, p2fsi: String, p2liss: String, p3alb: String, p3coombs: String, p3fsi: String, p3liss: String, phenotype: String, register_at: Date, type_irregular_antibody_id: Int): CreateImmunohematology
+  create_immunoserology(chagas_hai: String, cheia: String, donation_id: Int!, employee_id: Int!, hbsag: String, hiv: String, hvc: String, observations: String, register_at: Date, rpr: String): CreateImmunoserology
+  create_institution(address: String, department: String!, dosage_key: String, is_public: Boolean, name: String!, nit: String, nro_authorization: String, phone: Int): CreateInstitution
+  create_massive_discard(employee_id: Int!, hemocomponents: [MassiveDiscardItemInput], observations: String, reason: String!, register_at: Date!, register_id: Int!): CreateMassiveDiscard
+  create_massive_release(employee_id: Int!, hemocomponents: [MassiveReleaseItemInput], observations: String, register_at: Date!, register_id: Int!): CreateMassiveRelease
+  create_medical(first_name: String!, institution_id: Int!, last_name: String, middle_name: String): CreateMedical
+  create_menu(name: String!, only_volunteer: Boolean!): CreateMenu
+  create_package(code: String!, description: String, price: Float!, typehemocomponent_id: Int!, typepatient_id: Int!): CreatePackage
+  create_patient(first_name: String!, institution_id: Int, last_name: String, middle_name: String!, phone: Int): CreatePatient
+  create_physicalanalysis(diastolic: Float, donation_id: Int!, employee_id: Int!, observations: String, pulse: Float, register_at: Date!, register_id: Int!, systolic: Float, tall: Float, temperature: Float, weight: Float): CreatePhysicalAnalysis
+  create_provision(description: String, donor_id: Int!, employee_id: Int!, patient_id: Int!, quantity: Int!, register_at: Date): CreateProvision
+  create_rejected(donation_id: Int!, employee_id: Int!, observations: String, reason_id: Int!, register_at: Date!, resource: String!, resource_id: Int!): CreateRejected
+  create_release(employee_id: Int!, itemfragmentation_id: Int!, observations: String, register_at: Date!, register_id: Int!): CreateRelease
+  create_releaserequest(attendant_id: Int!, description: String, employee_id: Int!, medical_id: Int!, register_at: DateTime!, status: String!, typeHemocomponents: GenericScalar): CreateReleaseRequest
+  create_selfexclusion(employee_id: Int!, extraction_id: Int!, observations: String, register_at: Date!, register_id: Int!): CreateSelfExclusion
+  create_serologyprotocol(cutt_off: String, cutt_off_max: String, cutt_off_min: String, due_date_at: Date!, employee_id: Int!, industry: String!, kit: String!, lot: String!, method: String!, register_at: Date, test: Int!, type: String!, values: GenericScalar!): CreateSerologyProtocol
+  create_typeadversereaction(level: String!, name: String!, show_in_apheresis: Boolean!, show_in_conventional: Boolean!): CreateTypeAdverseReaction
+  create_typediscard(name: String!, typehemocomponent_id: Int!): CreateTypeDiscard
+  create_typehemocomponent(acronym: String!, description: String, expiration_day: Int, name: String!, position: Int, show_in_billing: Boolean!, show_in_fragmentation: Boolean!, show_in_request_release: Boolean!, temperature_save: String!, typecoagulation: String!): CreateTypeHemocomponent
+  create_user(group_ids: [Int]!, password: String!, profile_id: Int!, username: String!): CreateUser
+  delete_discard(id: Int!): DeleteDiscard
+  delete_event(id: Int!): DeleteEvent
+  delete_extractionrefreshment(id: Int!): DeleteExtractionRefreshment
+  delete_rejected(id: Int!): DeleteRejected
+  delete_release(id: Int!): DeleteRelease
+  delete_serologyprotocol(id: Int!): DeleteSerologyProtocol
+  join_donor(id: Int!, items: GenericScalar!): JoinDonor
+  refresh_token(token: String): Refresh
+  "Obtain JSON Web Token mutation"
+  token_auth(password: String!, username: String!): ObtainJSONWebToken
+  update_adversereaction(behavior_taken: String, detection: String, employee_id: Int, evolution: String, extraction_id: Int, extraction_place: String, id: Int!, observations: String, register_at: DateTime, type_id: GenericScalar): UpdateAdverseReaction
+  update_clinicalhistoryanswer(donation_id: Int, employee_id: Int, id: Int!, observations: String, questionnaire_id: Int, register_at: Date, register_id: Int, responses: GenericScalar): UpdateClinicalHistoryAnswer
+  update_clinicalhistoryquestion(id: Int!, is_active: Boolean, questions: GenericScalar, register_at: Date, title: String): UpdateClinicalHistoryQuestion
+  update_discard(employee_id: Int, id: Int!, itemfragmentation_id: Int, observations: String, reason: String, register_at: Date, register_id: Int): UpdateDiscard
+  update_distribution(employee_id: Int, id: Int!, institution_id: Int, is_donation: Boolean, itemfragmentations: [DistributionItemInput], medical_id: Int, observations: String, patient_id: Int, register_at: DateTime, service_transfunctional: String, status: String, type_payment: String): UpdateDistribution
+  update_donation(donor_id: Int, employee_id: Int, event_id: Int, id: Int!, last_donation_at: Date, patient_id: Int, place_id: Int, register_at: Date, register_id: Int, type_donation: String, type_process: String): UpdateDonation
+  update_donor(birth_date: Date, ci: String, ci_extension: String, civil_status: String, code: String, code_other: String, country: String, degree_instruction: String, department: String, email: String, family_phone: Int, first_name: String, gender: String, id: Int!, is_volunteer: Boolean, job: String, job_address: String, last_name: String, middle_name: String, mobile_phone: Int, phone: Int, profession: String, province: String, residence: String, zone: String): UpdateDonor
+  update_employee(ci: Int, code_licence: String, first_name: String, gender: String, home_address: String, id: Int!, institution_id: Int, last_name: String, middle_name: String, mobile_phone: Int): UpdateEmployee
+  update_event(end_at: DateTime, id: Int!, init_at: DateTime, is_active: Boolean, name: String): UpdateEvent
+  update_exam(blood_group: String, chagas: String, donation_id: Int, employee_id: Int, hematocrit: Float, hemoglobin: Float, id: Int!, observations: String, register_at: Date, register_id: Int, rpr: String): UpdateExam
+  update_extraction(arm: String, bags_quantity: Int, barcode: String, donation_id: Int, employee_id: Int, end_time: Time, id: Int!, initial_time: Time, lot: String, observations: String, register_at: Date, register_id: Int, total_time: Float, tubing: String, type_place: String, weight: Float): UpdateExtraction
+  update_extractionrefreshment(employee_id: Int, extraction_id: Int, id: Int!, menu_id: Int, register_at: Date): UpdateExtractionRefreshment
+  update_fragmentation(donor_code: Int!, employee_id: Int, extraction_id: Int, id: Int!, itemfragmentations: GenericScalar, observations: String, quality_bag: String, register_at: DateTime, register_id: Int, total_hc: Float): UpdateFragmentation
+  update_immunohematology(alb: String, antikell: String, bro: String, coombs: String, direct_a: String, direct_ab: String, direct_abo: String, direct_b: String, donation_id: Int, employee_id: Int, factor_rh: String, fsi: String, id: Int!, inverse_abo: String, inverse_gra: String, liss: String, observations: String, p2alb: String, p2coombs: String, p2fsi: String, p2liss: String, p3alb: String, p3coombs: String, p3fsi: String, p3liss: String, p3pt: String, phenotype: String, register_at: Date, type_irregular_antibody_id: Int, version: String): UpdateImmunohematology
+  update_immunoserology(chagas_hai: String, cheia: String, donation_id: Int, employee_id: Int, hbsag: String, hiv: String, hvc: String, id: Int!, observations: String, register_at: Date, rpr: String): UpdateImmunoserology
+  update_institution(address: String, department: String, dosage_key: String, id: Int!, is_public: Boolean, logo: String, name: String, nit: String, nro_authorization: String, phone: Int): UpdateInstitution
+  update_medical(first_name: String, id: Int!, institution_id: Int, last_name: String, middle_name: String): UpdateMedical
+  update_menu(id: Int!, name: String, only_volunteer: Boolean): UpdateMenu
+  update_package(code: String!, description: String, id: Int!, price: Float!, typehemocomponent_id: Int!, typepatient_id: Int!): UpdatePackage
+  update_patient(first_name: String, id: Int!, institution_id: Int, last_name: String, middle_name: String, phone: Int): UpdatePatient
+  update_physicalanalysis(diastolic: Float, donation_id: Int, employee_id: Int, id: Int!, observations: String, pulse: Float, register_at: Date, register_id: Int, systolic: Float, tall: Float, temperature: Float, weight: Float): UpdatePhysicalAnalysis
+  update_provision(description: String, donor_id: Int, employee_id: Int!, id: Int!, patient_id: Int, quantity: Int, register_at: Date): UpdateProvision
+  update_rejected(donation_id: Int, employee_id: Int, id: Int!, observations: String, reason_id: Int, register_at: Date, resource: String, resource_id: Int): UpdateRejected
+  update_release(employee_id: Int, id: Int!, itemfragmentation_id: Int, observations: String, register_at: Date, register_id: Int): UpdateRelease
+  update_releaserequest(attendant_id: Int, description: String, employee_id: Int, id: Int!, medical_id: Int, register_at: DateTime, status: String, typeHemocomponents: GenericScalar): UpdateReleaseRequest
+  update_selfexclusion(employee_id: Int, extraction_id: Int, id: Int!, observations: String, register_at: Date, register_id: Int): UpdateSelfExclusion
+  update_serologyprotocol(cutt_off: String, cutt_off_max: String, cutt_off_min: String, due_date_at: Date, employee_id: Int, id: Int!, industry: String, kit: String, lot: String, method: String, register_at: Date, test: Int, type: String, values: GenericScalar): UpdateSerologyProtocol
+  update_typeadversereaction(id: Int!, level: String, name: String, show_in_apheresis: Boolean, show_in_conventional: Boolean): UpdateTypeAdverseReaction
+  update_typediscard(id: Int!, name: String!, typehemocomponent_id: Int!): UpdateTypeDiscard
+  update_typehemocomponent(acronym: String, description: String, expiration_day: Int, id: Int!, name: String, position: Int, show_in_billing: Boolean, show_in_fragmentation: Boolean, show_in_request_release: Boolean, temperature_save: String, typecoagulation: String): UpdateTypeHemocomponent
+  update_user(group_ids: [Int], id: Int!, is_active: Boolean, password: String): UpdateUser
+  verify_token(token: String): Verify
+}
+
+"Obtain JSON Web Token mutation"
+type ObtainJSONWebToken {
+  payload: GenericScalar!
+  refresh_expires_in: Int!
+  token: String!
+}
+
+type PackageListType {
+  "Package list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [PackageType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type PackageType {
+  "Codigo"
+  code: String
+  "Fecha de creación"
+  created_at: CustomDateTime
+  "Descripcion"
+  description: String
+  id: Int
+  "Precio Unitario"
+  price: Float
+  "Tipo de Hemocomponente"
+  typehemocomponent: TypeHemocomponentType
+  "Tipo de Paciente"
+  typepatient: TypePatientType
+}
+
+type PatientListType {
+  "Patient list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [PatientType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type PatientType {
+  distribution: [DistributionType!]
+  donation: [DonationType!]
+  "Nombres"
+  first_name: String
+  id: Int
+  "Institución"
+  institution: InstitutionType
+  "Apellido Materno"
+  last_name: String
+  "Apellido Paterno"
+  middle_name: String
+  "Teléfono"
+  phone: Int
+  provision: [ProvisionType!]
+  "Fecha de registro"
+  register_at: CustomDate
+}
+
+type PermissionType {
+  "nombre en código"
+  codename: String
+  group: [GroupType!]
+  id: Int
+  "nombre"
+  name: String
+  user: [UserType!]
+}
+
+type PhysicalAnalysisListType {
+  "PhysicalAnalysis list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [PhysicalAnalysisType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type PhysicalAnalysisType {
+  "Diastólica"
+  diastolic: Float
+  "Donación"
+  donation: DonationType
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Obs."
+  observations: String
+  "Pulso"
+  pulse: Float
+  "Registrador"
+  register: EmployeeType
+  "Fecha de registro"
+  register_at: CustomDate
+  "Sistólica"
+  systolic: Float
+  "Talla"
+  tall: Float
+  "Temperatura"
+  temperature: Float
+  "Peso"
+  weight: Float
+}
+
+type PlaceListType {
+  "Place list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [PlaceType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type PlaceType {
+  donation: [DonationType!]
+  id: Int
+  "Nombre de Lugar"
+  name: String
+  settingphysical: SettingPhysicalType
+}
+
+type ProvisionListType {
+  "Provision list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ProvisionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ProvisionType {
+  "Fecha de creación"
+  created_at: CustomDateTime
+  "Descripcion"
+  description: String
+  donor: DonorType
+  employee: EmployeeType
+  id: Int
+  patient: PatientType
+  "Cantidad"
+  quantity: Int
+  "Fecha de registro"
+  register_at: CustomDate
+}
+
+type Query {
+  adversereaction(
+    "Django object unique identification field"
+    id: ID!
+  ): AdverseReactionType
+  "AdverseReaction list"
+  adversereactions(id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): AdverseReactionListType
+  calendar_events(date: String, filter: String): GenericScalar
+  clinicalhistoryanswer(
+    "Django object unique identification field"
+    id: ID!
+  ): ClinicalHistoryAnswerType
+  "ClinicalHistoryAnswer list"
+  clinicalhistoryanswers(id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): ClinicalHistoryAnswerListType
+  clinicalhistoryquestion(
+    "Django object unique identification field"
+    id: ID!
+  ): ClinicalHistoryQuestionType
+  "ClinicalHistoryQuestion list"
+  clinicalhistoryquestions(id: Int, ordering: String, search: String): ClinicalHistoryQuestionListType
+  discard(
+    "Django object unique identification field"
+    id: ID!
+  ): DiscardType
+  "Discard list"
+  discards(id: Int, ordering: String, register_at__gte: Date, register_at__lte: Date, search: String, typehemocomponent_id: Decimal): DiscardListType
+  distribution(
+    "Django object unique identification field"
+    id: ID!
+  ): DistributionType
+  distribution_itemfragmentation(
+    "Django object unique identification field"
+    id: ID!
+  ): DistributionItemFragmentationType
+  "DistributionItemFragmentation list"
+  distribution_itemfragmentations(distribution__id: Decimal, id: Int, ordering: String, register_at__gte: Date, register_at__lte: Date, search: String, type_payment: String): DistributionItemFragmentationListType
+  "Distribution list"
+  distributions(age_patient: Decimal, age_patient__gte: Decimal, age_patient__lte: Decimal, employee_id: Decimal, id: Int, institution__is_public: Boolean, institution_id: Decimal, ordering: String, register_at__gte: Date, register_at__lte: Date, search: String, type_payment: String): DistributionListType
+  donation(
+    "Django object unique identification field"
+    id: ID!
+  ): DonationType
+  "Donation list"
+  donations(clinicalhistoryanswer__isnull: Boolean, donor__age: Decimal, donor__age__gte: Decimal, donor__age__lte: Decimal, donor__can_donate: Boolean, donor__code: String, donor__gender: String, donor__id: Decimal, event__id: Decimal, event__isnull: Boolean, exam__isnull: Boolean, extraction__adversereaction__isnull: Boolean, extraction__isnull: Boolean, extraction__selfexclusion__isnull: Boolean, id: Int, immunohematology__isnull: Boolean, immunoserology__isnull: Boolean, ordering: String, patient__id: Decimal, physicalanalysis__isnull: Boolean, register_at: Date, register_at__gte: Date, register_at__lte: Date, rejected__isnull: Boolean, rejected__reason__type: String, rejected__reason_id: String, search: String, type_donation: String, type_process: String): DonationListType
+  donor(
+    "Django object unique identification field"
+    id: ID!
+  ): DonorType
+  "Donor list"
+  donors(donations__type_donation: String, id: Int, ordering: String, search: String): DonorListType
+  employee(
+    "Django object unique identification field"
+    id: ID!
+  ): EmployeeType
+  "Employee list"
+  employees(id: Int, ordering: String, search: String, user__username: String): EmployeeListType
+  event(
+    "Django object unique identification field"
+    id: ID!
+  ): EventType
+  "Event list"
+  events(id: Int, is_active: Boolean, ordering: String, search: String): EventListType
+  exam(
+    "Django object unique identification field"
+    id: ID!
+  ): ExamType
+  "Exam list"
+  exams(donation__donor__age: Decimal, donation__donor__age__gte: Decimal, donation__donor__age__lte: Decimal, donation__donor__gender: String, donation__event__id: Decimal, donation__event__isnull: Boolean, donation__rejected__isnull: Boolean, donation__rejected__reason__type: String, donation__type_donation: String, id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): ExamListType
+  extraction(
+    "Django object unique identification field"
+    id: ID!
+  ): ExtractionType
+  extractionrefreshment(
+    "Django object unique identification field"
+    id: ID!
+  ): ExtractionRefreshmentType
+  "ExtractionRefreshment list"
+  extractionrefreshments(id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): ExtractionRefreshmentListType
+  "Extraction list"
+  extractions(adversereaction__isnull: Boolean, apheresis__isnull: Boolean, donation__donor__age: Decimal, donation__donor__age__gte: Decimal, donation__donor__age__lte: Decimal, donation__donor__gender: String, donation__event__id: Decimal, donation__event__isnull: Boolean, donation__id: Int, donation__rejected__isnull: Boolean, donation__rejected__reason__type: String, donation__type_donation: String, extractionrefreshment__isnull: Boolean, fragmentation__isnull: Boolean, id: Int, immunohematology__isnull: Boolean, immunoserology__isnull: Boolean, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String, selfexclusion__isnull: Boolean): ExtractionListType
+  fragmentation(
+    "Django object unique identification field"
+    id: ID!
+  ): FragmentationType
+  "Fragmentation list"
+  fragmentations(employee_id: Decimal, extraction__donation__donor__age: Decimal, extraction__donation__donor__age__gte: Decimal, extraction__donation__donor__age__lte: Decimal, extraction__donation__donor__gender: String, extraction__donation__event__id: Decimal, extraction__donation__event__isnull: Boolean, extraction__donation__id: Int, extraction__donation__rejected__isnull: Boolean, extraction__donation__rejected__reason__id: Decimal, extraction__donation__rejected__reason__type: String, extraction__donation__type_donation: String, id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lt: Date, register_at__lte: Date, search: String): FragmentationListType
+  group(
+    "Django object unique identification field"
+    id: ID!
+  ): GroupType
+  "Group list"
+  groups(id: Int, ordering: String, search: String): GroupListType
+  "Immunohematology list"
+  immunohematologies(donation__donor__age: Decimal, donation__donor__age__gte: Decimal, donation__donor__age__lte: Decimal, donation__donor__gender: String, donation__donor__id: Decimal, donation__event__id: Decimal, donation__event__isnull: Boolean, donation__rejected__isnull: Boolean, donation__rejected__reason__id: Decimal, donation__rejected__reason__type: String, donation__type_donation: String, id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): ImmunohematologyListType
+  immunohematology(
+    "Django object unique identification field"
+    id: ID!
+  ): ImmunohematologyType
+  "Immunoserology list"
+  immunoserologies(donation__donor__age: Decimal, donation__donor__age__gte: Decimal, donation__donor__age__lte: Decimal, donation__donor__gender: String, donation__event__id: Decimal, donation__event__isnull: Boolean, donation__rejected__isnull: Boolean, donation__rejected__reason__id: Decimal, donation__rejected__reason__type: String, donation__type_donation: String, id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): ImmunoserologyListType
+  immunoserology(
+    "Django object unique identification field"
+    id: ID!
+  ): ImmunoserologyType
+  institution(
+    "Django object unique identification field"
+    id: ID!
+  ): InstitutionType
+  "Institution list"
+  institutions(distribution_month: Decimal, distribution_type_payment: Decimal, distribution_year: Decimal, has_distribution: Boolean, id: Int, institution_billing_month: Decimal, ordering: String, search: String): InstitutionListType
+  itemfragmentation(
+    "Django object unique identification field"
+    id: ID!
+  ): ItemFragmentationType
+  "ItemFragmentation list"
+  itemfragmentations(discard__isnull: Boolean, fragmentation__extraction__donation__id: Int, fragmentation__id: Decimal, id: Int, is_distributed: String, item_register_at__gte: Date, item_register_at__lte: Date, only_release_or_discard: String, ordering: String, register_at__gte: Date, register_at__lte: Date, release__isnull: Boolean, search: String, status: String, status__in: [String], typehemocomponent_id: Decimal): ItemFragmentationListType
+  medical(
+    "Django object unique identification field"
+    id: ID!
+  ): MedicalType
+  "Medical list"
+  medicals(id: Int, ordering: String, search: String): MedicalListType
+  menu(
+    "Django object unique identification field"
+    id: ID!
+  ): MenuType
+  "Menu list"
+  menus(id: Int, ordering: String, search: String): MenuListType
+  next_donor_code: Int
+  package(
+    "Django object unique identification field"
+    id: ID!
+  ): PackageType
+  "Package list"
+  packages(code: String, id: Int, ordering: String, search: String, typehemocomponent__show_in_billing: Boolean, typepatient_id: Decimal): PackageListType
+  patient(
+    "Django object unique identification field"
+    id: ID!
+  ): PatientType
+  "Patient list"
+  patients(first_name: String, id: Int, ordering: String, search: String): PatientListType
+  "PhysicalAnalysis list"
+  physicalanalyses(donation__donor__age: Decimal, donation__donor__age__gte: Decimal, donation__donor__age__lte: Decimal, donation__donor__gender: String, donation__event__id: Decimal, donation__event__isnull: Boolean, donation__rejected__isnull: Boolean, donation__rejected__reason__type: String, donation__type_donation: String, id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): PhysicalAnalysisListType
+  physicalanalysis(
+    "Django object unique identification field"
+    id: ID!
+  ): PhysicalAnalysisType
+  place(
+    "Django object unique identification field"
+    id: ID!
+  ): PlaceType
+  "Place list"
+  places(id: Int, ordering: String, search: String): PlaceListType
+  provision(
+    "Django object unique identification field"
+    id: ID!
+  ): ProvisionType
+  "Provision list"
+  provisions(donor_id: Decimal, id: Int, ordering: String, patient_id: Decimal, search: String): ProvisionListType
+  reason(
+    "Django object unique identification field"
+    id: ID!
+  ): ReasonType
+  "Reason list"
+  reasons(id: Int, ordering: String, search: String): ReasonListType
+  rejected(
+    "Django object unique identification field"
+    id: ID!
+  ): RejectedType
+  "Rejected list"
+  rejecteds(id: Int, ordering: String, search: String): RejectedListType
+  release(
+    "Django object unique identification field"
+    id: ID!
+  ): ReleaseType
+  releaserequest(
+    "Django object unique identification field"
+    id: ID!
+  ): ReleaseRequestType
+  "ReleaseRequest list"
+  releaserequests(id: Int, ordering: String, search: String): ReleaseRequestListType
+  "Release list"
+  releases(id: Int, ordering: String, register_at__gte: Date, register_at__lte: Date, search: String, typehemocomponent_id: Decimal): ReleaseListType
+  selfexclusion(
+    "Django object unique identification field"
+    id: ID!
+  ): SelfExclusionType
+  "SelfExclusion list"
+  selfexclusions(id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): SelfExclusionListType
+  serologyprotocol(
+    "Django object unique identification field"
+    id: ID!
+  ): SerologyProtocolType
+  "SerologyProtocol list"
+  serologyprotocols(id: Int, ordering: String, register_at: Date, register_at__gte: Date, register_at__lte: Date, search: String): SerologyProtocolListType
+  settingphysical(
+    "Django object unique identification field"
+    id: ID!
+  ): SettingPhysicalType
+  "SettingPhisical list"
+  settingphysicals(id: Int, ordering: String, search: String): SettingPhysicalListType
+  "TypeIrregularAntiBody list"
+  type_irregular_antibodies(id: Int, ordering: String, search: String): TypeIrregularAntiBodyListType
+  type_irregular_antibody(
+    "Django object unique identification field"
+    id: ID!
+  ): TypeIrregularAntiBodyType
+  typeadversereaction(
+    "Django object unique identification field"
+    id: ID!
+  ): TypeAdverseReactionType
+  "TypeAdverseReaction list"
+  typeadversereactions(id: Int, ordering: String, search: String, show_in_apheresis: Boolean, show_in_conventional: Boolean): TypeAdverseReactionListType
+  typeanticoagulante(
+    "Django object unique identification field"
+    id: ID!
+  ): TypeAnticoagulantType
+  "TypeAnticoagulant list"
+  typeanticoagulants(id: Int, ordering: String, search: String): TypeAnticoagulantListType
+  typediscard(
+    "Django object unique identification field"
+    id: ID!
+  ): TypeDiscardType
+  "TypeDiscard list"
+  typediscards(id: Int, ordering: String, search: String): TypeDiscardListType
+  typehemocomponent(
+    "Django object unique identification field"
+    id: ID!
+  ): TypeHemocomponentType
+  "TypeHemocomponent list"
+  typehemocomponents(id: Int, ordering: String, search: String, show_in_billing: Boolean, show_in_fragmentation: Boolean, show_in_request_release: Boolean): TypeHemocomponentListType
+  typepatient(
+    "Django object unique identification field"
+    id: ID!
+  ): TypePatientType
+  "TypePatient list"
+  typepatients(id: Int, ordering: String, search: String): TypePatientListType
+}
+
+type ReasonListType {
+  "Reason list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ReasonType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ReasonType {
+  "Fecha de Creación"
+  created_at: CustomDateTime
+  id: Int
+  "Nombre"
+  name: String
+  reason: [RejectedType!]
+  type: String
+}
+
+type Refresh {
+  payload: GenericScalar!
+  refresh_expires_in: Int!
+  token: String!
+}
+
+type RejectedListType {
+  "Rejected list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [RejectedType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type RejectedType {
+  "Donación"
+  donation: DonationType
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Observaciones"
+  observations: String
+  "Razón "
+  reason: ReasonType
+  "Fecha de Rechazo"
+  register_at: CustomDateTime
+  resource: String
+  "Modelo id"
+  resource_id: Int
+}
+
+type ReleaseListType {
+  "Release list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ReleaseType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ReleaseRequestListType {
+  "ReleaseRequest list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [ReleaseRequestType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type ReleaseRequestType {
+  "Encargado"
+  attendant: EmployeeType
+  "Descripción"
+  description: String
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Médico Solicitante"
+  medical: MedicalType
+  "Fecha Registro"
+  register_at: CustomDateTime
+  status: Int
+  typeHemocomponents: [ReleaseTypeHemocomponentType!]
+}
+
+type ReleaseType {
+  "Responsable"
+  employee: EmployeeType
+  id: Int
+  "Item Fragmentación"
+  itemfragmentation: ItemFragmentationType
+  "Observaciones"
+  observations: String
+  "Registrador"
+  register: EmployeeType
+  "Fecha Registro"
+  register_at: CustomDate
+}
+
+type ReleaseTypeHemocomponentType {
+  id: Int
+  "Cantidad Liberada"
+  quantity_release: Int
+  "Cantidad Solicitada"
+  quantity_request: Int
+  "Solicitud de Liberación"
+  release: ReleaseRequestType
+  "Tipo de Hemocomponente"
+  typehemocomponent: TypeHemocomponentType
+}
+
+type SelfExclusionListType {
+  "SelfExclusion list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [SelfExclusionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type SelfExclusionType {
+  "Responsable"
+  employee: EmployeeType
+  "Estracción"
+  extraction: ExtractionType
+  id: Int
+  "Observaciones"
+  observations: String
+  "Registrador"
+  register: EmployeeType
+  "Fecha de registro"
+  register_at: CustomDate
+}
+
+type SerologyProtocolListType {
+  "SerologyProtocol list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [SerologyProtocolType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type SerologyProtocolType {
+  "Cutt Off"
+  cutt_off: String
+  "Cutt Off Max"
+  cutt_off_max: String
+  "Cutt Off Min"
+  cutt_off_min: String
+  "Fecha de Vencimiento"
+  due_date_at: CustomDate
+  "Empleado"
+  employee: EmployeeType
+  id: Int
+  "Industria"
+  industry: String
+  "KIT"
+  kit: String
+  "Nro. de Lote"
+  lot: String
+  "Tecnica a procesar"
+  method: String
+  "Fecha de Realización"
+  register_at: CustomDate
+  "Nro. de Prueba (Máquina)"
+  test: Int
+  type: String
+  values: GenericScalar
+}
+
+type SettingPhysicalListType {
+  "SettingPhisical list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [SettingPhysicalType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type SettingPhysicalType {
+  "Diastolica Max."
+  diastolic_max: Int
+  "Diastolica Min."
+  diastolic_min: Int
+  "Hematocrito Max. Femenino"
+  hematocrit_max: Int
+  "Hematocrito Max. Masculino"
+  hematocrit_max_m: Int
+  "Hematocrito Min. Femenino"
+  hematocrit_min: Int
+  "Hematocrito Min. Masculino"
+  hematocrit_min_m: Int
+  "Factor de Hemoglobina"
+  hemoglobin_factor: Float
+  id: Int
+  "Lugar de Donación"
+  place: PlaceType
+  "Pulso Max."
+  pulse_max: Int
+  "Pulso Min."
+  pulse_min: Int
+  "Sistolica Max."
+  systolic_max: Int
+  "Sistolica Min."
+  systolic_min: Int
+  "Peso Min."
+  weight_min: Int
+}
+
+type TypeAdverseReactionListType {
+  "TypeAdverseReaction list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypeAdverseReactionType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypeAdverseReactionType {
+  adversereaction: [AdverseReactionType!]
+  id: Int
+  "Categoría"
+  level: TypeAdverseReactionLevelEnum
+  "Nombre"
+  name: String
+  show_in_apheresis: Boolean
+  show_in_conventional: Boolean
+}
+
+type TypeAnticoagulantListType {
+  "TypeAnticoagulant list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypeAnticoagulantType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypeAnticoagulantType {
+  extraction: [ExtractionType!]
+  id: Int
+  "Nombre"
+  name: String
+}
+
+type TypeDiscardListType {
+  "TypeDiscard list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypeDiscardType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypeDiscardType {
+  id: Int
+  "Nombre"
+  name: String
+  typediscard: [ItemFragmentationType!]
+  "Tipo de Hemocomponente"
+  typehemocomponent: TypeHemocomponentType
+}
+
+type TypeHemocomponentListType {
+  "TypeHemocomponent list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypeHemocomponentType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypeHemocomponentType {
+  "Sigla"
+  acronym: String
+  can_add_bags: Boolean
+  "Descripción"
+  description: String
+  "Duracion en dias"
+  expiration_day: Int
+  id: Int
+  is_pediatric: Boolean
+  "Maxima Duración en dias"
+  max_expiration_days: Int
+  "Nombre"
+  name: String
+  package: [PackageType!]
+  "Posición"
+  position: Int
+  releasetypehemocomponent: [ReleaseTypeHemocomponentType!]
+  show_in_billing: Boolean
+  show_in_fragmentation: Boolean
+  show_in_request_release: Boolean
+  "Temperatura De Almacenamiento."
+  temperature_save: String
+  "Sigla"
+  typecoagulation: String
+  typediscards: [TypeDiscardType!]
+  typehemocomponent: [ItemFragmentationType!]
+}
+
+type TypeIrregularAntiBodyListType {
+  "TypeIrregularAntiBody list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypeIrregularAntiBodyType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypeIrregularAntiBodyType {
+  id: Int
+  "Nombre"
+  name: String
+  "Recomendación"
+  recommendation: String
+  "Texto en Bolsa"
+  text_bag: String
+  type_irregular_antibody: [ItemFragmentationType!]
+}
+
+type TypePatientListType {
+  "TypePatient list, paginated by LimitOffsetPaginator"
+  results(
+    "Number of results to return per page. Default 'default_limit': 25, and 'max_limit': 100"
+    limit: Int = 25,
+    "The initial index from which to return the results. Default: 0"
+    offset: Int,
+    "A string or comma delimited string values that indicate the default ordering when obtaining lists of objects."
+    ordering: String
+  ): [TypePatientType]
+  "Total count of matches elements"
+  totalCount: Int
+}
+
+type TypePatientType {
+  id: Int
+  "Nombre"
+  name: String
+  package: [PackageType!]
+}
+
+type UpdateAdverseReaction {
+  adversereaction: AdverseReactionType
+}
+
+type UpdateClinicalHistoryAnswer {
+  clinicalhistoryanswer: ClinicalHistoryAnswerType
+}
+
+type UpdateClinicalHistoryQuestion {
+  clinicalhistoryquestion: ClinicalHistoryQuestionType
+}
+
+type UpdateDiscard {
+  discard: DiscardType
+}
+
+type UpdateDistribution {
+  distribution: DistributionType
+}
+
+type UpdateDonation {
+  donation: DonationType
+}
+
+type UpdateDonor {
+  donor: DonorType
+}
+
+type UpdateEmployee {
+  employee: EmployeeType
+}
+
+type UpdateEvent {
+  event: EventType
+}
+
+type UpdateExam {
+  exam: ExamType
+}
+
+type UpdateExtraction {
+  extraction: ExtractionType
+}
+
+type UpdateExtractionRefreshment {
+  extractionrefreshment: ExtractionRefreshmentType
+}
+
+type UpdateFragmentation {
+  fragmentation: FragmentationType
+}
+
+type UpdateImmunohematology {
+  immunohematology: ImmunohematologyType
+}
+
+type UpdateImmunoserology {
+  immunoserology: ImmunoserologyType
+}
+
+type UpdateInstitution {
+  institution: InstitutionType
+}
+
+type UpdateMedical {
+  medical: MedicalType
+}
+
+type UpdateMenu {
+  menu: MenuType
+}
+
+type UpdatePackage {
+  package: PackageType
+}
+
+type UpdatePatient {
+  patient: PatientType
+}
+
+type UpdatePhysicalAnalysis {
+  physicalanalysis: PhysicalAnalysisType
+}
+
+type UpdateProvision {
+  provision: ProvisionType
+}
+
+type UpdateRejected {
+  rejected: RejectedType
+}
+
+type UpdateRelease {
+  release: ReleaseType
+}
+
+type UpdateReleaseRequest {
+  releaserequest: ReleaseRequestType
+}
+
+type UpdateSelfExclusion {
+  selfexclusion: SelfExclusionType
+}
+
+type UpdateSerologyProtocol {
+  serologyprotocol: SerologyProtocolType
+}
+
+type UpdateTypeAdverseReaction {
+  typeadversereaction: TypeAdverseReactionType
+}
+
+type UpdateTypeDiscard {
+  type_discard: TypeDiscardType
+}
+
+type UpdateTypeHemocomponent {
+  typehemocomponent: TypeHemocomponentType
+}
+
+type UpdateUser {
+  user: UserType
+}
+
+type UserType {
+  "fecha de alta"
+  date_joined: CustomDateTime
+  "dirección de correo electrónico"
+  email: String
+  employee: EmployeeType
+  "nombre"
+  first_name: String
+  "Los grupos a los que pertenece este usuario. Un usuario tendrá todos los permisos asignados a cada uno de sus grupos."
+  groups: [GroupType!]
+  id: Int
+  "Indica si el usuario debe ser tratado como activo. Desmarque esta opción en lugar de borrar la cuenta."
+  is_active: Boolean
+  "Indica si el usuario puede entrar en este sitio de administración."
+  is_staff: Boolean
+  "Indica que este usuario tiene todos los permisos sin asignárselos explícitamente."
+  is_superuser: Boolean
+  "último inicio de sesión"
+  last_login: CustomDateTime
+  "apellidos"
+  last_name: String
+  "contraseña"
+  password: String
+  "Permisos específicos para este usuario."
+  user_permissions: [PermissionType!]
+  "Requerido. 150 carácteres como máximo. Únicamente letras, dígitos y @/./+/-/_ "
+  username: String
+}
+
+type Verify {
+  payload: GenericScalar!
+}
+
+enum AdverseReactionDetectionEnum {
+  "DESPUES DE LA DONACION"
+  AD
+  "DURANTE LA DONACION"
+  TD
+}
+
+enum AdverseReactionEvolutionEnum {
+  "HOSPITALIZACION"
+  HO
+  "RECUPERACION LENTA"
+  RL
+  "RECUPERACION RAPIDA"
+  RR
+}
+
+enum AdverseReactionExtractionPlaceEnum {
+  "PUESTO FIJO"
+  PF
+  "UNIDAD MOVIL"
+  UM
+}
+
+enum DonationTypeDonationEnum {
+  "DONACION AUTOLOGA"
+  DA
+  "REPOSICION EXIGIDA"
+  RE
+  "REPOSICION SOLIDARIA"
+  RS
+  "VOLUNTARIA ALTRUISTA"
+  VA
+}
+
+enum DonationTypeProcessEnum {
+  "AFERESIS NORMAL"
+  NA
+  "CONVENCIONAL"
+  NO
+}
+
+enum DonorCiExtensionEnum {
+  A_
+  "BENI"
+  BE
+  "CHUQUISACA"
+  CH
+  "COCHABAMBA"
+  CO
+  "LA PAZ"
+  LP
+  "ORURO"
+  OR
+  "PANDO"
+  PA
+  "POTOSÍ"
+  PO
+  "SANTA CRUZ"
+  SC
+  "TARIJA"
+  TA
+}
+
+enum DonorCivilStatusEnum {
+  "CASADO/A"
+  CA
+  "COMPROMETIDO/A"
+  CO
+  "CONCUBINO/A"
+  CON
+  "DIVORCIADO/A"
+  DI
+  "SOLTERO/A"
+  SO
+  "VIUDO/A"
+  VI
+}
+
+enum DonorDegreeInstructionEnum {
+  "BACHILLER"
+  BAC
+  "PRIMARIA"
+  PRI
+  "PROFESIONAL"
+  PROF
+  "SECUNDARIA"
+  SEC
+  "SIN ESTUDIOS"
+  SIN_EST
+  "UNIVERSITARIA"
+  UNIV
+}
+
+enum DonorDepartmentEnum {
+  A_
+  "BENI"
+  BE
+  "CHUQUISACA"
+  CH
+  "COCHABAMBA"
+  CO
+  "LA PAZ"
+  LP
+  "ORURO"
+  OR
+  "PANDO"
+  PA
+  "POTOSÍ"
+  PO
+  "SANTA CRUZ"
+  SC
+  "TARIJA"
+  TA
+}
+
+enum EmployeeGenderEnum {
+  "FEMENINO"
+  F
+  "MASCULINO"
+  M
+}
+
+enum ExtractionArmEnum {
+  "DERECHA"
+  D
+  "IZQUIERDA"
+  I
+}
+
+enum ExtractionTypePlaceEnum {
+  "PUESTO FIJO"
+  PF
+  "PUESTO MOVIL"
+  PM
+}
+
+enum FragmentationQualityBagEnum {
+  "APTO"
+  AP
+  "NO APTO"
+  NA
+}
+
+enum ImmunoserologyChagasHaiEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum ImmunoserologyCheiaEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum ImmunoserologyHbsagEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum ImmunoserologyHivEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum ImmunoserologyHvcEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum ImmunoserologyRprEnum {
+  "INDETERMINADO"
+  IN
+  "NO REACTIVO"
+  NR
+  "REACTIVO"
+  R
+}
+
+enum TypeAdverseReactionLevelEnum {
+  "SEVERA"
+  HIGH
+  "LEVE"
+  LOW
+  "MODERADA"
+  MEDIUM
+}
+
+"BigInt is an extension of the regular Int field that supports Integers bigger than a signed 32-bit integer."
+scalar BigInt
+
+scalar CustomDate
+
+scalar CustomDateTime
+
+scalar CustomTime
+
+"""
+
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+"""
+
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+"The `Decimal` scalar type represents a python Decimal."
+scalar Decimal
+
+"""
+
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+"""
+
+Allows use of a JSON String for input / output from the GraphQL schema.
+
+Use of this type is *not recommended* as you lose the benefits of having a defined, static
+schema (one of the key benefits of GraphQL).
+"""
+scalar JSONString
+
+"""
+
+The `Time` scalar type represents a Time value as
+specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Time
+
+"""
+
+Leverages the internal Python implementation of UUID (uuid.UUID) to provide native UUID objects
+in fields, resolvers and input.
+"""
+scalar UUID
+
+input DistributionItemInput {
+  id: Int!
+}
+
+input MassiveDiscardItemInput {
+  id: Int!
+}
+
+input MassiveReleaseItemInput {
+  id: Int!
+}

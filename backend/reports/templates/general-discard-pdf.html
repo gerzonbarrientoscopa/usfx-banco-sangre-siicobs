@@ -1,0 +1,104 @@
+{% extends 'layouts/pdf_base_cleaned_letter_portrait.html' %}
+{% load utils %}
+{% block title %}
+    Liberacion Lista
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Rango de Fechas</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE GENERAL</td>
+                <td class="text-center"><b>{{ date_init| date:'d/m/Y' }} a {{ date_end| date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>DESCARTES</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        {% regroup discards by itemfragmentation.typehemocomponent.acronym as grouped %}
+        {% for group in grouped %}
+            <h2 class="text-center">{{ group.list.0.itemfragmentation.typehemocomponent.acronym }}
+                - {{ group.list.0.itemfragmentation.typehemocomponent.name }}</h2>
+            <table class="table">
+                <tr>
+                    <td class="border text-center" width="40"><b>#</b></td>
+                    <td class="border text-center" width="90"><b>FECHA</b></td>
+                    <td class="border text-center" width="100"><b>RESPONSABLE</b></td>
+                    <td class="border text-center" width="50"><b>CODIGO</b></td>
+                    <td class="border text-center" width="90"><b>GRUPO SANGUINEO</b></td>
+                    <td class="border text-center" width="100"><b>F. VENCIMIENTO</b></td>
+                    <td class="border text-center" width="200"><b>OBSERVACIONES</b></td>
+                </tr>
+                {% for discard in group.list %}
+                    <tr>
+                        <td class="border text-center">
+                            {{ forloop.counter }}
+                        </td>
+                        <td class="border text-center">
+                            {{ discard.register_at | date:'d-m-Y' }}
+                        </td>
+                        <td class="border text-center">
+                            {{ discard.employee | fullInitialName }}
+                        </td>
+                        <td class="border text-center">
+                            {% if discard.itemfragmentation.fragmentation.extraction is not None %}
+                                {{ discard.itemfragmentation.donor_code }}
+                            {% else %}
+                                F-{{ discard.itemfragmentation.donor_code }}
+                            {% endif %}
+                        </td>
+                        <td class="border text-center">
+                            {% if discard.itemfragmentation.fragmentation.extraction is not None %}
+                                {% autoescape off %}
+                                    <b>{% get_blood_group_from_extraction discard.itemfragmentation.fragmentation.extraction_id %}</b>
+                                    <small>{% get_factor_rh_from_extraction discard.itemfragmentation.fragmentation.extraction_id %}</small>
+                                {% endautoescape %}
+                            {% endif %}
+                        </td>
+                        <td class="border text-center">
+                            {{ discard.itemfragmentation.expiration_date | date:'d-m-Y' }}
+                        </td>
+                        <td class="border text-center">
+                            {{ discard.observations | cleanValue }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if not forloop.last %}
+                <pdf:nextpage/>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

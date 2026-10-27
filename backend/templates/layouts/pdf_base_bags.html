@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        @page {
+            size: 80mm 111mm portrait;
+            @frame header_frame {
+            -pdf-frame-content: header_content;
+            left: 2mm;
+            width: 76mm;
+            top: 2mm;
+            height: 8mm;
+        }
+        @frame content_frame {
+            /* Content Frame */
+        left: 2mm; width: 76mm; top: 9mm; height: 90mm;
+        }
+        @frame footer_frame {
+            /* Another static Frame */
+        -pdf-frame-content:footer_content;
+        left: 2mm; width: 76mm; top: 98mm; height: 20mm;
+        }
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+    <style type="text/css">
+        body {
+            font-size: 8px;
+            line-height: normal;
+        }
+
+        .separator-div {
+            height: 50px;
+            width: 100%;
+        }
+
+        .table {
+            background-color: transparent;
+            vertical-align: middle;
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .table .title-main {
+            margin: 0;
+            text-align: center;
+            font-size: 45px;
+            font-weight: bold;
+            line-height: 38px;
+        }
+
+        .table .title-main sub {
+            font-size: 25px;
+        }
+
+        .table .title-rh {
+            margin: 0;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 12px;
+        }
+
+        .table .subtitle {
+            font-size: 9px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .table .bg-red {
+            background-color: red !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table .bg-red-1 {
+            background-color: #be0000 !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table .bg-red-2 {
+            background-color: #ff9d8d !important;
+            color: black;
+            font-weight: bold;
+        }
+
+        .table .logo {
+            font-size: 8px;
+            padding-left: 1px;
+            width: 50px;
+            border-top: 1px solid black;
+            border-right: 1px solid transparent;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .table .qr {
+            width: 55px;
+        }
+
+        .table .qr-mini {
+            width: 50px;
+        }
+
+        .table .border-header {
+            padding: 0;
+            vertical-align: middle;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .table .separator {
+            height: 5px;
+        }
+
+        .table .border {
+            padding: 1px;
+            vertical-align: middle;
+            border: 1px solid black;
+            text-align: left;
+            font-size: 9px;
+        }
+
+        .table .border-bottom {
+            padding-top: 1px;
+            vertical-align: middle;
+            border-bottom: 1px solid black;
+            text-align: left;
+            padding-left: 3px;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+
+        .table .no-border {
+            padding-top: 1px;
+            padding-right: 1px;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            font-size: 9px;
+        }
+
+        .table .no-border-qr {
+            padding-top: -2px;
+            padding-right: -2px;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            font-size: 9px;
+            text-align: left;
+        }
+
+
+        h2 {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .title-red {
+            border: 1px solid black;
+            text-align: center;
+            color: white;
+            background-color: red;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+
+        .text-bolder {
+            font-size: 9px;
+            padding-top: 5px;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+
+        .p {
+            font-size: 7px;
+        }
+
+        .table .cgr {
+            text-align: center;
+            font-size: 15px !important;
+            font-weight: bold !important;
+            line-height: 1px !important;
+            vertical-align: center;
+        }
+
+        .table .cgr-code {
+            text-align: center;
+            vertical-align: center;
+            font-size: 14px !important;
+            font-weight: bold !important;
+        }
+
+        .table .cgr-name b {
+            line-height: 0px !important;
+        }
+
+        .table .cgr-footer {
+            text-align: center;
+            padding-top: 3px;
+            padding-bottom: -3px;
+            font-size: 15px !important;
+            font-weight: bold !important;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    {% block layout %}
+    {% endblock %}
+</div>
+</body>
+</html>

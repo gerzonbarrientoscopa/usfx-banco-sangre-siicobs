@@ -1,0 +1,181 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Reaccion Adversa
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border-header text-center subtitle-no-bold " width="62%">
+                    BANCO DE SANGRE CHUQUISACA
+                </td>
+                <td class="border-qr text-center" rowspan="3" width="13%">
+                    <img class="qr" src="media/donor/{{ donation.donor.code }}.png" alt="qr">
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="border-header text-center subtitle">FICHA DE NOTIFICACIÓN DE REACCIÓN ADVERSA A LA DONACION
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> de <pdf:pagecount/></td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2>INSTITUCION</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name ar_obj 'created_at' %}</td>
+                <td class="border" colspan="4"><b>{{ adverse_reactions.register_at | date:"d/m/Y" }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">Institución</td>
+                <td class="border" colspan="4"><b>BANCO DE SANGRE DE REFERENCIA DEPARTAMENTAL SUCRE</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">Departamento</td>
+                <td class="border" colspan="4"><b>SUCRE</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name ar_obj 'extraction_place' %}</td>
+                <td class="border" colspan="4"><b>{% get_extraction_place adverse_reactions.extraction_place %}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <h2>DONANTE</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'first_name' %}</td>
+                <td class="border" colspan="5"><b>{{ donation.donor.middle_name }} {{ donation.donor.last_name }} {{ donation.donor.first_name }}</b>
+                </td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'code' %}</td>
+                <td class="border"><b>{{ donation.donor.code }}</b></td>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'age' %}</td>
+                <td class="border"><b>{{ donation.donor.age }}</b></td>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'gender' %}</td>
+                <td class="border"><b>{{ donation.donor.gender }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name donations_obj 'type_donation' %}</td>
+                <td class="border" colspan="5"><b>{% get_type_donation donations.type_donation %}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'residence' %}</td>
+                <td class="border" colspan="2"><b>{{ donation.donor.residence }}</b></td>
+                <td class="no-border">{% get_verbose_field_name donor_obj 'profession' %}</td>
+                <td class="border" colspan="2"><b>{{ donation.donor.profession }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <h2>REACCION ADVERSA</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name ar_obj 'created_at' %}</td>
+                <td class="border" colspan="2"><b>{{ adverse_reactions.register_at | date:"d/m/Y" }}</b></td>
+                <td class="no-border">Hora</td>
+                <td class="border"><b>{{ adverse_reactions.register_at | date:"h:i" }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="no-border">{% get_verbose_field_name ar_obj 'detection' %}</td>
+                <td class="border" colspan="4"><b>{% get_detection adverse_reactions.detection %}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3" class="border subtitle pt-1 bg-red">TIPO DE REACCION ADVERSA A LA DONACION</td>
+                <td></td>
+            </tr>
+            {% for a in adverse_reactions.type.all %}
+                <tr>
+                    <td></td>
+                    <td colspan="3" class="border">{{ a.name }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <h2>CONDUCTA TOMADA</h2>
+        <p>{{ adverse_reactions.behavior_taken }}</p>
+
+        <h2>EVOLUCION</h2>
+        <p>{% get_evolution adverse_reactions.evolution %}</p>
+
+        <h2>OBSERVACIONES</h2>
+        <p>{{ adverse_reactions.observations  | isNone }}</p>
+    </div>
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="text-center">
+                    <h2>NOMBRE Y FIRMA DEL RESPONSABLE DEL REPORTE:</h2>
+                    <br>
+                    <p class="top-firm">.........................................................................</p>
+                    <p>{{ adverse_reactions.employee }}</p>
+                    <br>
+                    <p class="top-firm">......................................................</p>
+                    <p>VºBº DIRECTOR DEL BANCO DE SANGRE</p>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

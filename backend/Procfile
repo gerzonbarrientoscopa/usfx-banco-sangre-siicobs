@@ -1,0 +1,2 @@
+release: yes "yes" | python manage.py migrate
+web: gunicorn siicobs_main.wsgi --timeout 60

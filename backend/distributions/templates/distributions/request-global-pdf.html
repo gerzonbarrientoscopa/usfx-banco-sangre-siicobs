@@ -1,0 +1,167 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Solicitud global
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header" rowspan="2" width="15%" style="color:#dfe4ed;"><b>SELLO DE LA <br>UNIDAD <br>SOLICITANTE</b></td>
+                <td class="border-header text-center subtitle-no-bold" width="85%">
+                    BANCO DE SANGRE CHUQUISACA
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">SOLICITUD DE HEMOCOMPONENTES AL BANCO DE <br>SANGRE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> - FORMULARIO GLOBAL
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2></h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td width="66%" class="no-border" colspan="2"><b>Unidad Transfusional:</b>..............................................................................................................</td>
+                    <td width="34%" class="no-border"><b>Sucre</b>, .................... de .................. de 20..........</td>
+                </tr>
+                <tr>
+                    <td width="66%" class="no-border" colspan="2"><b>Nombre del Solicitante:</b>............................................................................................................</td>
+                    <td width="34%" class="no-border"><b>Provincia y/o Localidad:</b> ..................................</td>
+                </tr>
+                <tr>
+                    <td width="33" class="no-border"><b>Solicita:</b>................................................................</td>
+                    <td width="34%" class="no-border"><b>Unidades:</b>....................................................</td>
+                    <td width="34%" class="no-border"><b>Institución:</b>..........................................................</td>
+                </tr>
+                <tr>
+                    <td width="34%" class="no-border"><b>Entregadas:</b>.........................................................</td>
+                    <td width="34%" class="no-border"><b>Unidades:</b>....................................................</td>
+                    <td width="34%" class="no-border">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <table class="table">
+            <thead>
+            <tr class="border">
+                <th class="bg-red-2" rowspan="2" width="3%">#</th>
+                <th class="bg-red-2" rowspan="2" width="35%">HEMOCOMPONENTE</th>
+                <th class="bg-red-2" rowspan="2" width="14%">CANT. SOLICITADA</th>
+                <th class="bg-red-2" rowspan="2" width="14%">CANT. ENTREGADA</th>
+                <th class="bg-red-2" colspan="9" width="39%">GRUPO ABO Y Factor RH</th>
+            </tr>
+            <tr class="border">
+                <td>O+</td>
+                <td>A+</td>
+                <td>B+</td>
+                <td>AB+</td>
+                <td>O-</td>
+                <td>A-</td>
+                <td>B-</td>
+                <td>AB-</td>
+                <td>TOTAL</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dif in quantity %}
+                <tr class="border">
+                    <td width="5%">{{ forloop.counter }}</td>
+                    <td width="34%"></td>
+                    <td width="15%"></td>
+                    <td width="15%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="4%"></td>
+                    <td width="7%"></td>
+                </tr>
+            {% endfor %}
+            <tr class="border">
+                <td class="text-center bg-red-2" colspan="2" width="39%">TOTALES</td>
+                <td class="bg-red-2" width="15%"></td>
+                <td class="bg-red-2" width="15%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="4%"></td>
+                <td class="bg-red-2" width="7%"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+        <p><b>IMPORTANTE: </b>
+            El presente formulario deberá ser llenado con letra clara y legible con boligrafo azul, sin que este presente tachaduras,
+            borrones, raspaduras o enmiendas.
+        </p>
+        <ul>
+            <li>La reposición de stock se hará  en el horario de 8 am. y 20 pm. </li>
+            <li>Las emergencias seran contempladas (consignadas en observaciones). </li>
+            <li>No se dará curso a las solicitudes que no esten debidamente selladas.</li>
+        </ul>
+        <br>
+        <br>
+        <p><b>Observaciones: </b>................................................................................................
+            ..............................................................................................................
+            .....................................................................................................................
+            .....................................................................................................................
+            .....................................................................................................................
+            .....................................................................................................................
+            .....................................................................................................................
+            .....................................................................................................................</p>
+        <br>
+        <table class="table table-bordered table-sm">
+            <tr class="no-border text-center">
+                <td width="25%">...................................................</td>
+                <td width="25%">...................................................</td>
+                <td width="25%">...................................................</td>
+                <td width="25%">...................................................</td>
+            </tr>
+            <tr class="no-border text-center">
+                <td>
+                    NOMBRES Y FIRMA DEL SOLICITANTE<br>
+                </td>
+                <td>
+                    AUTORIZADO POR<br>&nbsp;
+                </td>
+                <td>
+                    ENTREGADO POR<br>
+                </td>
+                <td>
+                    FIRMA Y SELLO CAJA<br>&nbsp;
+                </td>
+            </tr>
+        </table>
+
+    </div>
+{% endblock %}

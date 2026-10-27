@@ -1,0 +1,4159 @@
+[
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add Token",
+      "content_type": 7,
+      "codename": "add_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change Token",
+      "content_type": 7,
+      "codename": "change_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete Token",
+      "content_type": 7,
+      "codename": "delete_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view Token",
+      "content_type": 7,
+      "codename": "view_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add token",
+      "content_type": 8,
+      "codename": "add_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change token",
+      "content_type": 8,
+      "codename": "change_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete token",
+      "content_type": 8,
+      "codename": "delete_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view token",
+      "content_type": 8,
+      "codename": "view_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add Lugar",
+      "content_type": 9,
+      "codename": "add_place"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change Lugar",
+      "content_type": 9,
+      "codename": "change_place"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete Lugar",
+      "content_type": 9,
+      "codename": "delete_place"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view Lugar",
+      "content_type": 9,
+      "codename": "view_place"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can List Place",
+      "content_type": 9,
+      "codename": "index_place"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can add Razón",
+      "content_type": 10,
+      "codename": "add_reason"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can change Razón",
+      "content_type": 10,
+      "codename": "change_reason"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can delete Razón",
+      "content_type": 10,
+      "codename": "delete_reason"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can view Razón",
+      "content_type": 10,
+      "codename": "view_reason"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can List Reason",
+      "content_type": 10,
+      "codename": "index_reason"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can add Configuracion Examen Físico",
+      "content_type": 11,
+      "codename": "add_settingphisical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can change Configuracion Examen Físico",
+      "content_type": 11,
+      "codename": "change_settingphisical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can delete Configuracion Examen Físico",
+      "content_type": 11,
+      "codename": "delete_settingphisical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can view Configuracion Examen Físico",
+      "content_type": 11,
+      "codename": "view_settingphisical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can List SettingPhisical",
+      "content_type": 11,
+      "codename": "index_settingphisical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can add Institución",
+      "content_type": 12,
+      "codename": "add_institution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can change Institución",
+      "content_type": 12,
+      "codename": "change_institution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can delete Institución",
+      "content_type": 12,
+      "codename": "delete_institution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can view Institución",
+      "content_type": 12,
+      "codename": "view_institution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can List Institution",
+      "content_type": 12,
+      "codename": "index_institution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add Pacientes",
+      "content_type": 13,
+      "codename": "add_patient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change Pacientes",
+      "content_type": 13,
+      "codename": "change_patient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete Pacientes",
+      "content_type": 13,
+      "codename": "delete_patient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view Pacientes",
+      "content_type": 13,
+      "codename": "view_patient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+      "name": "Can List patient",
+      "content_type": 13,
+      "codename": "index_patient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+      "name": "Can add Médico",
+      "content_type": 14,
+      "codename": "add_medical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+      "name": "Can change Médico",
+      "content_type": 14,
+      "codename": "change_medical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+      "name": "Can delete Médico",
+      "content_type": 14,
+      "codename": "delete_medical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+      "name": "Can view Médico",
+      "content_type": 14,
+      "codename": "view_medical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+      "name": "Can List Medical",
+      "content_type": 14,
+      "codename": "index_medical"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+      "name": "Can add Empleado",
+      "content_type": 15,
+      "codename": "add_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+      "name": "Can change Empleado",
+      "content_type": 15,
+      "codename": "change_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+      "name": "Can delete Empleado",
+      "content_type": 15,
+      "codename": "delete_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+      "name": "Can view Empleado",
+      "content_type": 15,
+      "codename": "view_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+      "name": "Can List Employee",
+      "content_type": 15,
+      "codename": "index_employee"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+      "name": "Can add Donante",
+      "content_type": 16,
+      "codename": "add_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+      "name": "Can change Donante",
+      "content_type": 16,
+      "codename": "change_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+      "name": "Can delete Donante",
+      "content_type": 16,
+      "codename": "delete_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+      "name": "Can view Donante",
+      "content_type": 16,
+      "codename": "view_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+      "name": "Can List Donor",
+      "content_type": 16,
+      "codename": "index_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+      "name": "Enabled Rejected Donor",
+      "content_type": 16,
+      "codename": "enable_rejected_donor"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+      "name": "Can add Historial cambio donante",
+      "content_type": 17,
+      "codename": "add_donorhistory"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+      "name": "Can change Historial cambio donante",
+      "content_type": 17,
+      "codename": "change_donorhistory"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+      "name": "Can delete Historial cambio donante",
+      "content_type": 17,
+      "codename": "delete_donorhistory"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+      "name": "Can view Historial cambio donante",
+      "content_type": 17,
+      "codename": "view_donorhistory"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+      "name": "Can list donorhistory",
+      "content_type": 17,
+      "codename": "index_donorhistory"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+      "name": "Can add Evento",
+      "content_type": 18,
+      "codename": "add_event"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+      "name": "Can change Evento",
+      "content_type": 18,
+      "codename": "change_event"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+      "name": "Can delete Evento",
+      "content_type": 18,
+      "codename": "delete_event"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+      "name": "Can view Evento",
+      "content_type": 18,
+      "codename": "view_event"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+      "name": "Can List Event",
+      "content_type": 18,
+      "codename": "index_event"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+      "name": "Can add Donación",
+      "content_type": 19,
+      "codename": "add_donation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+      "name": "Can change Donación",
+      "content_type": 19,
+      "codename": "change_donation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+      "name": "Can delete Donación",
+      "content_type": 19,
+      "codename": "delete_donation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+      "name": "Can view Donación",
+      "content_type": 19,
+      "codename": "view_donation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+      "name": "Can List Donation",
+      "content_type": 19,
+      "codename": "index_donation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 89,
+    "fields": {
+      "name": "Can add Diferido",
+      "content_type": 20,
+      "codename": "add_rejected"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 90,
+    "fields": {
+      "name": "Can change Diferido",
+      "content_type": 20,
+      "codename": "change_rejected"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 91,
+    "fields": {
+      "name": "Can delete Diferido",
+      "content_type": 20,
+      "codename": "delete_rejected"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 92,
+    "fields": {
+      "name": "Can view Diferido",
+      "content_type": 20,
+      "codename": "view_rejected"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+      "name": "Can List Rejected",
+      "content_type": 20,
+      "codename": "index_rejected"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+      "name": "Can add Examen Fisico",
+      "content_type": 21,
+      "codename": "add_physicalanalysis"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+      "name": "Can change Examen Fisico",
+      "content_type": 21,
+      "codename": "change_physicalanalysis"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+      "name": "Can delete Examen Fisico",
+      "content_type": 21,
+      "codename": "delete_physicalanalysis"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+      "name": "Can view Examen Fisico",
+      "content_type": 21,
+      "codename": "view_physicalanalysis"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+      "name": "Can List PhysicalAnalysis",
+      "content_type": 21,
+      "codename": "index_physicalanalysis"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+      "name": "Can add Examen",
+      "content_type": 22,
+      "codename": "add_exam"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+      "name": "Can change Examen",
+      "content_type": 22,
+      "codename": "change_exam"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 101,
+    "fields": {
+      "name": "Can delete Examen",
+      "content_type": 22,
+      "codename": "delete_exam"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 102,
+    "fields": {
+      "name": "Can view Examen",
+      "content_type": 22,
+      "codename": "view_exam"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 103,
+    "fields": {
+      "name": "Can List Exam",
+      "content_type": 22,
+      "codename": "index_exam"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 104,
+    "fields": {
+      "name": "Can add Pregunta",
+      "content_type": 23,
+      "codename": "add_clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 105,
+    "fields": {
+      "name": "Can change Pregunta",
+      "content_type": 23,
+      "codename": "change_clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 106,
+    "fields": {
+      "name": "Can delete Pregunta",
+      "content_type": 23,
+      "codename": "delete_clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 107,
+    "fields": {
+      "name": "Can view Pregunta",
+      "content_type": 23,
+      "codename": "view_clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 108,
+    "fields": {
+      "name": "Can list clinicalhistoryquestion",
+      "content_type": 23,
+      "codename": "index_clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 109,
+    "fields": {
+      "name": "Can add Respuesta",
+      "content_type": 24,
+      "codename": "add_clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 110,
+    "fields": {
+      "name": "Can change Respuesta",
+      "content_type": 24,
+      "codename": "change_clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 111,
+    "fields": {
+      "name": "Can delete Respuesta",
+      "content_type": 24,
+      "codename": "delete_clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 112,
+    "fields": {
+      "name": "Can view Respuesta",
+      "content_type": 24,
+      "codename": "view_clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 113,
+    "fields": {
+      "name": "Can list clinicalhistoryanswer",
+      "content_type": 24,
+      "codename": "index_clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 114,
+    "fields": {
+      "name": "Can add Extracción",
+      "content_type": 25,
+      "codename": "add_extraction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 115,
+    "fields": {
+      "name": "Can change Extracción",
+      "content_type": 25,
+      "codename": "change_extraction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 116,
+    "fields": {
+      "name": "Can delete Extracción",
+      "content_type": 25,
+      "codename": "delete_extraction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 117,
+    "fields": {
+      "name": "Can view Extracción",
+      "content_type": 25,
+      "codename": "view_extraction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 118,
+    "fields": {
+      "name": "Can List Extraction",
+      "content_type": 25,
+      "codename": "index_extraction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 119,
+    "fields": {
+      "name": "Can add Autoexclusion",
+      "content_type": 26,
+      "codename": "add_selfexclusion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 120,
+    "fields": {
+      "name": "Can change Autoexclusion",
+      "content_type": 26,
+      "codename": "change_selfexclusion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 121,
+    "fields": {
+      "name": "Can delete Autoexclusion",
+      "content_type": 26,
+      "codename": "delete_selfexclusion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 122,
+    "fields": {
+      "name": "Can view Autoexclusion",
+      "content_type": 26,
+      "codename": "view_selfexclusion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 123,
+    "fields": {
+      "name": "Can list selfexclusion",
+      "content_type": 26,
+      "codename": "index_selfexclusion"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 124,
+    "fields": {
+      "name": "Can add Menu",
+      "content_type": 27,
+      "codename": "add_menu"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 125,
+    "fields": {
+      "name": "Can change Menu",
+      "content_type": 27,
+      "codename": "change_menu"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 126,
+    "fields": {
+      "name": "Can delete Menu",
+      "content_type": 27,
+      "codename": "delete_menu"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 127,
+    "fields": {
+      "name": "Can view Menu",
+      "content_type": 27,
+      "codename": "view_menu"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 128,
+    "fields": {
+      "name": "Can List Menu",
+      "content_type": 27,
+      "codename": "index_menu"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 129,
+    "fields": {
+      "name": "Can add Refrigerio",
+      "content_type": 28,
+      "codename": "add_extractionrefreshment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 130,
+    "fields": {
+      "name": "Can change Refrigerio",
+      "content_type": 28,
+      "codename": "change_extractionrefreshment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 131,
+    "fields": {
+      "name": "Can delete Refrigerio",
+      "content_type": 28,
+      "codename": "delete_extractionrefreshment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 132,
+    "fields": {
+      "name": "Can view Refrigerio",
+      "content_type": 28,
+      "codename": "view_extractionrefreshment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 133,
+    "fields": {
+      "name": "Can List ExtractionRefreshment",
+      "content_type": 28,
+      "codename": "index_extractionrefreshment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 134,
+    "fields": {
+      "name": "Can add Tipo de Paciente",
+      "content_type": 29,
+      "codename": "add_typepatient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 135,
+    "fields": {
+      "name": "Can change Tipo de Paciente",
+      "content_type": 29,
+      "codename": "change_typepatient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 136,
+    "fields": {
+      "name": "Can delete Tipo de Paciente",
+      "content_type": 29,
+      "codename": "delete_typepatient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 137,
+    "fields": {
+      "name": "Can view Tipo de Paciente",
+      "content_type": 29,
+      "codename": "view_typepatient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 138,
+    "fields": {
+      "name": "Can List typePatient",
+      "content_type": 29,
+      "codename": "index_typepatient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 139,
+    "fields": {
+      "name": "Can add Tipo de Hemocomponente",
+      "content_type": 30,
+      "codename": "add_typehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 140,
+    "fields": {
+      "name": "Can change Tipo de Hemocomponente",
+      "content_type": 30,
+      "codename": "change_typehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 141,
+    "fields": {
+      "name": "Can delete Tipo de Hemocomponente",
+      "content_type": 30,
+      "codename": "delete_typehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 142,
+    "fields": {
+      "name": "Can view Tipo de Hemocomponente",
+      "content_type": 30,
+      "codename": "view_typehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 143,
+    "fields": {
+      "name": "Can List TypeHemocomponent",
+      "content_type": 30,
+      "codename": "index_typehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 144,
+    "fields": {
+      "name": "Can add Tipo de Descarte para Hemocomponente",
+      "content_type": 31,
+      "codename": "add_typediscard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 145,
+    "fields": {
+      "name": "Can change Tipo de Descarte para Hemocomponente",
+      "content_type": 31,
+      "codename": "change_typediscard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 146,
+    "fields": {
+      "name": "Can delete Tipo de Descarte para Hemocomponente",
+      "content_type": 31,
+      "codename": "delete_typediscard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 147,
+    "fields": {
+      "name": "Can view Tipo de Descarte para Hemocomponente",
+      "content_type": 31,
+      "codename": "view_typediscard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 148,
+    "fields": {
+      "name": "Can List TypeDiscard",
+      "content_type": 31,
+      "codename": "index_typediscard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 149,
+    "fields": {
+      "name": "Can add Paquete",
+      "content_type": 32,
+      "codename": "add_package"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 150,
+    "fields": {
+      "name": "Can change Paquete",
+      "content_type": 32,
+      "codename": "change_package"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 151,
+    "fields": {
+      "name": "Can delete Paquete",
+      "content_type": 32,
+      "codename": "delete_package"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 152,
+    "fields": {
+      "name": "Can view Paquete",
+      "content_type": 32,
+      "codename": "view_package"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 153,
+    "fields": {
+      "name": "Can List Package",
+      "content_type": 32,
+      "codename": "index_package"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 154,
+    "fields": {
+      "name": "Can add Fraccionamiento",
+      "content_type": 33,
+      "codename": "add_fragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 155,
+    "fields": {
+      "name": "Can change Fraccionamiento",
+      "content_type": 33,
+      "codename": "change_fragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 156,
+    "fields": {
+      "name": "Can delete Fraccionamiento",
+      "content_type": 33,
+      "codename": "delete_fragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 157,
+    "fields": {
+      "name": "Can view Fraccionamiento",
+      "content_type": 33,
+      "codename": "view_fragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 158,
+    "fields": {
+      "name": "Can List Fragmentation",
+      "content_type": 33,
+      "codename": "index_fragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 159,
+    "fields": {
+      "name": "Can add Item de Fraccionamiento",
+      "content_type": 34,
+      "codename": "add_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 160,
+    "fields": {
+      "name": "Can change Item de Fraccionamiento",
+      "content_type": 34,
+      "codename": "change_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 161,
+    "fields": {
+      "name": "Can delete Item de Fraccionamiento",
+      "content_type": 34,
+      "codename": "delete_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 162,
+    "fields": {
+      "name": "Can view Item de Fraccionamiento",
+      "content_type": 34,
+      "codename": "view_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 163,
+    "fields": {
+      "name": "Can List Items Fragmentation",
+      "content_type": 34,
+      "codename": "index_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 164,
+    "fields": {
+      "name": "Change Type Item Fragmentation",
+      "content_type": 34,
+      "codename": "changetype_itemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 165,
+    "fields": {
+      "name": "Can add Solicitud de Liberación",
+      "content_type": 35,
+      "codename": "add_releaserequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 166,
+    "fields": {
+      "name": "Can change Solicitud de Liberación",
+      "content_type": 35,
+      "codename": "change_releaserequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 167,
+    "fields": {
+      "name": "Can delete Solicitud de Liberación",
+      "content_type": 35,
+      "codename": "delete_releaserequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 168,
+    "fields": {
+      "name": "Can view Solicitud de Liberación",
+      "content_type": 35,
+      "codename": "view_releaserequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 169,
+    "fields": {
+      "name": "Can List Release Request",
+      "content_type": 35,
+      "codename": "index_releaserequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 170,
+    "fields": {
+      "name": "Can add Tipo de Anticuerpo Irregular",
+      "content_type": 36,
+      "codename": "add_typeirregularantibody"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 171,
+    "fields": {
+      "name": "Can change Tipo de Anticuerpo Irregular",
+      "content_type": 36,
+      "codename": "change_typeirregularantibody"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 172,
+    "fields": {
+      "name": "Can delete Tipo de Anticuerpo Irregular",
+      "content_type": 36,
+      "codename": "delete_typeirregularantibody"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 173,
+    "fields": {
+      "name": "Can view Tipo de Anticuerpo Irregular",
+      "content_type": 36,
+      "codename": "view_typeirregularantibody"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 174,
+    "fields": {
+      "name": "Can List Type Irregular AntiBody",
+      "content_type": 36,
+      "codename": "index_typeirregularantibody"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 175,
+    "fields": {
+      "name": "Can add Liberación de Hemocomponente",
+      "content_type": 37,
+      "codename": "add_releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 176,
+    "fields": {
+      "name": "Can change Liberación de Hemocomponente",
+      "content_type": 37,
+      "codename": "change_releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 177,
+    "fields": {
+      "name": "Can delete Liberación de Hemocomponente",
+      "content_type": 37,
+      "codename": "delete_releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 178,
+    "fields": {
+      "name": "Can view Liberación de Hemocomponente",
+      "content_type": 37,
+      "codename": "view_releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 179,
+    "fields": {
+      "name": "Can List Release TypeHemocomponent",
+      "content_type": 37,
+      "codename": "index_releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 180,
+    "fields": {
+      "name": "Can add Liberación",
+      "content_type": 38,
+      "codename": "add_release"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 181,
+    "fields": {
+      "name": "Can change Liberación",
+      "content_type": 38,
+      "codename": "change_release"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 182,
+    "fields": {
+      "name": "Can delete Liberación",
+      "content_type": 38,
+      "codename": "delete_release"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 183,
+    "fields": {
+      "name": "Can view Liberación",
+      "content_type": 38,
+      "codename": "view_release"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 184,
+    "fields": {
+      "name": "Can List Release",
+      "content_type": 38,
+      "codename": "index_release"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 185,
+    "fields": {
+      "name": "Can add Descarte",
+      "content_type": 39,
+      "codename": "add_discard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 186,
+    "fields": {
+      "name": "Can change Descarte",
+      "content_type": 39,
+      "codename": "change_discard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 187,
+    "fields": {
+      "name": "Can delete Descarte",
+      "content_type": 39,
+      "codename": "delete_discard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 188,
+    "fields": {
+      "name": "Can view Descarte",
+      "content_type": 39,
+      "codename": "view_discard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 189,
+    "fields": {
+      "name": "Can List Discard",
+      "content_type": 39,
+      "codename": "index_discard"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 190,
+    "fields": {
+      "name": "Can add Protocolo de Serologia",
+      "content_type": 40,
+      "codename": "add_serologyprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 191,
+    "fields": {
+      "name": "Can change Protocolo de Serologia",
+      "content_type": 40,
+      "codename": "change_serologyprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 192,
+    "fields": {
+      "name": "Can delete Protocolo de Serologia",
+      "content_type": 40,
+      "codename": "delete_serologyprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 193,
+    "fields": {
+      "name": "Can view Protocolo de Serologia",
+      "content_type": 40,
+      "codename": "view_serologyprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 194,
+    "fields": {
+      "name": "Can List SerologyProtocol",
+      "content_type": 40,
+      "codename": "index_serologyprotocol"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 195,
+    "fields": {
+      "name": "Can add Inmunoserologia",
+      "content_type": 41,
+      "codename": "add_immunoserology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 196,
+    "fields": {
+      "name": "Can change Inmunoserologia",
+      "content_type": 41,
+      "codename": "change_immunoserology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 197,
+    "fields": {
+      "name": "Can delete Inmunoserologia",
+      "content_type": 41,
+      "codename": "delete_immunoserology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 198,
+    "fields": {
+      "name": "Can view Inmunoserologia",
+      "content_type": 41,
+      "codename": "view_immunoserology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 199,
+    "fields": {
+      "name": "Can List Immunoserology",
+      "content_type": 41,
+      "codename": "index_immunoserology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 200,
+    "fields": {
+      "name": "Can add Inmunohematologia",
+      "content_type": 42,
+      "codename": "add_immunohematology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 201,
+    "fields": {
+      "name": "Can change Inmunohematologia",
+      "content_type": 42,
+      "codename": "change_immunohematology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 202,
+    "fields": {
+      "name": "Can delete Inmunohematologia",
+      "content_type": 42,
+      "codename": "delete_immunohematology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 203,
+    "fields": {
+      "name": "Can view Inmunohematologia",
+      "content_type": 42,
+      "codename": "view_immunohematology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 204,
+    "fields": {
+      "name": "Can List Immunohematology",
+      "content_type": 42,
+      "codename": "index_immunohematology"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 205,
+    "fields": {
+      "name": "Can add Distribución",
+      "content_type": 43,
+      "codename": "add_distribution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 206,
+    "fields": {
+      "name": "Can change Distribución",
+      "content_type": 43,
+      "codename": "change_distribution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 207,
+    "fields": {
+      "name": "Can delete Distribución",
+      "content_type": 43,
+      "codename": "delete_distribution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 208,
+    "fields": {
+      "name": "Can view Distribución",
+      "content_type": 43,
+      "codename": "view_distribution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 209,
+    "fields": {
+      "name": "Can List Distribution",
+      "content_type": 43,
+      "codename": "index_distribution"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 210,
+    "fields": {
+      "name": "Can add Distribución de Item de Fraccionamiento",
+      "content_type": 44,
+      "codename": "add_distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 211,
+    "fields": {
+      "name": "Can change Distribución de Item de Fraccionamiento",
+      "content_type": 44,
+      "codename": "change_distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 212,
+    "fields": {
+      "name": "Can delete Distribución de Item de Fraccionamiento",
+      "content_type": 44,
+      "codename": "delete_distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 213,
+    "fields": {
+      "name": "Can view Distribución de Item de Fraccionamiento",
+      "content_type": 44,
+      "codename": "view_distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 214,
+    "fields": {
+      "name": "Can List Distribution Items Fragmentation",
+      "content_type": 44,
+      "codename": "index_distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 215,
+    "fields": {
+      "name": "Can add Devolución de Distribución de Item de Fraccionamiento",
+      "content_type": 45,
+      "codename": "add_distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 216,
+    "fields": {
+      "name": "Can change Devolución de Distribución de Item de Fraccionamiento",
+      "content_type": 45,
+      "codename": "change_distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 217,
+    "fields": {
+      "name": "Can delete Devolución de Distribución de Item de Fraccionamiento",
+      "content_type": 45,
+      "codename": "delete_distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 218,
+    "fields": {
+      "name": "Can view Devolución de Distribución de Item de Fraccionamiento",
+      "content_type": 45,
+      "codename": "view_distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 219,
+    "fields": {
+      "name": "Can List Distribution Items Fragmentation Refunded",
+      "content_type": 45,
+      "codename": "index_distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 220,
+    "fields": {
+      "name": "Can add Disposición",
+      "content_type": 46,
+      "codename": "add_provision"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 221,
+    "fields": {
+      "name": "Can change Disposición",
+      "content_type": 46,
+      "codename": "change_provision"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 222,
+    "fields": {
+      "name": "Can delete Disposición",
+      "content_type": 46,
+      "codename": "delete_provision"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 223,
+    "fields": {
+      "name": "Can view Disposición",
+      "content_type": 46,
+      "codename": "view_provision"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 224,
+    "fields": {
+      "name": "Can List Provision",
+      "content_type": 46,
+      "codename": "index_provision"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 225,
+    "fields": {
+      "name": "Can add Reaccion Adversa",
+      "content_type": 47,
+      "codename": "add_adversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 226,
+    "fields": {
+      "name": "Can change Reaccion Adversa",
+      "content_type": 47,
+      "codename": "change_adversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 227,
+    "fields": {
+      "name": "Can delete Reaccion Adversa",
+      "content_type": 47,
+      "codename": "delete_adversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 228,
+    "fields": {
+      "name": "Can view Reaccion Adversa",
+      "content_type": 47,
+      "codename": "view_adversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 229,
+    "fields": {
+      "name": "Can List AdverseReaction",
+      "content_type": 47,
+      "codename": "index_adversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 230,
+    "fields": {
+      "name": "Can add Tipo de reacción adversa",
+      "content_type": 48,
+      "codename": "add_typeadversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 231,
+    "fields": {
+      "name": "Can change Tipo de reacción adversa",
+      "content_type": 48,
+      "codename": "change_typeadversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 232,
+    "fields": {
+      "name": "Can delete Tipo de reacción adversa",
+      "content_type": 48,
+      "codename": "delete_typeadversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 233,
+    "fields": {
+      "name": "Can view Tipo de reacción adversa",
+      "content_type": 48,
+      "codename": "view_typeadversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 234,
+    "fields": {
+      "name": "Can List TypeAdverseReaction",
+      "content_type": 48,
+      "codename": "index_typeadversereaction"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 235,
+    "fields": {
+      "name": "Can add Tipo de Anticoagulante",
+      "content_type": 49,
+      "codename": "add_typeanticoagulant"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 236,
+    "fields": {
+      "name": "Can change Tipo de Anticoagulante",
+      "content_type": 49,
+      "codename": "change_typeanticoagulant"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 237,
+    "fields": {
+      "name": "Can delete Tipo de Anticoagulante",
+      "content_type": 49,
+      "codename": "delete_typeanticoagulant"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 238,
+    "fields": {
+      "name": "Can view Tipo de Anticoagulante",
+      "content_type": 49,
+      "codename": "view_typeanticoagulant"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 239,
+    "fields": {
+      "name": "Can List TypeAnticoagulant",
+      "content_type": 49,
+      "codename": "index_typeanticoagulant"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "PERSONAL DE TURNO",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$he04Fh4iiQICFbZ8uxfvnN$EHMdTMlX7d+RM/Z4U6N27ivCkSIGIX7t4K5TmV7h+Y4=",
+      "last_login": "2023-03-09T21:30:00.686Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@admin.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-03-09T21:18:38.755Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "authtoken",
+      "model": "token"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "authtoken",
+      "model": "tokenproxy"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "settings",
+      "model": "place"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "settings",
+      "model": "reason"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "settings",
+      "model": "settingphisical"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "users",
+      "model": "institution"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "users",
+      "model": "patient"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "app_label": "users",
+      "model": "medical"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+      "app_label": "users",
+      "model": "employee"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+      "app_label": "donors",
+      "model": "donor"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+      "app_label": "donors",
+      "model": "donorhistory"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+      "app_label": "promotions",
+      "model": "event"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+      "app_label": "donations",
+      "model": "donation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 20,
+    "fields": {
+      "app_label": "donations",
+      "model": "rejected"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 21,
+    "fields": {
+      "app_label": "donations",
+      "model": "physicalanalysis"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 22,
+    "fields": {
+      "app_label": "donations",
+      "model": "exam"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 23,
+    "fields": {
+      "app_label": "sieves",
+      "model": "clinicalhistoryquestion"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 24,
+    "fields": {
+      "app_label": "sieves",
+      "model": "clinicalhistoryanswer"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 25,
+    "fields": {
+      "app_label": "extractions",
+      "model": "extraction"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 26,
+    "fields": {
+      "app_label": "extractions",
+      "model": "selfexclusion"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 27,
+    "fields": {
+      "app_label": "refreshments",
+      "model": "menu"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 28,
+    "fields": {
+      "app_label": "refreshments",
+      "model": "extractionrefreshment"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 29,
+    "fields": {
+      "app_label": "insurance",
+      "model": "typepatient"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 30,
+    "fields": {
+      "app_label": "packages",
+      "model": "typehemocomponent"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 31,
+    "fields": {
+      "app_label": "packages",
+      "model": "typediscard"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 32,
+    "fields": {
+      "app_label": "packages",
+      "model": "package"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 33,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "fragmentation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 34,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "itemfragmentation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 35,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "releaserequest"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 36,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "typeirregularantibody"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 37,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "releasetypehemocomponent"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 38,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "release"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 39,
+    "fields": {
+      "app_label": "fragmentations",
+      "model": "discard"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 40,
+    "fields": {
+      "app_label": "laboratories",
+      "model": "serologyprotocol"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 41,
+    "fields": {
+      "app_label": "laboratories",
+      "model": "immunoserology"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 42,
+    "fields": {
+      "app_label": "laboratories",
+      "model": "immunohematology"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 43,
+    "fields": {
+      "app_label": "distributions",
+      "model": "distribution"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 44,
+    "fields": {
+      "app_label": "distributions",
+      "model": "distributionitemfragmentation"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 45,
+    "fields": {
+      "app_label": "distributions",
+      "model": "distributionitemfragmentationrefunded"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 46,
+    "fields": {
+      "app_label": "provisions",
+      "model": "provision"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 47,
+    "fields": {
+      "app_label": "extractions",
+      "model": "adversereaction"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 48,
+    "fields": {
+      "app_label": "extractions",
+      "model": "typeadversereaction"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 49,
+    "fields": {
+      "app_label": "extractions",
+      "model": "typeanticoagulant"
+    }
+  },
+  {
+    "model": "settings.place",
+    "pk": 1,
+    "fields": {
+      "name": "Sucre"
+    }
+  },
+  {
+    "model": "settings.settingphisical",
+    "pk": 1,
+    "fields": {
+      "place": 1,
+      "hematocrit_min": 41,
+      "hematocrit_max": 56,
+      "hematocrit_min_m": 44,
+      "hematocrit_max_m": 58,
+      "systolic_min": 90,
+      "systolic_max": 130,
+      "diastolic_min": 60,
+      "diastolic_max": 90,
+      "pulse_min": 60,
+      "pulse_max": 100,
+      "weight_min": 50,
+      "hemoglobin_factor": 3.3
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 1,
+    "fields": {
+      "type": "TE",
+      "name": "PESO BAJO",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 2,
+    "fields": {
+      "type": "TE",
+      "name": "HEMOGLOBINA Y/O HEMATOCRITO BAJO",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 3,
+    "fields": {
+      "type": "TE",
+      "name": "AFECCIONES DE TIPO MÉDICO",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 4,
+    "fields": {
+      "type": "TE",
+      "name": "COMPORTA MIENTO DE  ALTO RIESGO",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 5,
+    "fields": {
+      "type": "TE",
+      "name": "HISTORIAS DE VIAJE",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 6,
+    "fields": {
+      "type": "TE",
+      "name": "OTROS MOTIVOS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 7,
+    "fields": {
+      "type": "PE",
+      "name": "VIH",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 8,
+    "fields": {
+      "type": "PE",
+      "name": "CHAGAS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 9,
+    "fields": {
+      "type": "PE",
+      "name": "HEPATITIS B",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 10,
+    "fields": {
+      "type": "PE",
+      "name": "HEPATITIS C",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 11,
+    "fields": {
+      "type": "PE",
+      "name": "SÍFILIS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 12,
+    "fields": {
+      "type": "PE",
+      "name": "HEMOGLOBINA Y/O HEMATOCRITO ALTO",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 13,
+    "fields": {
+      "type": "PE",
+      "name": "AFECCIONES NEUROLÓGICAS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 14,
+    "fields": {
+      "type": "PE",
+      "name": "AFECCIONES CARDIÁCAS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "settings.reason",
+    "pk": 15,
+    "fields": {
+      "type": "PE",
+      "name": "OTROS",
+      "created_at": "2022-01-13T16:23:07.808Z"
+    }
+  },
+  {
+    "model": "users.institution",
+    "pk": 1,
+    "fields": {
+      "name": "Banco De Sangre Sucre",
+      "nit": "",
+      "logo": "",
+      "address": "",
+      "phone": null,
+      "is_public": true,
+      "department": "CH",
+      "register_at": "2023-03-09T21:20:25.110Z"
+    }
+  },
+  {
+    "model": "users.institution",
+    "pk": 2,
+    "fields": {
+      "name": "HOSPITAL PRUEBA",
+      "nit": "",
+      "logo": "",
+      "address": "",
+      "phone": null,
+      "is_public": true,
+      "department": "CH",
+      "register_at": "2023-03-09T21:34:30.786Z"
+    }
+  },
+  {
+    "model": "users.employee",
+    "pk": 1,
+    "fields": {
+      "institution": 1,
+      "user": 1,
+      "ci": 0,
+      "first_name": "Administrador",
+      "middle_name": null,
+      "last_name": null,
+      "gender": "M",
+      "home_address": null,
+      "mobile_phone": null,
+      "register_at": "2023-03-09T21:31:21.674Z",
+      "code_licence": null
+    }
+  },
+  {
+    "model": "users.medical",
+    "pk": 1,
+    "fields": {
+      "institution": 2,
+      "first_name": "MEDICO",
+      "middle_name": "PRUEBA",
+      "last_name": "",
+      "register_at": "2023-03-09T22:06:53.240Z"
+    }
+  },
+  {
+    "model": "users.patient",
+    "pk": 1,
+    "fields": {
+      "institution": 2,
+      "first_name": "PACIENTE",
+      "middle_name": "PRUEBA",
+      "last_name": "PRUEBA",
+      "phone": null,
+      "register_at": "2023-03-09",
+      "created_at": "2023-03-09T21:34:45.028Z"
+    }
+  },
+  {
+    "model": "sieves.clinicalhistoryquestion",
+    "pk": 1,
+    "fields": {
+      "title": "HISTORIA CLINICA",
+      "questions": [
+        {
+          "type": "RADIO",
+          "title": "¿Ha donado sangre alguna vez?",
+          "sub_type": "TEXT",
+          "sub_title": "¿Cuándo fue la última vez?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha sido rechazado para donar sangre algunas vez?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Se siente bien hoy?"
+        },
+        {
+          "type": "TEXT",
+          "title": "¿Por qué vino al banco de sangre?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Alguna vez ha tenido dolor de pecho, falta de aire, infarto o enfermedades del corazón?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha padecido convulsiones?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha tenido o tiene una enfermedad con tratamiento prolongado?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha tenido enfermedades de sangre o sangrados anormales?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Tiene gripe, resfrío, tos, dolor de garganta, fiebre o dificultad para respirar hoy?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha estado embarazada en los últimos 6 meses?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Alguna vez ha tenido ictericia (se puso amarillo), hepatitis, trastorno hepático o ha estado en contacto con personas con esos padecimientos?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Padece o esta con un proceso alérgico?",
+          "sub_type": "RADIO",
+          "sub_title": "¿Asma?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Conoce la vinchuca o recuerda haber sido picado por ese insecto?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Se ha realizado alguna vez un examen para la enfermedad de Chagas?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Algún familiar padece de la enfermedad de Chagas?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último año ha recibido transfusiones o ha sido sometido a transplantes?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último año le fueron realizados tatuajes o se ha realizado perforaciones para aretes?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último mes ha estado tomando algún medicamento?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Durante esta semana ha estado tomando aspirina, antipiréticos o antiinflamatorios?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha sido vacunado en el último mes?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha tenido algún procedimiento dental en los últimos tres días?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha padecido o ha sido tratado por malaria? ¿Ha estado en alguna región de malaria en los últimos 10 años (zona tropical)?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último año ha estado recluido en algún centro penitenciario por tiempo mayor a tres días?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha padecido alguna enfermedad pulmonar?",
+          "sub_type": "RADIO",
+          "sub_title": "¿tuberculosis?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último año ha padecido o ha sido tratado por enfermedad venérea?",
+          "sub_type": "TEXT",
+          "sub_title": "¿Cuál?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Usted o su pareja han tenido o tienen una prueba para VIH o Sífilis?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha sufrido sudores nocturnos, fiebre, pérdida de peso ganglios inflamados, tos persistente, diarrea persistente o lesiones en la piel violáceas?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Usted o su pareja han usado o usan drogas ilegales?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿En el último año ha cambiado frecuentemente de pareja?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Sabía usted que puede contagiar algunas enfermedades aun estando aparentemente sano y ser negativo en los análisis de sangre para SIDA, HEPATITIS, CHAGAS, MALARIA y SIFILIS?"
+        },
+        {
+          "type": "RADIO",
+          "title": "¿Ha estado donando sangre con la única intención de practicarse la prueba del SIDA?"
+        }
+      ],
+      "is_active": true,
+      "register_at": "2023-03-09",
+      "created_at": "2023-03-09T21:31:55.758Z"
+    }
+  },
+  {
+    "model": "extractions.typeanticoagulant",
+    "pk": 1,
+    "fields": {
+      "name": "CPD"
+    }
+  },
+  {
+    "model": "extractions.typeanticoagulant",
+    "pk": 2,
+    "fields": {
+      "name": "CPDA-1"
+    }
+  },
+  {
+    "model": "extractions.typeanticoagulant",
+    "pk": 3,
+    "fields": {
+      "name": "CPD-SAGMANITOL"
+    }
+  },
+  {
+    "model": "extractions.typeadversereaction",
+    "pk": 1,
+    "fields": {
+      "name": "MAREOS",
+      "level": "LOW",
+      "show_in_conventional": true,
+      "show_in_apheresis": false
+    }
+  },
+  {
+    "model": "extractions.typeadversereaction",
+    "pk": 2,
+    "fields": {
+      "name": "VOMITOS",
+      "level": "LOW",
+      "show_in_conventional": true,
+      "show_in_apheresis": false
+    }
+  },
+  {
+    "model": "extractions.typeadversereaction",
+    "pk": 3,
+    "fields": {
+      "name": "LIPOTIMIA",
+      "level": "LOW",
+      "show_in_conventional": true,
+      "show_in_apheresis": false
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 1,
+    "fields": {
+      "name": "CONCENTRADO DE GLOBULOS ROJOS",
+      "acronym": "CGR",
+      "expiration_day": 35,
+      "max_expiration_days": 35,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-03T15:12:50.798Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 2,
+    "fields": {
+      "name": "PLASMA FRESCO CONGELADO",
+      "acronym": "PFC",
+      "expiration_day": 365,
+      "max_expiration_days": 365,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 4,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-07T07:27:05.174Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 3,
+    "fields": {
+      "name": "PLASMA CONGELADO",
+      "acronym": "PC",
+      "expiration_day": 365,
+      "max_expiration_days": 365,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "< 18",
+      "position": 2,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-07T07:27:29.382Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 4,
+    "fields": {
+      "name": "CRIOPRECIPITADO",
+      "acronym": "CRIO",
+      "expiration_day": 365,
+      "max_expiration_days": 365,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "< 30",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": false,
+      "created_at": "2018-12-07T07:27:47.382Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 5,
+    "fields": {
+      "name": "GLÓBULOS ROJOS LAVADOS",
+      "acronym": "GRL",
+      "expiration_day": 1,
+      "max_expiration_days": 1,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 21,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-07T07:28:12.956Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 6,
+    "fields": {
+      "name": "CONCENTRADO DE PLAQUETAS",
+      "acronym": "CPQ",
+      "expiration_day": 5,
+      "max_expiration_days": 5,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "22 ± 2",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-07T07:28:31.778Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 7,
+    "fields": {
+      "name": "CONCENTRADO DE PLAQUETAS POR AFÉRESIS",
+      "acronym": "CPQAF",
+      "expiration_day": 5,
+      "max_expiration_days": 5,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "22 ± 2",
+      "position": 10,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2018-12-07T07:28:51.321Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 8,
+    "fields": {
+      "name": "SANGRE TOTAL",
+      "acronym": "ST",
+      "expiration_day": 35,
+      "max_expiration_days": 35,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 30,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:34:49.148Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 9,
+    "fields": {
+      "name": "SANGRE TOTAL, FRAC. PARA USO PEDIATRICO",
+      "acronym": "ST PED",
+      "expiration_day": 35,
+      "max_expiration_days": 35,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 31,
+      "is_pediatric": true,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:40:41.390Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 10,
+    "fields": {
+      "name": "CONCENTRADO DE GLOBULOS ROJOS, FRAC. PARA USO PEDIATRICO",
+      "acronym": "CGR PED",
+      "expiration_day": 35,
+      "max_expiration_days": 35,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 10,
+      "is_pediatric": true,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:42:04.345Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 11,
+    "fields": {
+      "name": "PLASMA FRESCO CONGELADO, FRAC. PARA USO PEDIATRICO",
+      "acronym": "PFC PED",
+      "expiration_day": 365,
+      "max_expiration_days": 365,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 12,
+      "is_pediatric": true,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:42:39.449Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 12,
+    "fields": {
+      "name": "PLASMA CONGELADO, FRAC. PARA USO PEDIATRICO",
+      "acronym": "PC PED",
+      "expiration_day": 365,
+      "max_expiration_days": 365,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "< 18",
+      "position": 11,
+      "is_pediatric": true,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:43:44.987Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 13,
+    "fields": {
+      "name": "GLÓBULOS ROJOS LAVADOS, FRAC. PARA USO PEDIATRICO",
+      "acronym": "GRL PED",
+      "expiration_day": 1,
+      "max_expiration_days": 1,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 40,
+      "is_pediatric": true,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:44:14.229Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 14,
+    "fields": {
+      "name": "FLEBOTOMIA",
+      "acronym": "FLEB",
+      "expiration_day": 30,
+      "max_expiration_days": 30,
+      "description": "",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "0",
+      "position": 20,
+      "is_pediatric": false,
+      "can_add_bags": false,
+      "show_in_billing": true,
+      "show_in_fragmentation": false,
+      "show_in_request_release": false,
+      "created_at": "2022-01-02T21:48:05.134Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 15,
+    "fields": {
+      "name": "EQUIPO DE TRANSFUSION",
+      "acronym": "EC",
+      "expiration_day": 0,
+      "max_expiration_days": 0,
+      "description": "",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "0",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": false,
+      "show_in_billing": true,
+      "show_in_fragmentation": false,
+      "show_in_request_release": false,
+      "created_at": "2022-02-01T20:50:51.805Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 16,
+    "fields": {
+      "name": "SANGRE TOTAL RECONSTITUIDA",
+      "acronym": "STR",
+      "expiration_day": 35,
+      "max_expiration_days": 35,
+      "description": "REALICE PRUEBAS CRUZADAS Y GRUPO SANGUINEO BOLSA/RECEPTOR OBLIGATORIAMENTE, AGITE LEVEMENTE LA BOLSA ANTES DE LA TRANSFUSION, VERIFIQUE SI EL EQUIPO DE TRANSFUSION TIENE FILTRO.\r\nNO CALIENTE LA SANGRE O SUS PRODUCTOS NI AÑADA MEDICAMENTOS",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "4 ± 2",
+      "position": 30,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-01-02T21:34:49.148Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 17,
+    "fields": {
+      "name": "PLASMA CONVALECIENTE COVID-19",
+      "acronym": "PCC",
+      "expiration_day": 730,
+      "max_expiration_days": 730,
+      "description": "USO EXCLUSIVO PARA EL TRATAMIENTO DE PACIENTES CON CONFIRMACION DE COVID-19",
+      "typecoagulation": "CPDA - 1",
+      "temperature_save": "-25",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-05-29T05:24:16.926Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 18,
+    "fields": {
+      "name": "PLASMA CONVALECIENTE POR AFERESIS",
+      "acronym": "PCA",
+      "expiration_day": 730,
+      "max_expiration_days": 730,
+      "description": "",
+      "typecoagulation": "ACD - A",
+      "temperature_save": "-30",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": true,
+      "show_in_billing": true,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-10-09T01:09:24.009Z"
+    }
+  },
+  {
+    "model": "packages.typehemocomponent",
+    "pk": 19,
+    "fields": {
+      "name": "BOLSA VACIA",
+      "acronym": "BV",
+      "expiration_day": 0,
+      "max_expiration_days": 0,
+      "description": "",
+      "typecoagulation": "ACD - A",
+      "temperature_save": "-30",
+      "position": 1,
+      "is_pediatric": false,
+      "can_add_bags": false,
+      "show_in_billing": false,
+      "show_in_fragmentation": true,
+      "show_in_request_release": true,
+      "created_at": "2022-10-09T01:09:24.009Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 1,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 2,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 3,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 4,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 5,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 6,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 7,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 8,
+    "fields": {
+      "name": "EXCESO ANTICUAGUALANTE",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 9,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 10,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 11,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 12,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 13,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 14,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 15,
+    "fields": {
+      "name": "EXCESO ANTICOAGULANTE",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 16,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 17,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 3,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 18,
+    "fields": {
+      "name": "VENCIMIENTO",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 19,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 20,
+    "fields": {
+      "name": "CONTAMINACION BACTERIANA",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 21,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 8,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 22,
+    "fields": {
+      "name": "SANGRIA",
+      "typehemocomponent": 8,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 23,
+    "fields": {
+      "name": "EXTRACCION INSUFICIENTE",
+      "typehemocomponent": 8,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 25,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 9,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 26,
+    "fields": {
+      "name": "SANGRIA",
+      "typehemocomponent": 9,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 27,
+    "fields": {
+      "name": "BAJO VOLUMEN",
+      "typehemocomponent": 9,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 28,
+    "fields": {
+      "name": "CONTAMINACION VACTERIANA",
+      "typehemocomponent": 10,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 29,
+    "fields": {
+      "name": "VENCIMIENTO",
+      "typehemocomponent": 10,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 30,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 10,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 31,
+    "fields": {
+      "name": "DIFICULTADES DE ALMACENAMIENTO",
+      "typehemocomponent": 2,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 32,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 33,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 34,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 35,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 36,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 37,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 38,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 39,
+    "fields": {
+      "name": "EXCESO ANTICOAGULANTE",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 40,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 41,
+    "fields": {
+      "name": "DIFICULTADES DE ALMACENAMIENTO",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 42,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 43,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 44,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 45,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 46,
+    "fields": {
+      "name": "EXCESO DE ANTICOAGULANTE",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 47,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 48,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 49,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 50,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 51,
+    "fields": {
+      "name": "VENCIMIENTO",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 52,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 53,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 54,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 55,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 56,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 57,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 58,
+    "fields": {
+      "name": "EXCESO DE ANTICOAGULANTE",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 59,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 60,
+    "fields": {
+      "name": "VOLUMEN BAJO",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 61,
+    "fields": {
+      "name": "EXCESO DE ANTICOAGULANTE",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 62,
+    "fields": {
+      "name": "ANTICUERPOS CALIENTES",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 63,
+    "fields": {
+      "name": "ANTICUERPOS FRIOS",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 64,
+    "fields": {
+      "name": "SEROLOGIA POSITIVA",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 65,
+    "fields": {
+      "name": "ICTERICO",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 66,
+    "fields": {
+      "name": "LIPEMICO",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 67,
+    "fields": {
+      "name": "RUPTURA",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 68,
+    "fields": {
+      "name": "VENCIMIENTO",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 69,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 6,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 70,
+    "fields": {
+      "name": "CONTAMINACION ERITROCITARIA",
+      "typehemocomponent": 7,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 71,
+    "fields": {
+      "name": "BAJO VOLUMEN",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 72,
+    "fields": {
+      "name": "SEROLOGIA REACTIVA",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-20T15:04:12.461Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 73,
+    "fields": {
+      "name": "HEMOLISIS",
+      "typehemocomponent": 12,
+      "created_at": "2022-05-29T01:37:58.095Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 74,
+    "fields": {
+      "name": "HEMOLISIS",
+      "typehemocomponent": 11,
+      "created_at": "2022-05-29T01:38:13.782Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 75,
+    "fields": {
+      "name": "HEMOLISIS",
+      "typehemocomponent": 1,
+      "created_at": "2022-05-29T01:43:10.192Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 76,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 6,
+      "created_at": "2022-09-03T10:24:11.837Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 77,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 4,
+      "created_at": "2022-09-03T10:24:23.922Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 78,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 1,
+      "created_at": "2022-09-03T10:24:35.786Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 79,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 3,
+      "created_at": "2022-09-03T10:24:46.211Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 80,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 2,
+      "created_at": "2022-09-03T10:24:58.562Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 81,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 7,
+      "created_at": "2022-09-03T10:25:08.148Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 82,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 10,
+      "created_at": "2022-09-03T10:25:15.802Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 83,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 12,
+      "created_at": "2022-09-03T10:25:23.299Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 84,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 11,
+      "created_at": "2022-09-03T10:25:31.071Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 85,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 5,
+      "created_at": "2022-09-03T10:25:43.631Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 86,
+    "fields": {
+      "name": "AUTOEXCLUSION",
+      "typehemocomponent": 13,
+      "created_at": "2022-09-03T10:26:08.324Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 87,
+    "fields": {
+      "name": "COVID-19",
+      "typehemocomponent": 1,
+      "created_at": "2022-06-11T11:31:26.821Z"
+    }
+  },
+  {
+    "model": "packages.typediscard",
+    "pk": 91,
+    "fields": {
+      "name": "HEMOLISIS",
+      "typehemocomponent": 2,
+      "created_at": "2022-09-14T19:58:49.514Z"
+    }
+  }
+]

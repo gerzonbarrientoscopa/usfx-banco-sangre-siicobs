@@ -1,0 +1,339 @@
+{% extends 'layouts/pdf_base_large.html' %}
+{% load utils %}
+{% load static %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border text-center" width="75%">BANCO DE SANGRE DE
+                    REFERENCIA DEPARTAMENTAL SUCRE
+                </td>
+            </tr>
+            <tr>
+                <td class="border text-center title-main">REPORTE GENERAL <span
+                        class="subtitle">(De {{ date_init }} a {{ date_end }})</span></td>
+            </tr>
+            <tr>
+                <td class="border text-center title-main">
+                    DONACIONES
+                    [ <span class="text-danger subtitle">NOTA IMPORTANTE: regularizar todos los registros en "F"</span>
+                    ]
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="25">#</td>
+                <td class="border text-center" width="70"><b>FECHA</b></td>
+                <td class="border text-center" width="50"><b>CODIGO</b></td>
+                <td class="border text-center" width="50"><b>DONANTE</b></td>
+                <td class="border text-center" width="50"><b>PRE-TAM.</b></td>
+                <td class="border text-center" width="50"><b>A.FIS.</b></td>
+                <td class="border text-center" width="40"><b>VOLV.</b></td>
+                <td class="border text-center" width="50"><b>H. CLIN.</b></td>
+                <td class="border text-center" width="40"><b>DIFER.</b></td>
+                <td class="border text-center" width="50"><b>EXTR.</b></td>
+                <td class="border text-center" width="50"><b>R. ADV.</b></td>
+                <td class="border text-center" width="50"><b>AUTOEX.</b></td>
+                <td class="border text-center" width="50"><b>FRACC.</b></td>
+                <td class="border text-center" width="50"><b>SEROL.</b></td>
+                <td class="border text-center" width="50"><b>HEMAT.</b></td>
+                <td class="border text-center" width="140"><b>DESCARTE</b></td>
+                <td class="border text-center" width="140"><b>LIBERACION</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            {% for donation in donations %}
+                {% get_statusRejected donation.id as rejected %}
+                {% if donation.extraction and donation.extraction.donation.immunoserology %}
+                    {% get_statusImmunoserology donation.extraction.donation.immunoserology as statusImmunoserology %}
+                {% else %}
+                    {% get_statusImmunoserology 'flag' as statusImmunoserology %}
+                {% endif %}
+                <tr>
+                    <td class="border" width="25">
+                        {{ forloop.counter }}
+                    </td>
+                    <td class="border text-center" width="70">
+                        {{ donation.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {{ donation.donor.code }}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {{ donation.donor | fullInitialName }}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.exam %}
+                                ✔ ({{ donation.exam.employee | full_initials_employee }})
+                            {% else %}
+                                <span class="text-danger">F</span>
+                            {% endif %}
+                        {% else %}
+                            {% if donation.exam %}
+                                ✔ ({{ donation.exam.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.physicalanalysis %}
+                                ✔ ({{ donation.physicalanalysis.employee | full_initials_employee }})
+                            {% else %}
+                                <span class="text-danger">F</span>
+                            {% endif %}
+                        {% else %}
+                            {% if donation.physicalanalysis %}
+                                ✔ ({{ donation.physicalanalysis.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="40">
+                        {% if rejected == 'NO' %}
+                            {% if not donation.extraction and donation.is_will_back %}
+                                SI
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.clinicalhistoryanswer %}
+                                ✔ ({{ donation.clinicalhistoryanswer.employee | full_initials_employee }})
+                            {% else %}
+                                <span class="text-danger">F</span>
+                            {% endif %}
+                        {% else %}
+                            {% if donation.clinicalhistoryanswer %}
+                                ✔ ({{ donation.clinicalhistoryanswer.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="40">
+                        {{ rejected }}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction %}
+                                ✔ ({{ donation.extraction.employee | full_initials_employee }})
+                            {% else %}
+                                {% if donation.is_will_back %}
+                                    -
+                                {% else %}
+                                    <span class="text-danger">F</span>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if donation.extraction %}
+                                ✔ ({{ donation.extraction.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction is not None and donation.extraction.adversereaction %}
+                                SI
+                            {% else %}
+                                {% if donation.is_will_back %}
+                                    -
+                                {% else %}
+                                    NO
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <!-- AUTOEXCLUSION-->
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction is not None and donation.extraction.selfexclusion %}
+                                SI
+                            {% else %}
+                                {% if donation.is_will_back %}
+                                    -
+                                {% else %}
+                                    NO
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction is not None and donation.extraction.fragmentation %}
+                                ✔ ({{ donation.extraction.fragmentation.employee | full_initials_employee }})
+                            {% else %}
+                                {% if donation.is_will_back %}
+                                    -
+                                {% else %}
+                                    <span class="text-danger">F</span>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if donation.extraction is not None  and donation.extraction.fragmentation %}
+                                ✔ ({{ donation.extraction.fragmentation.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction is not None and donation.extraction.donation.immunoserology %}
+                                {% if statusImmunoserology == 'SI' %}
+                                    <span class="text-danger">✔</span>
+                                {% else %}
+                                    ✔ ({{ donation.extraction.donation.immunoserology.employee | full_initials_employee }})
+                                {% endif %}
+                            {% else %}
+                                {% if donation.extraction.adversereaction %}
+                                    -
+                                {% else %}
+                                    {% if donation.extraction.selfexclusion %}
+                                        -
+                                    {% else %}
+                                        {% if donation.is_will_back %}
+                                            -
+                                        {% else %}
+                                            <span class="text-danger">F</span>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if donation.extraction is not None  and donation.extraction.donation.immunoserology %}
+                                ✔ ({{ donation.extraction.donation.immunoserology.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="50">
+                        {% if rejected == 'NO' %}
+                            {% if donation.extraction is not None and donation.extraction.donation.immunohematology %}
+                                ✔  ({{ donation.extraction.donation.immunohematology.employee | full_initials_employee }})
+                            {% else %}
+                                {% if donation.extraction.adversereaction %}
+                                    -
+                                {% else %}
+                                    {% if donation.extraction.selfexclusion %}
+                                        -
+                                    {% else %}
+                                        {% if donation.is_will_back %}
+                                            -
+                                        {% else %}
+                                            <span class="text-danger">F</span>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if donation.extraction is not None and donation.extraction.donation.immunohematology %}
+                                ✔ ({{ donation.extraction.donation.immunohematology.employee | full_initials_employee }})
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="140">
+                        {% if donation.extraction is not None and donation.extraction.adversereaction %}
+                            {% if donation.extraction.fragmentation %}
+                                {% for item in donation.extraction.fragmentation.itemfragmentations.all %}
+                                    {{ item.typehemocomponent.acronym }}
+                                    [
+                                    {% if item.discard %}
+                                        ✔
+                                    {% else %}
+                                        <span class="text-danger">F</span>
+                                    {% endif %}
+                                    ]
+                                {% endfor %}
+                            {% endif %}
+                        {% else %}
+                            {% if statusImmunoserology == 'SI' %}
+                                {% if donation.extraction.fragmentation %}
+                                    {% for item in donation.extraction.fragmentation.itemfragmentations.all %}
+                                        {{ item.typehemocomponent.acronym }}
+                                        [
+                                        {% if item.discard %}
+                                            ✔
+                                        {% else %}
+                                            <span class="text-danger">F</span>
+                                        {% endif %}
+                                        ]
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center" width="140">
+                        {% if donation.extraction is not None and donation.extraction.adversereaction %}
+                            -
+                        {% else %}
+                            {% if donation.extraction.fragmentation %}
+
+                                {% for item in donation.extraction.fragmentation.itemfragmentations.all %}
+                                    {{ item.typehemocomponent.acronym }}
+                                    [
+                                    {% if item.release %}
+                                        ✔
+                                    {% else %}
+                                        <span class="text-danger">F</span>
+                                    {% endif %}
+                                    ]
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if forloop.counter|divisibleby:21 %}
+                    </table>
+                    <table class="table">
+                {% endif %}
+            {% endfor %}
+            </table>
+    </div>
+{% endblock %}

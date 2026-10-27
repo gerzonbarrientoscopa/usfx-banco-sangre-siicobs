@@ -1,0 +1,154 @@
+{% extends 'layouts/pdf_base_large.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Salida de Hemocomponentes
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr class="">
+                <td class="text-center right" width="18%" rowspan="2">
+                    <img class="logo" src="media/logos/logo.jpg" width="100px" alt="">
+                </td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+            </tr>
+            <tr class="">
+                <td class="text-center">
+                    <h1>
+                        DISTRIBUCIÓN
+                        SALIDA DE HEMOCOMPONENTES
+                    </h1>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">
+                    [
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                    ]
+
+                    <strong>
+                        UNA VEZ RETIRADO EL PRODUCTO NO PUEDE SER DEVUELTO AL BANCO DE SANGRE.
+                    </strong>
+                </td>
+                <td class="text-right" width="50%">
+                    Sucre, {{ today | date:"d" }} de {{ today | date:"F" }} de {{ today | date:"Y" }}.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2></h2>
+        <table class="table table-sm table-bordered" width="100%" style='width:100%'>
+            <tbody>
+            <tr>
+                <td width="25%" class="no-border"><b>Institución: </b>{{ distribution.institution.name }}</td>
+                <td width="25%" class="no-border"><b>Médico: </b>
+                    {{ distribution.medical.middle_name }} {{ distribution.medical.last_name }} {{ distribution.medical.first_name }}
+                </td>
+                <td class="no-border"><b>Tipo de pago: </b> {% if  distribution.type_payment == 0 %}
+                    FACTURA: {{ distribution.invoice_number }}{% elif  distribution.type_payment == 1 %}
+                    CONVENIO{% endif %}</td>
+                <td width="25%" class="no-border">Código: <b>{{ distribution.id }}</b></td>
+            </tr>
+            <tr>
+                <td class="no-border" colspan="2">
+                    <b>Paciente: </b> {{ distribution.patient.first_name }} {{ distribution.patient.middle_name }} {{ distribution.patient.last_name }}
+                </td>
+                <td width="25%" class="no-border"><b>Hora de Salida: </b>{{ distribution.delivered_at }}</td>
+                <td class="no-border"><b>Hora de Llegada: </b>&nbsp;
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <table class="table table-sm table-bordered" width='100%' style='width:100%'>
+            <thead>
+            <tr class="border">
+                <th width="20" rowspan="2">#</th>
+                <th width="40" rowspan="2">Nº Don.</th>
+                <th width="180" rowspan="2">HEMOCOMPONENTE</th>
+                <th width="60" rowspan="2">GRUPO &nbsp;RH</th>
+                <th width="50" rowspan="2">VOL.</th>
+                <th width="50" rowspan="2">LOTE</th>
+                <th width="50" rowspan="2">TUB.</th>
+                <th width="180" rowspan="2">NOMBRE DEL PACIENTE</th>
+                <th width="60" rowspan="2">FECHA TRANS.</th>
+                <th width="100" colspan="2">TIPO PAGO</th>
+                <th rowspan="2">OBS.</th>
+            </tr>
+            <tr class="border">
+                <td class="text-center" width="30">SUS</td>
+                <td class="text-center" width="30">FACT.</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dif in distributionItemFragmentations %}
+                <tr class="border">
+                    <td class="border text-center">{{ forloop.counter }}</td>
+                    <td class="border text-center">{{ dif.itemfragmentation.donor_code }}</td>
+                    <td class="border">{{ dif.itemfragmentation.typehemocomponent.name }}</td>
+                    <td class="border text-center">
+                        <b>
+                            {{ dif.itemfragmentation.fragmentation.extraction.donation.immunohematology.direct_abo }}
+                            {{ dif.itemfragmentation.fragmentation.extraction.donation.immunohematology.factor_rh }}
+                        </b>
+                    </td>
+                    <td class="border text-right">{{ dif.itemfragmentation.weight }} ml.</td>
+                    <td class="border text-center">{{ dif.itemfragmentation.fragmentation.extraction.lot }}</td>
+                    <td class="border text-center">{{ dif.itemfragmentation.fragmentation.extraction.tubing }}</td>
+                    <td class="border">
+                        {{ distribution.patient.first_name | cleanValue }} {{ distribution.patient.middle_name | cleanValue }} {{ distribution.patient.last_name | cleanValue }}</td>
+                    <td class="border text-center">{{ dif.itemfragmentation.expiration_date|date:"d/m/Y" }}</td>
+                    <td class="border text-center">
+                        &nbsp;
+                    </td>
+                    <td class="border text-right">&nbsp;</td>
+                    <td class="border text-right">&nbsp;</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <p><b>OBSERVACIONES: </b>
+            {{ distribution.observations | isNone }}
+        </p>
+        <br>
+        <table class="table table-bordered table-sm">
+            <tr class="no-border text-center">
+                <td width="33%">...................................................</td>
+                <td width="33%">&nbsp;</td>
+                <td width="33%">...................................................</td>
+            </tr>
+            <tr class="no-border text-center">
+                <td>
+                    RESPONSABLE DE ENTREGA<br>
+                </td>
+                <td>
+                    &nbsp;<br>&nbsp;
+                </td>
+                <td>
+                    RECIBIDO POR<br>
+                    CI:
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

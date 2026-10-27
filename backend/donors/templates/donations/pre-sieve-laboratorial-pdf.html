@@ -1,0 +1,86 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Pre-Tamizaje Laboratorial
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table table-sm table-bordered">
+            <tbody>
+            <tr>
+                <td class="border-header" rowspan="5" width="180"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="border-header subtitle pt-1">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="border-header bg-red" width="120" >CÓDIGO</td>
+            </tr>
+            <tr>
+                <td class="border-header title-main pt-4" rowspan="2" >REGISTRO</td>
+                <td class="border-header">RG-BS-02-03</td>
+            </tr>
+            <tr>
+                <td class="border-header bg-red">VERSION</td>
+            </tr>
+            <tr>
+                <td class="border-header title-main pt-4" rowspan="2" >PRE TAMIZAJE LABORATORIAL</td>
+                <td class="border-header">09790709</td>
+            </tr>
+            <tr>
+                <td class="border-header">Pagina
+                    <pdf:pagenumber/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+         <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> de <pdf:pagecount/></td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table table-sm table-bordered">
+            <tbody>
+            <tr>
+                <td class="title-red" rowspan="2"><b>No</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>FECHA</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>CODIGO</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>GRUPO SANGUINEO FACTOR RH</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>HTO/HB % - gr/dl</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>CHAGAS H.A.I.</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>RPR</b></td>
+                <td class="title-red" colspan="3"><b>TIPO DE DONACION</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>RESP.</b></td>
+                <td class="title-red" colspan="2" rowspan="2"><b>OBS.</b></td>
+            </tr>
+            <tr>
+                <td class="title-red">VOL.</td>
+                <td class="title-red">REP. FAM.</td>
+                <td class="title-red">REP. EXI.</td>
+            </tr>
+            <tr>
+                <td class="border">1</td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+                <td class="border">123</td>
+                <td class="border">123</td>
+                <td class="border">123</td>
+                <td class="border" colspan="2"></td>
+                <td class="border" colspan="2"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

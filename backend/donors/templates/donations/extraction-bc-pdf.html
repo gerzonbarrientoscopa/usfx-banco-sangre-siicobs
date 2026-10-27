@@ -1,0 +1,17 @@
+{% extends 'layouts/pdf_base_qrs.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Código de Barras
+{% endblock %}
+{% block layout %}
+    <table style="border: white;">
+        {% for t in range %}
+            <tr>
+                <td>
+                    <img src="media/extraction/{{ barcode }}.png" alt="bg"><br>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

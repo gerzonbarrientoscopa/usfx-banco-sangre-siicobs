@@ -1,0 +1,136 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Autoexclusion
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border-header text-center subtitle-no-bold " width="62%">BANCO DE SANGRE DE REFERENCIA
+                    DEPARTAMENTAL SUCRE
+                </td>
+                <td class="border-qr text-center" rowspan="3" width="13%">
+                    <img class="qr" src="media/donor/{{ donation.donor.code }}.png" alt="qr">
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="border-header text-center subtitle">VOTO DE AUTOEXCLUSIÓN</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> de <pdf:pagecount/></td>
+                <td class="text-right" width="50%">{{ today }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2></h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td colspan="2" class="no-border">No. de unidad de sangre:</td>
+                <td width="200px" class="border-bottom"><b>{{ donation.donor.code }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <h2>Estimado Donante:</h2>
+        <p style="font-size: x-large">
+            Usted ya donó su sangre. Si se sintió obligado a hacerlo por alguna circunstancia, si no contesto
+            sinceramente las preguntas por temor o vergüenza, si piensa que su sangre puede no ser segura, todavía está
+            a tiempo para evitar un riesgo al paciente que la reciba y:
+        </p>
+    </div>
+    <br>
+    <div class="card">
+        <h2 class="text-center">
+            CON EL PROPOSITO DE BRINDAR MAYOR SEGURIDAD SANGUÍNEA, ES IMPORTANTE QUE CONOZCA QUE SU
+            SANGRE NO DEBE SER UTILIZADA CON FINES TRANSFUSIONALES, SI:
+        </h2>
+        <br>
+        <ul style="font-size: x-large">
+            <li>Usted y su pareja trabajan en ámbito de la prostitución.</li>
+            <li>Usted o su pareja han tenido relaciones sexuales con personas adictas o dedicadas a la prostitución.
+            </li>
+            <li>Usted ha tenido relaciones sexuales sin protección (preservativo) con una persona que no sea su pareja
+                en los últimos 12 meses.
+            </li>
+            <li>Usted o su pareja se han inyectado drogas en los últimos 12 meses.</li>
+            <li>Usted o su pareja son portadores del virus de la Hepatitis B o C.</li>
+            <li>Usted o su pareja son portadores del virus del VIH o piensan que necesitan realizarse el análisis.</li>
+            <li>Usted o su pareja han tenido relaciones sexuales con una persona portadora del VIH/SIDA.</li>
+        </ul>
+        <br>
+        <p style="font-size: x-large">
+            Esta información será totalmente confidencial y usted recibirá su comprobante de donación aunque su sangre
+            no sea utilizada para transfusiones.
+        </p>
+    </div>
+    <br>
+    <div class="card">
+        <h2>MARQUE CON X, UNA DE LAS ALTERNATIVAS ABAJO SEÑALADAS, CONCIENTE DE LOS RIESGOS QUE PUEDE PRESENTAR.</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border" style="height: 50px; width: 100px"></td>
+                <td colspan="7" class="text-left no-border">
+                    <h1>SI
+                        <small>autorizo su uso para transfusiones.</small>
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="border" style="height: 50px; width: 100px"></td>
+                <td colspan="7" class="text-left no-border">
+                    <h1>NO
+                        <small>autorizo su uso para transfusiones, porque mi sangre puede ser de riesgo.</small>
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <p style="font-size: x-large">
+            Después de marcar la opción, proceda a FIRMAR y por favor tenga la gentileza de colocar esta papeleta en el
+            buzón antes de salir.
+        </p>
+        <h2>
+            GRACIAS POR SU DONACIÓN!!!
+        </h2>
+        <p class="text-right" style="font-size: x-large">
+            FIRMA DONANTE ..........................................
+        </p>
+
+    </div>
+{% endblock %}

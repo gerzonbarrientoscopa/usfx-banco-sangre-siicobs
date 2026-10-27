@@ -1,0 +1,101 @@
+{% extends 'layouts/pdf_base_cleaned_letter_landscape.html' %}
+{% load utils %}
+{% block title %}
+    Distribución
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Fecha</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE DIARIO</td>
+                <td class="text-center" width="80"><b>{{ date_init | date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>DISTRIBUCION</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="150" rowspan="2"><b>FECHA</b></td>
+                <td class="border text-center" width="350" rowspan="2"><b>PACIENTE</b></td>
+                <td class="border text-center" width="350" rowspan="2"><b>INSTITUCION</b></td>
+                <td class="border text-center" width="200" colspan="2"><b>TIPO DE PACIENTE</b></td>
+                <td class="border text-center" width="160" colspan="2"><b>TIPO DE PAGO</b></td>
+                <td class="border text-center" width="170" rowspan="2"><b>CANTIDAD DE HEMOCOMPONENTES</b></td>
+            </tr>
+            <tr>
+                <td class="border text-center" width="100"><b>PARTICULAR</b></td>
+                <td class="border text-center" width="100"><b>CONVENIO</b></td>
+                <td class="border text-center" width="80"><b>FACTURA</b></td>
+                <td class="border text-center" width="80"><b>CONVENIO</b></td>
+            </tr>
+            {% for distribution in distributions %}
+                <tr>
+                    <td class="border text-center">
+                        {{ distribution.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center">
+                        {% if distribution.patient %}
+                            {{ distribution.patient | full_name }}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if distribution.institution %}
+                            {{ distribution.institution.name }}
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if not distribution.institution %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if distribution.institution %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if distribution.type_payment == 0 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if distribution.type_payment == 1 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_itemfragmentations distribution.id as items %}
+                        {{ items | length }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td class="border text-center" colspan="3"><b>Totales</b></td>
+                {% for total in totals %}
+                    <td class="border text-center">{{ total }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

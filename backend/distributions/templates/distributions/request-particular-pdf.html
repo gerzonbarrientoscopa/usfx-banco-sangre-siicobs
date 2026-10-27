@@ -1,0 +1,384 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Solicitud particular
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header" rowspan="2" width="15%" style="color:#dfe4ed;"><b>SELLO DE LA <br>UNIDAD <br>SOLICITANTE</b></td>
+                <td class="border-header text-center subtitle-no-bold" width="85%">
+                    BANCO DE SANGRE CHUQUISACA
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">SOLICITUD DE HEMOCOMPONENTES AL BANCO DE <br>SANGRE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina <pdf:pagenumber/> - FORMULARIO PARTICULAR
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2></h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td width="100%" class="no-border" colspan="5"><b>SERVICIO DE SALUD:</b>.....................................................................................................................................................................................................</td>
+                </tr>
+                <tr>
+                    <td width="100%" class="no-border" colspan="5"><b>FECHA Y HORA DE LA SOLICITUD:</b>..............................................................................................................................................................................</td>
+                </tr>
+                <tr>
+                    <td width="60%" class="no-border" colspan="2"><b>Nombre del paciente:</b>......................................................................................................</td>
+                    <td width="14%" class="no-border"><b>Edad:</b>.....................</td>
+                    <td width="13%" class="no-border"><b>Sexo:</b>...................</td>
+                    <td width="13%" class="no-border"><b>Peso:</b>...................</td>
+                </tr>
+                <tr>
+                    <td width="35%" class="no-border"><b>No. de Historia Clinica:</b>.........................................</td>
+                    <td width="39%" class="no-border" colspan="2"><b>Servicio:</b>.........................................................................</td>
+                    <td width="13%" class="no-border"><b>Sala:</b>....................</td>
+                    <td width="14%" class="no-border"><b>Cama:</b>..................</td>
+                </tr>
+                <tr>
+                    <td class="no-border"><b>Diagnosticos: 1)</b>....................................................</td>
+                    <td class="no-border" colspan="2"><b>2):</b>....................................................................................</td>
+                    <td class="no-border" colspan="2"><b>3):</b>........................................................</td>
+                </tr>
+                <tr>
+                    <td width="100%" class="no-border" colspan="5"><b>Motivo de Transfusion:</b>...................................................................................................................................................................................................</td>
+                </tr>
+                <tr>
+                    <td width="35%" class="no-border"></td>
+                    <td width="25%" class="no-border"></td>
+                    <td width="14%" class="no-border"></td>
+                    <td width="13%" class="no-border"></td>
+                    <td width="13%" class="no-border"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h3 class="text-red">ANTECEDENTES</h3>
+        <table class="table">
+            <tbody>
+                <tr class="border">
+                    <td><b>Transfusiones Previas</b></td>
+                    <td class="text-center">SI</td>
+                    <td class="text-center">NO</td>
+                    <td class="text-center" colspan="3">DESCONOCE</td>
+                </tr>
+                <tr class="border">
+                    <td><b>Reacciones Transfuncionales Previas</b></td>
+                    <td class="text-center">SI</td>
+                    <td class="text-center">NO</td>
+                    <td class="text-center" colspan="3">DESCONOCE</td>
+                </tr>
+                <tr class="border">
+                    <td><b>Numero de Embarazos</b></td>
+                    <td></td>
+                    <td></td>
+                    <td>Embarazo Actual</td>
+                    <td class="text-center">SI</td>
+                    <td class="text-center">NO</td>
+                </tr>
+                <tr class="border">
+                    <td><b>Antecedentes de EHRN</b></td>
+                    <td class="text-center">SI</td>
+                    <td class="text-center">NO</td>
+                    <td>Obito Fetal</td>
+                    <td class="text-center">SI</td>
+                    <td class="text-center">NO</td>
+                </tr>
+                <tr>
+                    <td width="50%" class="no-border"></td>
+                    <td width="7%" class="no-border"></td>
+                    <td width="7%" class="no-border"></td>
+                    <td width="22%" class="no-border"></td>
+                    <td width="7%" class="no-border"></td>
+                    <td width="7%" class="no-border"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h3 class="text-red">Examenes realizados al receptor previos a la transfusion:</h3>
+        <table class="table">
+            <tr class="border">
+                <th class="bg-red" width="18%">Estudio</th>
+                <th class="bg-red" width="9%">Resultado</th>
+                <th class="bg-red" width="7%">Fecha</th>
+                <th class="bg-red" width="15%">Estudio</th>
+                <th class="bg-red" width="9%">Resultado</th>
+                <th class="bg-red" width="7%">Fecha</th>
+                <th class="bg-red" width="19%">P. Compatibilidad</th>
+                <th class="bg-red" width="9%">Resultado</th>
+                <th class="bg-red" width="7%">Fecha</th>
+            </tr>
+            <tr class="border">
+                <td width="18%">Grupo Sanguineo</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="15%">Rh</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="19%">Albumina</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+            </tr>
+            <tr class="border">
+                <td width="18%">Hemoglobina</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="15%">Hematocrito</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="19%">Coombs</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+            </tr>
+            <tr class="border">
+                <td width="18%">Leucocitos</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="15%">Plaquetas</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="19%">S. Fisiologico</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+            </tr>
+            <tr class="border">
+                <td width="18%">T. de Protrombina</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="15%">APTT</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+                <td width="19%">Bromelina</td>
+                <td width="9%"></td>
+                <td width="7%"></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <table class="table">
+            <tr class="border">
+                <td class="text-center text-red" width="15%">TRANSFUSION</td>
+                <td class="text-center text-red bg-yellow" width="15%">EX. URGENCIA</td>
+                <td class="text-center" width="5%">SI</td>
+                <td class="text-center" width="5%">NO</td>
+                <td class="text-center text-red bg-yellow" width="15%">URGENCIA</td>
+                <td class="text-center" width="5%">SI</td>
+                <td class="text-center" width="5%">NO</td>
+                <td class="text-center bg-yellow" width="10%">EN EL DIA</td>
+                <td class="text-center" width="5%">SI</td>
+                <td class="text-center" width="5%">NO</td>
+                <td class="text-center bg-yellow" width="15%">PROGRAMADA</td>
+                <td class="text-center" width="5%">SI</td>
+                <td class="text-center" width="5%">NO</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <table class="table">
+            <tr class="border">
+                <th class="bg-red" width="10%">Marque</th>
+                <th class="bg-red" width="50%">Tipo de Hemocomponente Solicitado</th>
+                <th class="bg-red" width="20%">No de Unidades o Volumen a Transfundir</th>
+                <th class="bg-red" width="20%">Prueba de Compatibilidad</th>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Sangre Total(ST)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Concentrado de Globulos Rojos(CGR)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Concentrado de Globulos Rojos Lavados(CGRL)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Concentrado de Plaquetas(CPQ)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Plasma Fresco Congelado(PFC)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Plasma Refrigerado(PR)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+            <tr class="border">
+                <td width="10%"></td><td width="50%"><b>Crioprecipitado(CRIO)</b></td>
+                <td width="20%"></td><td width="20%"></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <table class="table">
+            <tr class="border">
+                <th class="bg-red" width="40%">Nombre Médico Solicitante</th>
+                <th class="bg-red" width="20%">Matricula Profesional</th>
+                <th class="bg-red" width="20%">Firma</th>
+                <th class="bg-red" width="20%">Sello</th>
+            </tr>
+            <tr class="border">
+                <td width="40%">&nbsp;</td>
+                <td width="20%">&nbsp;</td>
+                <td width="20%">&nbsp;</td>
+                <td width="20%">&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <p style="font-size:10px;margin-bottom: 0"><b>NOTA: </b> </p>
+            <ol>
+                <li style="font-size:10px; "> La determinacion del Grupo Sanguineo y Rh debe ser tipificada de acuerdo a la Tecnica en tubo.</li>
+                <li style="font-size:10px; "> Toda Unidad de Hemocomponente debe ser compatibilizada antes de transfundirse, por lo que
+                    recomendamos enviarnos una muestra del receptor. [ <b>a)</b>(3 ml. de sangre + Anticoagulante) <b>b)</b>(8 ml. de
+                    sangre sin Anticoagulante) ]</li>
+                <li style="font-size:10px; ">La responsabilidad de la transfusion es del Médico tratante.</li>
+            </ol>
+    </div>
+    <br>
+    <div class="card">
+        <p><b>ANTES DE CONTINUAR CON LA INDICACIÓN DE LA TRANSFUSIÓN, HÁGASE LAS SIGUIENTES PREGUNTAS</b> </p>
+        <ol>
+            <li value="1">¿Que mejoría en la condición clínica del paciente espero alcanzar?</li>
+            <li>¿Puedo minimizar la perdida sanguínea del paciente para reducir su necesidad de transfusión?</li>
+            <li>¿Existen indicaciones clínicas especificas o de laboratorio para la transfusión en este paciente?</li>
+            <li>¿Existen otros tratamientos que puedo administrar antes de tomar la decisión de transfundir (fluidos de
+                reemplazo EV<sub>1</sub> O<sub>2</sub> Hematinicos (Hierro, Ácido Folico, Vitamina B<sub>12</sub> etc.))?
+            </li>
+            <li>Si tuve alguna duda ¿Consulte con el medico del Servicio de Transfusión?</li>
+            <li>¿Existe el riesgo potencial de transmitir VIH, Hepatitis, Sífilis, Chagas u otras enfermedades
+                infecciosas a través de los productos sanguíneos que están disponibles para este paciente?
+            </li>
+            <li>Para este paciente en particular ¿los beneficios superan los riesgos de transfusión?</li>
+            <li>¿He registrado mi decisión y las razones para la transfusión en la Historia Clínica del paciente y en
+                este formulario de solicitud de transfusión?
+            </li>
+            <li>Finalmente si aun tiene alguna duda, hágase la siguiente pregunta.</li>
+            <li>¿Si esta sangre fuera para mi o para mi hijo (a) aceptaría la transfusión en estas circunstancias?</li>
+        </ol>
+    </div>
+
+    <pdf:nextpage/>
+
+    <div class="card">
+        <table class="table">
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px"><p>Esta autorización firmada tendrá vigencia durante los siguientes periodos:</p>
+                    <ul>
+                        <li>Válida por 30 días consecutivos para pacientes externos (cirugías o procedimientos médicos
+                            programados); y</li>
+                        <li>Durante el curso de la atención médica de los pacientes desde el primer día de
+                            hospitalización y hasta su egreso.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>INFORMACION</b></p>
+                    <ol>
+                        <li value="1">El médico me ha informado que durante mi atención médica, la de mi hijo o del
+                            paciente que yo esté autorizado a representar, es posible que sea necesario efectuar
+                            transfusiones de sangre o de hemocomponentes.</li>
+                        <li>Comprendo que las transfusiones se pueden realizar con:
+                            <ul>
+                                <li>Sangre donada por otros (transfusión alogénica).</li>
+                                <li>Mi propia sangre (transfusión autóloga), si soy el destinatario de la transfusión
+                                    en ciertas circunstancias de no emergencia.</li>
+                            </ul>
+                        </li>
+                        <li>Comprendo los riesgos que el médico me ha descripto y que dichos riesgos existen a pesar de
+                            que los componentes sanguíneos que serán administrados han sido preparados y evaluados de
+                            acuerdo con los estándares científicos actuales (transmisión de infecciones, reacciones
+                            inmunes, contaminación bacteriana, daño pulmonar, entre otros).</li>
+                        <li>Comprendo que en ocasiones se pueden presentar reacciones adversas a la transfusión o
+                            efectos no previsibles, que pueden implicar: manejo médico, interrupción de la transfusión
+                            e incluso, la muerte del paciente-receptor.</li>
+                        <li>Comprendo que el propósito y los beneficios de la transfusión, conforme a las explicaciones
+                            que me dio el médico, buscan aliviar o mejorar mi estado de salud.</li>
+                        <li>Comprendo que existen alternativas a la transfusión de sangre (hormonas, suplementos
+                            dietarios, medicamentos) pero que en este momento, el tratamiento debe ser la
+                            administración de sangre.</li>
+                        <li>Comprendo las implicaciones, para mi estado de salud, del rechazo de la transfusión.</li>
+                        <li>Entiendo que no se ofrece ninguna garantía y que el procedimiento puede no curar mi
+                            afección.</li>
+                        <li>He leído y comprendo totalmente este documento de autorización. Estoy satisfecho con las
+                            explicaciones del médico al contestar a todas mis preguntas.</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>EN CONSECUENCIA, DOY MI CONSENTIMIENTO PARA LA REALIZACIÓN DEL TRATAMIENTO TRANSFUSIONAL Y
+                        SUS ALTERNATIVAS, PUDIENDO REVOCARLO EN CUALQUIER MOMENTO</b></p>
+                    <p>&nbsp;</p>
+                    <p>Fecha .................................... Firma del paciente .....................................</p>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>REPRESENTANTE LEGAL (caso de incapacidad del paciente):</b></p>
+                    <p>&nbsp;</p>
+                    <p>Sr/Sra. ............................................................................ D.N.I. ....................................</p>
+                    <p>Parentesco (padre, madre, tutor, etc.): ........................................................Firma ....................................</p>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>DECLARO QUE HE PROPORCIONADO LA INFORMACIÓN ADECUADA AL PACIENTE Y HE DADO RESPUESTA A LAS
+                        DUDAS PLANTEADAS POR EL PACIENTE</b></p>
+                    <p>&nbsp;</p>
+                    <p>Fecha.................................... Firma del médico .......................................................</p>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>    CASOS DE EMERGENCIA: </b>Debido a la condición clínica de mi paciente, o que ésta
+                        constituye una amenaza vital, no he proporcionado al paciente la información suficiente para
+                        ser considerada como Consentimiento Informado y he procedido a ordenar la administración de
+                        sangre o de hemoderivados indicados.</p>
+                    <p>&nbsp;</p>
+                    <p>Fecha_____________ Firma del médico .......................................................</p>
+                </td>
+            </tr>
+            <tr class="border">
+                <td style="padding: 5px 5px -1px 5px">
+                    <p><b>REVOCACIÓN DEL CONSENTIMIENTO INFORMADO</b></p>
+                    <p>Con fecha ................................................... revoco el consentimiento prestado
+                        para realizar tratamiento transfusional o sus alternativas .</p>
+                    <p>Nombre paciente o representante legal ............................................................................................................</p>
+                    <p>&nbsp;</p>
+                    <p>D.N.I. .................................... Firma ....................................</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

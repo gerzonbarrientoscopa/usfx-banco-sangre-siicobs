@@ -1,0 +1,194 @@
+{% extends 'layouts/pdf_base_cleaned_letter_landscape.html' %}
+{% load utils %}
+{% block title %}
+    Donación
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Fecha</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE DIARIO</td>
+                <td class="text-center" width="80"><b>{{ date_init | date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>DONACION</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="150" rowspan="2"><b>FECHA</b></td>
+                <td class="border text-center" width="150" rowspan="2"><b>CODIGO</b></td>
+                <td class="border text-center" width="160" colspan="2"><b>GENERO</b></td>
+                <td class="border text-center" width="160" colspan="2"><b>ESTADO DE DONACION</b></td>
+                <td class="border text-center" width="420" colspan="6"><b>GRUPO ETARIO</b></td>
+                <td class="border text-center" width="320" colspan="4"><b>TIPO DE DONACION</b></td>
+                <td class="border text-center" width="320" colspan="4"><b>PRUEBAS/USO REACTIVO</b></td>
+                <td class="border text-center" width="240" colspan="3"><b>DIFERIMIENTOS</b></td>
+            </tr>
+            <tr>
+                <td class="border text-center" width="80"><b>M</b></td>
+                <td class="border text-center" width="80"><b>F</b></td>
+                <td class="border text-center" width="80"><b>EFEC.</b></td>
+                <td class="border text-center" width="80"><b>DIFE.</b></td>
+                <td class="border text-center" width="80"><b>18-25</b></td>
+                <td class="border text-center" width="80"><b>26-30</b></td>
+                <td class="border text-center" width="80"><b>31-40</b></td>
+                <td class="border text-center" width="80"><b>41-50</b></td>
+                <td class="border text-center" width="80"><b>51-60</b></td>
+                <td class="border text-center" width="80"><b>61-65</b></td>
+                <td class="border text-center" width="80"><b>VA</b></td>
+                <td class="border text-center" width="80"><b>RS</b></td>
+                <td class="border text-center" width="80"><b>RE</b></td>
+                <td class="border text-center" width="80"><b>DA</b></td>
+                <td class="border text-center" width="80"><b>HTTO</b></td>
+                <td class="border text-center" width="80"><b>GRUPO</b></td>
+                <td class="border text-center" width="80"><b>RPR</b></td>
+                <td class="border text-center" width="80"><b>CHAGAS</b></td>
+                <td class="border text-center" width="80"><b>P-TAM.</b></td>
+                <td class="border text-center" width="80"><b>TAM.</b></td>
+                <td class="border text-center" width="80"><b>HIST.</b></td>
+            </tr>
+            {% for donation in donations %}
+                <tr>
+                    <td class="border text-center">
+                        {{ donation.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center">
+                        {{ donation.donor.code }}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.gender == 'M' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.gender == 'F' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.extraction %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if not donation.extraction %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age < 26 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age < 31 and donation.donor.age > 25 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age < 41 and donation.donor.age > 30 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age < 51 and donation.donor.age > 40 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age < 61 and donation.donor.age > 50 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.donor.age > 60 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.type_donation == 'VA' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.type_donation == 'RS' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.type_donation == 'RE' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.type_donation == 'DA' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.exam.hematocrit %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.exam.blood_group %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.exam.rpr %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.exam.chagas %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.rejected and donation.rejected.resource == 'Exam' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.rejected and donation.rejected.resource == 'PhysicalAnalysis' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if donation.rejected and donation.rejected.resource == 'ClinicalHistory' %}
+                            X
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td class="border text-center" colspan="2"><b>Totales</b></td>
+                {% for total in totals %}
+                    <td class="border text-center">{{ total }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

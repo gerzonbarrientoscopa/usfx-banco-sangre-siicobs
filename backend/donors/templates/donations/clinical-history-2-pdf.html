@@ -1,0 +1,126 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Historia Clínica
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="text-center subtitle-no-bold " width="75%">
+                    BANCO DE SANGRE CHUQUISACA
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="text-center subtitle">HISTORIA CLINICA DEL DONANTE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td width="250px">{% get_verbose_field_name instance_model 'code' %}</td>
+                <td width="350px"><b>{{ donor.code }}</b></td>
+                <td width="150px">{% get_verbose_field_name instance_model 'first_name' %}</td>
+                <td width="550px"><b>{{ donor.middle_name }} {{ donor.last_name }} {{ donor.first_name }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <p>
+        Responda adecuadamente el siguiente cuestionario, le rogamos disculpe esta molestia, con el que pretendemos
+        resguardar
+        su intimidad y aumentar al máximo su propia seguridad y la de los enfermos que reciban su sangre.
+    </p>
+    <br/>
+    <div class="card">
+        <table class="table" width="100%">
+            <thead>
+            <tr>
+                <td style="border-bottom: 1px solid #ccc"><strong>No. Preguntas</strong></td>
+                <td width="100px" style="border-bottom: 1px solid #ccc"> Resp. Observación</td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for ch in cha.responses %}
+                {% if ch.type == 'RADIO' %}
+                    {% if ch.sub_type == 'TEXT' %}
+                        <tr>
+                            <td>
+                                {{ forloop.counter }}. {{ ch.title }}
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.value }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 7px" colspan="2">
+                                {{ ch.sub_title }}: <strong>{{ ch.sub_value }}</strong>
+                            </td>
+                        </tr>
+                    {% elif ch.sub_type == 'RADIO' %}
+                        <tr>
+                            <td align="left">
+                                {{ forloop.counter }}. {{ ch.title }}: <strong>{{ ch.value }}</strong>
+                                {{ ch.sub_title }}:
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.sub_value }}</strong>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td align="left">
+                                {{ forloop.counter }}. {{ ch.title }}
+                            </td>
+                            <td class="text-center">
+                                <strong>{{ ch.value }}</strong>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% elif ch.type == 'TEXT' %}
+                    <tr>
+                        <td colspan="2" align="left">
+                            {{ forloop.counter }}. {{ ch.title }}: {{ ch.value }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="card">
+        <p style="text-align: justify">
+            <strong>Observaciones: </strong>
+            {% if not rejected %}
+                <b>{{ cha.observations | isNone }}</b><br>
+            {% else %}
+                RECHAZO <b>{% get_reason_type rejected.reason.type %}</b> POR <b>{{ rejected.reason.name }}</b><br>
+                <b>{{ cha.observations | isNone }}</b>
+            {% endif %}
+        </p>
+        <br/>
+        <p style="text-align: right">
+            Firma del Donante .......................................................
+        </p>
+    </div>
+{% endblock %}

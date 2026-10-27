@@ -1,0 +1,249 @@
+{% extends 'layouts/pdf_base_cleaned_letter_portrait.html' %}
+{% load utils %}
+{% block title %}
+    Linea de Tiempo de Donacion
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Fecha Donación</td>
+            </tr>
+            <tr>
+                <td class="text-center">LINEA DE TIEMPO</td>
+                <td class="text-center"><b>{{ donation.register_at | date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <h1>
+                        DONACION {{ donation.donor.code }}
+                        - {{ donation.register_at | date:'d/m/Y' }}
+                    </h1>
+                </td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+
+        <table class="table  style-line-time">
+            <tbody>
+            <tr class="no-border">
+                <td width="50%">
+                    NOMBRES Y APELLIDOS: <b>{{ donation.donor | full_name }}</b>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr class="no-border" style="background-color: #f1f8e9">
+                <td>
+                    {{ donation.register_at }} <b>DONACION</b>
+                </td>
+                <td>
+                    {{ donation.employee | full_name }}
+                </td>
+            </tr>
+            {% if exam %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #dcedc8">
+                    <td>
+                        {{ exam.register_at }} <b>PRE TAMIZAJE </b>
+                    </td>
+                    <td>
+                        {{ exam.employee| full_name }}
+                    </td>
+                </tr>
+            {% endif %}
+            {% if physical_analysis %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #c5e1a5">
+                    <td>
+                        {{ physical_analysis.register_at }} <b>ANALISIS FISICO</b>
+                    </td>
+                    <td>
+                        {{ physical_analysis.employee | full_name }}
+                    </td>
+                </tr>
+            {% endif %}
+            {% if clinical_history %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #aed581">
+                    <td>
+                        {{ clinical_history.register_at }} <b>HISTORIA CLINICA</b>
+                    </td>
+                    <td>{{ clinical_history.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if extraction %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #9ccc65">
+                    <td>
+                        {{ extraction.register_at }} <b>EXTRACCION</b>
+                    </td>
+                    <td>{{ extraction.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if self_exclusion %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #ffe0b2">
+                    <td>
+                        {{ self_exclusion.register_at }} <b>AUTOEXCLUSION </b>
+                    </td>
+                    <td>{{ self_exclusion.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if adverse_reaction %}
+                <tr class="no-border" style="background-color: #ffcc80">
+                    <td>
+                        {{ adverse_reaction.register_at }} <b>REACCION ADVERSA</b>
+                    </td>
+                    <td>{{ adverse_reaction.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if extraction_refreshment %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #8bc34a">
+                    <td>
+                        {{ extraction_refreshment.register_at }} <b>REFRIGERIO</b>
+                    </td>
+                    <td>{{ extraction_refreshment.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if immunohematology %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #81d4fa">
+                    <td>
+                        {{ immunohematology.register_at }} <b>INMUNOHEMATOLOGIA</b>
+                    </td>
+                    <td>{{ immunohematology.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if immunoserology %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color:  #4fc3f7">
+                    <td>
+                        {{ immunoserology.register_at }} <b>IMMUNOSEROLOGIA</b>
+                    </td>
+                    <td>{{ immunoserology.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if fragmentation %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #7cb342; color: white">
+                    <td>
+                        {{ fragmentation.register_at }} <b>FRACCIONAMIENTO</b>
+                    </td>
+                    <td>{{ fragmentation.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            {% if itemfragmentations %}
+                {% for item in itemfragmentations %}
+                    {% get_discard_for_item item as discard %}
+                    {% get_release_for_item item as release %}
+                    {% get_distribution_for_item item as distribution_item_fragmentation %}
+                    <tr>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr class="no-border">
+                        <td style="padding-left:10px; background-color: #b2dfdb">
+                            <b>{{ item.typehemocomponent.name }}</b><br>
+                            Extración: <b>{{ extraction.register_at }}</b><br>
+                            Tiempo de vida desde extración: <b>{{ item.typehemocomponent.expiration_day }} días</b><br>
+                            Vencimiento: <b>{{ item.expiration_date }}</b>
+                        </td>
+                        {% if discard or distribution_item_fragmentation or release %}
+                            <td>
+                                {% if discard %}
+                                    <div style="background-color: #ff5252">
+                                        {{ discard.register_at }} <b>DESCARTE</b> <br>
+                                        {{ discard.employee | full_name }}
+                                    </div>
+                                    <br>
+                                {% endif %}
+                                {% if release %}
+                                    <div style="background-color: #ede7f6">
+                                        {{ release.register_at }} <b>LIBERACION</b> <br>
+                                        {{ release.employee | full_name }}
+                                    </div>
+                                    <br>
+                                {% endif %}
+                                {% if distribution_item_fragmentation %}
+                                    <div style="background-color: #d1c4e9">
+                                        {{ distribution_item_fragmentation.distribution.register_at }}
+                                        <b>DISTRIBUCION</b> <br>
+                                        Código: <b>{{ distribution_item_fragmentation.distribution.uuid }}</b> <br>
+                                        {{ distribution_item_fragmentation.distribution.employee | full_name }}
+                                    </div>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            {% if rejected %}
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="no-border" style="background-color: #ef9a9a">
+                    <td>
+                        {{ rejected.register_at }} <b>DIFERIDO</b>
+                    </td>
+                    <td>{{ rejected.employee | full_name }}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

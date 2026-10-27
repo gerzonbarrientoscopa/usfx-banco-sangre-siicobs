@@ -1,0 +1,6 @@
+
+Postgres app https://postgresapp.com/
+
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/15/bin/
+pip install psycopg2
+which pg_config

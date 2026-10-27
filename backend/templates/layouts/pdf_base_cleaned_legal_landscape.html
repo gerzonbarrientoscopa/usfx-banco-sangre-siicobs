@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+<head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        @page {
+            size: legal landscape;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 55pt; width: 910pt; top: 30pt; height: 140pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 55pt; width: 910pt; top: 131pt; height: 450pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 55pt; width: 910pt; top: 590pt; height: 20pt;
+            }
+        }
+    </style>
+    {% include 'layouts/base_css.html' %}
+</head>
+
+<body>
+    <div class="container">
+        {% block layout %}
+        {% endblock %}
+    </div>
+</body>
+</html>

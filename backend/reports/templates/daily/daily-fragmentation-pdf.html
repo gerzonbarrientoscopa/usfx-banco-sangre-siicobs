@@ -1,0 +1,193 @@
+{% extends 'layouts/pdf_base_cleaned_letter_landscape.html' %}
+{% load utils %}
+{% block title %}
+    Donación
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Fecha</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE DIARIO</td>
+                <td class="text-center" width="80"><b>{{ date_init | date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>FRACCIONAMIENTO</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="150" rowspan="2"><b>FECHA</b></td>
+                <td class="border text-center" width="150" rowspan="2"><b>CODIGO</b></td>
+                <td class="border text-center" width="160" colspan="4"><b>TIPO DE BOLSA</b></td>
+                <td class="border text-center" width="160" colspan="15"><b>TIPO DE HEMOCOMPONENTE</b></td>
+            </tr>
+            <tr>
+                <td class="border text-center" width="80"><b>SIMPLE</b></td>
+                <td class="border text-center" width="80"><b>DOBLE</b></td>
+                <td class="border text-center" width="80"><b>TRIPLE</b></td>
+                <td class="border text-center" width="80"><b>CUADR.</b></td>
+                <td class="border text-center" width="80"><b>PG</b></td>
+                <td class="border text-center" width="80"><b>PFC</b></td>
+                <td class="border text-center" width="80"><b>PC</b></td>
+                <td class="border text-center" width="80"><b>CRIO</b></td>
+                <td class="border text-center" width="80"><b>GRL</b></td>
+                <td class="border text-center" width="80"><b>CP</b></td>
+                <td class="border text-center" width="80"><b>CPAF</b></td>
+                <td class="border text-center" width="80"><b>ST</b></td>
+                <td class="border text-center" width="80"><b>ST PED</b></td>
+                <td class="border text-center" width="80"><b>PG PED</b></td>
+                <td class="border text-center" width="80"><b>PFC PED</b></td>
+                <td class="border text-center" width="80"><b>PC PED</b></td>
+                <td class="border text-center" width="80"><b>GRL PED</b></td>
+                <td class="border text-center" width="80"><b>EC</b></td>
+                <td class="border text-center" width="80"><b>BV</b></td>
+            </tr>
+            {% for fragmentation in fragmentations %}
+                <tr>
+                    <td class="border text-center">
+                        {{ fragmentation.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center">
+                        {{ fragmentation.extraction.donation.donor.code }}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.bags_quantity == 1 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.bags_quantity == 2 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.bags_quantity == 3 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.bags_quantity == 4 %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 1 as exist_pg %}
+                        {% if exist_pg %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 2 as exist_pfc %}
+                        {% if exist_pfc %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 3 as exist_pc %}
+                        {% if exist_pc %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 4 as exist_crio %}
+                        {% if exist_crio %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 5 as exist_grl %}
+                        {% if exist_grl %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 6 as exist_cp %}
+                        {% if exist_cp %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 7 as exist_cpaf %}
+                        {% if exist_cpaf %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 8 as exist_st %}
+                        {% if exist_st %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 9 as exist_stped %}
+                        {% if exist_stped %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 10 as exist_pgped %}
+                        {% if exist_pgped %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 11 as exist_pfcped %}
+                        {% if exist_pfcped %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 12 as exist_pcped %}
+                        {% if exist_pcped %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 13 as exist_grlped %}
+                        {% if exist_grlped %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 15 as exist_ec %}
+                        {% if exist_ec %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% get_hemocomponent_from_fragmentation fragmentation.id 16 as exist_bv %}
+                        {% if exist_bv %}
+                            X
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td  class="border text-center" colspan="2"><b>Totales</b></td>
+                {% for total in totals %}
+                    <td class="border text-center">{{ total }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

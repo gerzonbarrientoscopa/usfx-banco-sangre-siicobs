@@ -1,0 +1,68 @@
+<html>
+<head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        @page {
+            size: legal landscape;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: header_content;
+                left: 35pt; width: 930pt; top: 30pt; height: 140pt;
+            }
+            @frame content_frame {          /* Content Frame */
+                left: 35pt; width: 930pt; top: 131pt; height: 450pt;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                -pdf-frame-content: footer_content;
+                left: 35pt; width: 930pt; top: 590pt; height: 20pt;
+            }
+        }
+    </style>
+    <style type="text/css">
+        .table {
+            width: 100%;
+            background-color: transparent;
+        }
+        .table .title-main{
+            font-size: 15px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .table .subtitle{
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .table .logo{
+            width: 100px;
+        }
+        .table .border {
+            padding-top: 5px;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            padding-left: 2px;
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .text-danger{
+            color: red;
+        }
+        .text-right{
+            text-align: right;
+            padding-right: 2px;
+        }
+        .text-left{
+            text-align: left;
+            padding-left: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% block layout %}
+        {% endblock %}
+    </div>
+</body>
+</html>

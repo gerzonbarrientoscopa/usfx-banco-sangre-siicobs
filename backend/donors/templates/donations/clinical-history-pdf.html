@@ -1,0 +1,256 @@
+{% extends 'layouts/pdf_base_estructured.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Historia Clínica
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-center" rowspan="3" width="25%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="subtitle-no-bold text-center" width="75%">BANCO DE SANGRE DE REFERENCIA
+                    DEPARTAMENTAL SUCRE
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="text-center subtitle">HISTORIA CLINICA DEL DONANTE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <h2>DATOS PERSONALES DEL DONANTE</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-right">Cod. Del Donante</td>
+                <td><b>{{ donation.donor.code }}</b></td>
+                <td></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'created_at' %}</td>
+                <td><b>{{ donation.register_at | date:"d/m/Y" }}</b></td>
+                <td></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'civil_status' %}</td>
+                <td><b>{% get_civil_status donation.donor.civil_status %}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'first_name' %}</td>
+                <td colspan="4">
+                    <b>{{ donation.donor.first_name }} {{ donation.donor.middle_name }} {{ donation.donor.last_name }}</b>
+                </td>
+                <td class="text-right" colspan="2"></td>
+                <td><b></b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'birth_date' %}</td>
+                <td><b>{{ donation.donor.birth_date | date:"d/m/Y" }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'age' %}</td>
+                <td><b>{{ donation.donor.age }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'gender' %}</td>
+                <td><b>{{ donation.donor.gender }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'country' %}</td>
+                <td><b>{{ donation.donor.country.name }}</b></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>PROCEDENCIA</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'residence' %}</td>
+                <td colspan="9"><b>{{ donation.donor.residence | isNone }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'zone' %}</td>
+                <td colspan="3"><b>{{ donation.donor.zone | isNone | truncatechars:32 }}</b></td>
+                <td class="text-right" colspan="2">{% get_verbose_field_name donor_obj 'province' %}</td>
+                <td colspan="2"><b>{{ donation.donor.province | isNone | truncatechars:20 }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'department' %}</td>
+                <td><b>{% get_department donation.donor.department %}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'phone' %}</td>
+                <td colspan="2"><b>{{ donation.donor.phone | isNone }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'mobile_phone' %}</td>
+                <td colspan="2"><b>{{ donation.donor.mobile_phone | isNone }}</b></td>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'family_phone' %}</td>
+                <td colspan="3"><b>{{ donation.donor.family_phone | isNone }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'profession' %}</td>
+                <td colspan="3"><b>{{ donation.donor.profession | isNone }}</b></td>
+                <td class="text-right" colspan="2">{% get_verbose_field_name donor_obj 'degree_instruction' %}</td>
+                <td colspan="4"><b>{% get_degree donation.donor.degree_instruction %}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>LUGAR DE TRABAJO</h2>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'job' %}</td>
+                <td colspan="5"><b>{{ donation.donor.job | isNone }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'job_address' %}</td>
+                <td colspan="5"><b>{{ donation.donor.job_address | isNone }}</b></td>
+            </tr>
+            <tr>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td class="text-right">{% get_verbose_field_name donor_obj 'email' %}</td>
+                <td colspan="5"><b>{{ donation.donor.email | isNone }}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        {% if physical_analysis %}
+            <h2 style="text-align: center;font-size: 11px">EXAMEN FISICO</h2>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td class="text-right" colspan="2">Tensión
+                        Arterial: {% get_verbose_field_name pa_obj 'systolic' %}</td>
+                    <td colspan="2"><b>{% clean_value physical_analysis.systolic 'mmHg.' %}</b></td>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'diastolic' %}</td>
+                    <td colspan="2"><b>{% clean_value physical_analysis.diastolic 'mmHg.' %} </b></td>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'pulse' %}</td>
+                    <td colspan="2"><b>{% clean_value physical_analysis.pulse '/ min' %}</b></td>
+                </tr>
+                <tr>
+                    <td class="separator"></td>
+                </tr>
+                <tr>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'tall' %}</td>
+                    <td><b>{% clean_value physical_analysis.tall 'cm.' %}</b></td>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'weight' %}</td>
+                    <td><b>{% clean_value physical_analysis.weight 'Kg.' %} </b></td>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'temperature' %}</td>
+                    <td><b>{% clean_value physical_analysis.temperature '°C' %}</b></td>
+                    <td class="text-right">{% get_verbose_field_name exam_obj 'hematocrit' %}</td>
+                    <td><b>{% clean_value exam.hematocrit '%' %}</b></td>
+                    <td class="text-right">{% get_verbose_field_name exam_obj 'hemoglobin' %}</td>
+                    <td><b>{% clean_value exam.hemoglobin ' gr/dl.' %}</b></td>
+                </tr>
+                <tr>
+                    <td class="separator"></td>
+                </tr>
+                <tr>
+                    <td class="text-right">{% get_verbose_field_name exam_obj 'chagas' %}</td>
+                    <td colspan="2"><b>{% get_type_chagas_or_rpr exam.chagas %}</b></td>
+                    <td class="text-right">RPR</td>
+                    <td colspan="2"><b>{% get_type_chagas_or_rpr exam.rpr %}</b></td>
+                    <td class="text-right" colspan="2">{% get_verbose_field_name exam_obj 'blood_group' %}</td>
+                    <td colspan="2"><b>{{ exam.blood_group | cleanValue }}</b></td>
+                </tr>
+                <tr>
+                    <td class="separator"></td>
+                </tr>
+                <tr>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'observations' %}</td>
+                    <td colspan="9">
+                        {% if not rejected %}
+                            <b>{{ physical_analysis.observations | isNone }}</b><br>
+                        {% else %}
+                            RECHAZO <b>{% get_reason_type rejected.reason.type %}</b> POR
+                            <b>{{ rejected.reason.name }}</b><br>
+                            <b>{{ physical_analysis.observations | isNone }}</b>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="separator"></td>
+                </tr>
+                <tr>
+                    <td class="text-right">{% get_verbose_field_name pa_obj 'employee' %}</td>
+                    <td colspan="3"><b>{{ physical_analysis.employee | isNone }}</b></td>
+                    <td class="text-right">Mat. Prof.</td>
+                    <td colspan="2"><b>{{ physical_analysis.employee.code_licence | isNone }}</b></td>
+                    <td class="text-right">Firma</td>
+                    <td colspan="2"><b></b></td>
+                </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h2 class="text-center">CONSENTIMIENTO INFORMADO</h2>
+
+        <p style="text-align: justify; margin: 5px 0px">
+            La población reconoce y agrádese su noble gesto de donar sangre. Es nuestro deber proteger su salud, para lo
+            cual disponemos de un personal técnico calificado que le realizará las pruebas necesarias para decidir si
+            puede usted donar sangre sin que esto pueda causar perjuicios a su salud. No obstante, debemos informarle
+            que existe un riesgo mínimo de que produzcan situaciones indeseables asociadas al procedimiento de la
+            donación, entre ellas hematomas, desvanecimientos, sudoración, mareos y nauseas. Nuestro centro cuenta con
+            el personal y medios necesarios para brindar la atención requerida en estos casos.
+        </p>
+        <p style="text-align: justify; margin: 5px 0px">
+            Antes de efectuar la donación se le realizará una entrevista, mediante el cual usted pueda ayudarnos a
+            determinar si su sangre es segura o si hay factores de riesgo que aconsejen no utilizarla para transfusión.
+            Además le informamos que a su sangre se le realizaran todos los estudios e investigaciones necesarias para
+            garantizar la seguridad sanguínea, entre ellas las pruebas para detectar la presencia de enfermedades
+            infecciosas transmisibles por la sangre. Sus muestras de sangre podrán ser utilizadas para el control de
+            laboratorio, para la docencia e investigación en el marco de convenios de instituciones con el programa
+            Nacional de Sangre del Ministerio de Salud y Deportes.
+        </p>
+        <p style="text-align: justify; margin: 5px 0px">
+            Solamente en casos de detectar cualquier anormalidad en sus análisis de sangre se le comunicara de manera
+            confidencial y se le brindara la información y recomendaciones necesarias que le permiten recibir atención
+            profesional adecuada.
+        </p>
+        <p style="text-align: justify; margin: 5px 0px">
+            Luego de esta explicación, si está de acuerdo con efectuar la donación de sangre destinada de forma
+            voluntaria para su uso terapéutica, firme este documento como constancia de su consentimiento.
+        </p>
+        <br>
+        <br>
+        <br>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="text-center">&nbsp;</td>
+                <td class="text-center">
+                    &nbsp;
+                </td>
+                <td class="text-center" style="vertical-align: bottom">Firma del Donante</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'layouts/pdf_base_serology_protocol.html' %}
+{% load utils %}
+{% load static %}
+{% block title %}
+    Protocolo de serologia
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="border-header text-center right" rowspan="3" width="15%">
+                    <img class="logo" src="media/logos/logo.jpg" alt="">
+                </td>
+                <td class="border-header text-center subtitle" width="75%">BANCO DE SANGRE DE REFERENCIA
+                    DEPARTAMENTAL SUCRE
+                </td>
+                <td class="border-header text-center" rowspan="3" width="10%">
+                    <img class="qr" src="media/protocol-serology/{{ protocol.id }}.png" alt="qr">
+                </td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">REGISTRO</td>
+            </tr>
+            <tr>
+                <td class="border-header text-center title-main">PROTOCOLO DE SEROLOGIA</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td>
+                    <p><b>FECHA DE REALIZACION: </b>{{ protocol.register_at | date:"d/m/Y" }}</p>
+                    <p><b>TECNICA A PROCESAR: </b>{{ protocol.method }}</p>
+                    <p><b>CUTT OFF: </b>{{ protocol.cutt_off | cleanValue }}, min: {{ protocol.cutt_off_min | cleanValue }}, max: {{ protocol.cutt_off_max | cleanValue }}</p>
+                </td>
+                <td>
+                    <p><b>KIT: </b>{{ protocol.kit }}</p>
+                    <p><b>FECHA DE VENCIMIENTO: </b>{{ protocol.due_date_at | date:"d/m/Y" }}</p>
+                </td>
+                <td>
+                    <p><b>NRO. DE LOTE: </b>{{ protocol.lot }}</p>
+                    <p><b>INDUSTRIA: </b>{{ protocol.industry }}</p>
+                    <p><b>NRO. DE PRUEBA: </b>{{ protocol.test }}</p>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="table">
+            <tr>
+                <td class="border bg-red title-main text-center" width="80px"></td>
+                {% for t in range_row %}
+                    <td class="border bg-red text-center title-main" width="80px">{{ t|add:1 }}</td>
+                {% endfor %}
+            </tr>
+
+            {% for row in protocol.values %}
+                <tr>
+                    <td class="p-border title-main text-center" width="80px">{% get_abc forloop.counter0 %}</td>
+                    {% for col in row %}
+                        <td class="p-border text-center" width="80px">
+                            <strong>{{ col.value }}</strong>
+                            <br>
+                            <small>{{ col.result_machine }}</small>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <style type="text/css">
+        .table .p-border {
+            padding-top: 10px;
+            padding-bottom: 2px;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            padding-left: 3px;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+    </style>
+{% endblock %}

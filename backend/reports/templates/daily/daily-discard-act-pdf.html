@@ -1,0 +1,107 @@
+{% extends 'layouts/pdf_base_cleaned_letter_portrait.html' %}
+{% load utils %}
+{% block title %}
+    Acta de Descarte
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Rango de Fechas</td>
+            </tr>
+            <tr>
+                <td class="text-center">DESCARTES</td>
+                <td class="text-center"><b>{{ date_init| date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>ACTA DE DESCARTE</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <br>
+        <p style="font-size: 15px;text-align: justify;line-height: 25px;">
+            En la ciudad de Sucre, en fecha {{ date_init }} a horas {{ time }},
+            en instalaciones del Banco de Sangre de Referencia Departamental
+            Potosí ubicado en la Avenida Murillo No 155 en presencia de
+            Dr(a). {{ director | full_name }} Directora del Banco de Sangre,
+            Lic. {{ administrator | full_name }} Administrador del Banco de Sangre
+            y los profesionales de Bioquimica Lic. {{ responsible | full_name }} Responsable de Descarte y Bioquimica,
+            {{ observer | full_name }} Veedora,
+            se procedio al descarte de los siguientes hemo-componentes:
+        </p>
+        <br>
+        {% regroup discards by itemfragmentation.typehemocomponent.acronym as grouped %}
+        <table class="table" style="font-size: 15px; width: 100%">
+            <tr>
+                <td class="border text-center" width="5%"><b>#</b></td>
+                <td class="border text-center" width="75%"><b>HEMOCOMPONENTE</b></td>
+                <td class="border text-center" width="20%"><b>CANTIDAD</b></td>
+            </tr>
+            {% for group in grouped %}
+                <tr>
+                    <td class="border text-center" width="5%">
+                        {{ forloop.counter }}
+                    </td>
+                    <td class="border text-center" width="75%">
+                        {{ group.list.0.itemfragmentation.typehemocomponent.name }}
+                    </td>
+                    <td class="border text-center" width="20%">
+                        {{ group.list | length }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <br><br><br><br><br>
+        <table class="text-center" style="font-size: 13px; font-weight: bold">
+            <tr style="height: 100px">
+                <td>
+                    <p style="font-weight: normal; margin-bottom: 0">Bioq. {{ responsible | full_name }}</p>
+                    <p style="margin-top: 0">RESPONSABLE DE DESCARTE</p>
+                </td>
+                <td>
+                    <p style="font-weight: normal; margin-bottom: 0">Bioq. {{ observer | full_name }}</p>
+                    <p style="margin-top: 0">VEEDORA</p>
+                </td>
+            </tr>
+            <tr style="height: 100px">
+                <td>
+                    <p style="font-weight: normal; margin-bottom: 0">Lic. {{ administrator | full_name }}</p>
+                    <p style="margin-top: 0">ADMINISTRADOR</p>
+                </td>
+                <td>
+                    <p style="font-weight: normal; margin-bottom: 0">Dra. {{ director | full_name }}</p>
+                    <p style="margin-top: 0">DIRECTORA</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}

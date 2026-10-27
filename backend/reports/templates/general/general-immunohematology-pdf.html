@@ -1,0 +1,116 @@
+{% extends 'layouts/pdf_base_cleaned_letter_landscape.html' %}
+{% load utils %}
+{% block title %}
+    Liberacion Lista
+{% endblock %}
+{% block layout %}
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td rowspan="3" width="100"><img class="logo" src="media/logos/logo.jpg" alt=""></td>
+                <td class="text-center">BANCO DE SANGRE CHUQUISACA</td>
+                <td class="text-center bg-red" width="120">Rango de Fechas</td>
+            </tr>
+            <tr>
+                <td class="text-center">REPORTE GENERAL</td>
+                <td class="text-center"><b>{{ date_init| date:'d/m/Y' }} a {{ date_end| date:'d/m/Y' }}</b></td>
+            </tr>
+            <tr>
+                <td class="text-center"><h1>IMMUNOHEMATOLOGIA</h1></td>
+                <td class="text-center bg-gray">
+                    Página
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">
+        <table>
+            <tr>
+                <td class="text-left" width="50%">Pagina
+                    <pdf:pagenumber/>
+                    de
+                    <pdf:pagecount/>
+                </td>
+                <td class="text-right" width="50%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card">
+        <table class="table">
+            <tr>
+                <td class="border text-center" width="30"><b>#</b></td>
+                <td class="border text-center" width="50"><b>FECHA</b></td>
+                <td class="border text-center" width="40"><b>CODIGO</b></td>
+                <td class="border text-center" width="50"><b>GRUPO SANGUINEO.</b></td>
+                <td class="border text-center" width="50"><b>Fenotipo</b></td>
+                <td class="border text-center" width="50"><b>FACTOR RH</b></td>
+                <td class="border text-center"><b>SAL.</b></td>
+                <td class="border text-center"><b>LISS.</b></td>
+                <td class="border text-center"><b>Albumina</b></td>
+                <td class="border text-center"><b>COOMBS</b></td>
+                <td class="border text-center"><b>Anticuerpos Irregulares</b></td>
+                <td class="border text-center"><b>Antikell</b></td>
+                <td class="border text-center" width="70"><b>RESPONSABLE</b></td>
+            </tr>
+            {% for immunohematology in immunohematologies %}
+                <tr>
+                    <td class="border text-center">
+                        {{ forloop.counter }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.register_at | date:'d-m-Y' }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.donation.donor.code }}
+                    </td>
+                    <td class="border text-center">
+                        {% get_blood_group immunohematology as blood_group %}
+                        {{ blood_group | safe }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.phenotype }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.factor_rh }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.fsi }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.liss }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.alb | cleanValue }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.coombs }}
+                    </td>
+                    <td class="border text-center">
+                        {% if immunohematology.exists_irregular_antibodies %}
+                            POSITIVO
+                        {% else %}
+                            NEGATIVO
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.antikell }}
+                    </td>
+                    <td class="border text-center">
+                        {{ immunohematology.employee | fullInitialName }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

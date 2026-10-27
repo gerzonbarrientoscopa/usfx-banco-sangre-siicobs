@@ -1,0 +1,138 @@
+<html>
+<head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        @page {
+            size: 50mm 25mm portrait;
+            @frame content_frame {          /* Content Frame */
+                left: 1mm; width: 49mm; top: 1mm; height: 24mm;
+            }
+        }
+    </style>
+    <style type="text/css">
+        .separator-div{
+            height: 100px;
+            width: 100%;
+        }
+        .table {
+            width: 100%;
+            background-color: transparent;
+            vertical-align: middle;
+        }
+        .table .title-main{
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .table .subtitle{
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .table .bg-red{
+            background-color: red !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table .bg-red-1{
+            background-color: #be0000 !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table .bg-red-2{
+            background-color: #ff9d8d !important;
+            color: black;
+            font-weight: bold;
+        }
+        .table .logo{
+            width: 100%;
+        }
+        .table .border-header {
+            padding-top: 5px;
+            vertical-align: middle;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .table .separator {
+            height: 5px;
+        }
+        .table .border {
+            padding-top: 2px;
+            vertical-align: middle;
+            border: 1px solid black;
+            text-align: left;
+            padding-left: 3px;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+        .table .border-bottom{
+            padding-top: 2px;
+            vertical-align: middle;
+            border-bottom: 1px solid black;
+            text-align: left;
+            padding-left: 3px;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+        .table .no-border {
+            padding-top: 2px;
+            padding-right: 2px;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            text-align: right;
+            font-size: 10px;
+        }
+        p{
+            font-size: 10px;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        ol, ul{
+            padding-left: 50px;
+        }
+        li{
+             font-size: 11px;
+        }
+        h2{
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .text-right{
+            text-align: right;
+        }
+        .text-left{
+            text-align: left;
+        }
+        .title-red{
+            border: 1px solid black;
+            text-align: center;
+            color: white;
+            background-color: red;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .text-bolder{
+            font-size: 12px;
+            padding-top: 5px;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+        .f-9{
+            font-size: 8px;
+        }
+        .spacing-barcode{
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% block layout %}
+        {% endblock %}
+    </div>
+</body>
+</html>
