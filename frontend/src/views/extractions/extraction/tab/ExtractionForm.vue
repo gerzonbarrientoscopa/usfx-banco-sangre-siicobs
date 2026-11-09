@@ -200,13 +200,15 @@ import moment from 'moment'
 import { graphqlRequest } from '@/api/graphql'
 import extractions from '@/query/extraction'
 import donations from '@/query/donation'
-import typeAnticoagulant from "@/query/type-anticoagulant";
+import typeAnticoagulant from '@/query/type-anticoagulant'
 
 const typeBagOptions = [
   { key: 1, display_name: 'SIMPLE' },
   { key: 2, display_name: 'DOBLE' },
   { key: 3, display_name: 'TRIPLE' },
-  { key: 4, display_name: 'CUADRUPLE' }
+  { key: 4, display_name: 'CUADRUPLE' },
+  { key: 5, display_name: 'CUADRUPLE CON FILTRO' },
+  { key: 6, display_name: 'SET DE AFERESIS' }
 ]
 
 const armOptions = [
@@ -497,7 +499,7 @@ export default {
         const data = response.data
         this.typeAnticoagulants = data.typeanticoagulants.results
       })
-    },
+    }
   }
 }
 </script>
