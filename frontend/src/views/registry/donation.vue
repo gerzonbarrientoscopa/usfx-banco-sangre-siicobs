@@ -275,9 +275,15 @@
                   format="dd-MM-yyyy"
                   value-format="yyyy-MM-dd"
                 />
-                <p v-if="!rangeDateValid" class="text-alizarin-600">
-                  {{ messagerangeDateValid }}
-                </p>
+                <el-alert
+                  v-if="dialogStatus === 'create' && donationEligibility"
+                  :title="donationEligibility.message"
+                  :type="donationEligibility.type"
+                  :closable="false"
+                  show-icon
+                  effect="dark"
+                  class="donation-eligibility-alert"
+                />
               </el-form-item>
               <el-form-item :label="$t('models.donation.event')" prop="event_id">
                 <el-select
@@ -350,6 +356,7 @@ import donors from '@/query/donor'
 import places from '@/query/place'
 import donations from '@/query/donation'
 import events from '@/query/event'
+import { getDonationEligibility, getLastDonationDate } from '@/utils/donationEligibility'
 
 const typeDonationOptions = [
   { key: 'VA', display_name: 'VOLUNTARIA ALTRUISTA' },
@@ -566,10 +573,9 @@ export default {
         event_id: []
       },
       downloadLoading: false,
-      maxMonthForDonation: 3,
       isAreaPromotion: false,
-      rangeDateValid: true,
-      messagerangeDateValid: '',
+      donationEligibility: null,
+      selectedDonorLastDonationAt: null,
       lastDonationOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -652,17 +658,10 @@ export default {
   },
   watch: {
     'temp.last_donation_at': function(value) {
-      this.rangeDateValid = true
-      if (value !== undefined && value !== '') {
-        var end = moment()
-        var startTime = moment(value)
-        var duration = moment.duration(end.diff(startTime))
-        var months = duration.asMonths()
-        if (months <= this.maxMonthForDonation) {
-          this.rangeDateValid = false
-          this.messagerangeDateValid = 'El donante no puede donar ya que  aun no pasaron 3 meses desde la ultima donación'
-        }
-      }
+      this.updateDonationEligibility()
+    },
+    'temp.register_at': function() {
+      this.updateDonationEligibility()
     }
   },
   created() {
@@ -717,31 +716,27 @@ export default {
       })
     },
     getLastDonation(donor) {
-      const tempData = Object.assign({}, this.temp)
-      tempData.last_donation_at = null
-
-      var tempDonor = donor
-
-      this.maxMonthForDonation = (tempDonor.gender === 'M') ? 3 : 4 // M each 3 months & F each 4months
-
-      if (tempDonor.donations.length > 0) {
-        const lastExtractionDonationTemp = tempDonor.donations.filter(function(item) {
-          return item.extraction !== null
-        })
-
-        if (lastExtractionDonationTemp.length > 0) {
-          tempData.last_donation_at = lastExtractionDonationTemp[0].register_at.substring(0, 10)
-        }
+      const lastDonationAt = getLastDonationDate(donor)
+      this.selectedDonorLastDonationAt = lastDonationAt
+      this.temp = Object.assign({}, this.temp, { last_donation_at: lastDonationAt })
+      this.updateDonationEligibility()
+    },
+    updateDonationEligibility() {
+      if (!this.temp.donor_id || !this.donor || !this.donor.can_donate) {
+        this.donationEligibility = null
+        return
       }
-
-      this.temp = tempData
+      this.donationEligibility = getDonationEligibility(this.selectedDonorLastDonationAt, this.temp.register_at)
     },
     canDonate(id) {
-      var donors = this.donors.filter(function(item) {
-        return item.id === id
-      })
-      const donor = donors[0]
-
+      const donor = (this.donors || []).find(item => String(item.id) === String(id))
+      if (!donor) {
+        this.donor = { can_donate: true }
+        this.selectedDonorLastDonationAt = null
+        this.temp = Object.assign({}, this.temp, { donor_id: undefined, last_donation_at: null })
+        this.donationEligibility = null
+        return
+      }
       this.donor = donor
       this.getLastDonation(donor)
     },
@@ -871,7 +866,8 @@ export default {
       this.donor = {
         can_donate: true
       }
-      this.rangeDateValid = true
+      this.selectedDonorLastDonationAt = null
+      this.donationEligibility = null
     },
     handleCreate() {
       this.resetTemp()
@@ -933,7 +929,7 @@ export default {
       }
     },
     handleUpdate(row) {
-      this.rangeDateValid = true
+      this.donationEligibility = null
       this.getListPlaces()
       this.checkEditDonation(row.register_at)
 
@@ -1027,6 +1023,16 @@ export default {
 
 .el-table .success-row {
   background: #f0f9eb;
+}
+
+.donation-eligibility-alert {
+  margin-top: 12px;
+}
+
+.donation-eligibility-alert .el-alert__title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .red {

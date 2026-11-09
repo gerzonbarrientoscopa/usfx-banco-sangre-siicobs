@@ -35,6 +35,7 @@
                 remote
                 automatic-dropdown
                 class="filter-item"
+                @change="canDonate(temp.donor_id)"
               >
                 <el-option
                   v-for="item in donors"
@@ -92,9 +93,15 @@
                 format="dd-MM-yyyy"
                 value-format="yyyy-MM-dd"
               />
-              <p v-if="!rangeDateValid" class="text-alizarin-600">
-                {{ messagerangeDateValid }}
-              </p>
+              <el-alert
+                v-if="dialogStatus === 'create' && donationEligibility"
+                :title="donationEligibility.message"
+                :type="donationEligibility.type"
+                :closable="false"
+                show-icon
+                effect="dark"
+                class="donation-eligibility-alert"
+              />
             </el-form-item>
             <el-form-item :label="$t('models.donation.event') + ' (seleccionar si es de colectas)'" prop="event_id">
               <el-select
@@ -157,6 +164,7 @@ import donors from '@/query/donor'
 import donations from '@/query/donation'
 import places from '@/query/place'
 import { TYPE_PROCESS } from '@/utils/const'
+import { getDonationEligibility, getLastDonationDate } from '@/utils/donationEligibility'
 
 const typeDonationOptions = [
   { key: 'VA', display_name: 'VOLUNTARIA ALTRUISTA' },
@@ -198,6 +206,8 @@ export default {
       listPatientQuery: { page: 1, limit: 20, offset: 0, search: '', ordering: 'first_name', id: undefined },
       listPlaceQuery: { page: 1, limit: 50, offset: 0, search: '', ordering: 'name', id: undefined },
       typeDonationOptions,
+      donationEligibility: null,
+      selectedDonorLastDonationAt: null,
       temp: {
         id: undefined,
         donor_id: undefined,
@@ -246,10 +256,7 @@ export default {
         event_id: []
       },
       downloadLoading: false,
-      maxMonthForDonation: 3,
       isAreaPromotion: false,
-      rangeDateValid: true,
-      messagerangeDateValid: '',
       lastDonationOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now()
@@ -332,17 +339,10 @@ export default {
       this.setRules(value)
     },
     'temp.last_donation_at': function(value) {
-      this.rangeDateValid = true
-      if (value !== undefined && value !== '') {
-        var end = moment()
-        var startTime = moment(value)
-        var duration = moment.duration(end.diff(startTime))
-        var months = duration.asMonths()
-        if (months <= this.maxMonthForDonation) {
-          this.rangeDateValid = false
-          this.messagerangeDateValid = 'El donante no puede donar ya que  aun no pasaron 3 meses desde la ultima donación'
-        }
-      }
+      this.updateDonationEligibility()
+    },
+    'temp.register_at': function() {
+      this.updateDonationEligibility()
     }
   },
   created() {
@@ -415,18 +415,39 @@ export default {
         this.donors = data.donors.results
 
         if (Cookies.get('donationDonor') !== 'undefined' && Cookies.get('donationDonor') !== undefined) {
-          const donor = JSON.parse(Cookies.get('donationDonor'))
-          const tempData = Object.assign({}, this.temp)
-          tempData.donor_id = donor.id
-
-          if (donor.last_donation_at) {
-            tempData.last_donation_at = donor.last_donation_at
-          }
-
-          this.temp = tempData
+          const storedDonor = JSON.parse(Cookies.get('donationDonor'))
+          const donor = this.donors.find(item => String(item.id) === String(storedDonor.id)) || storedDonor
+          this.selectDonor(donor)
         }
         this.loading = false
       })
+    },
+    canDonate(id) {
+      const donor = (this.donors || []).find(item => String(item.id) === String(id))
+      this.selectDonor(donor)
+    },
+    selectDonor(donor) {
+      if (!donor) {
+        this.donor = { can_donate: true }
+        this.selectedDonorLastDonationAt = null
+        this.temp = Object.assign({}, this.temp, { donor_id: undefined, last_donation_at: null })
+        this.donationEligibility = null
+        return
+      }
+      this.donor = donor
+      this.selectedDonorLastDonationAt = getLastDonationDate(donor)
+      this.temp = Object.assign({}, this.temp, {
+        donor_id: donor.id,
+        last_donation_at: this.selectedDonorLastDonationAt
+      })
+      this.updateDonationEligibility()
+    },
+    updateDonationEligibility() {
+      if (!this.temp.donor_id || !this.donor || !this.donor.can_donate) {
+        this.donationEligibility = null
+        return
+      }
+      this.donationEligibility = getDonationEligibility(this.selectedDonorLastDonationAt, this.temp.register_at)
     },
     remoteMethod(query) {
       if (query !== '') {
@@ -476,7 +497,7 @@ export default {
       this.temp = {
         id: undefined,
         place_id: 1,
-        donor: { id: undefined },
+        donor_id: undefined,
         type_donation: 'RE',
         register_at: moment().format('YYYY-MM-DD'),
         last_donation_at: null,
@@ -485,7 +506,8 @@ export default {
       this.donor = {
         can_donate: true
       }
-      this.rangeDateValid = true
+      this.selectedDonorLastDonationAt = null
+      this.donationEligibility = null
     },
     handleCreate() {
       this.resetTemp()
@@ -550,7 +572,7 @@ export default {
       this.getListPatients()
       this.listPatientQuery['id'] = undefined
 
-      this.rangeDateValid = true
+      this.donationEligibility = null
 
       if (this.isAreaPromotion) {
         this.listEventQuery['id'] = row.event.id
@@ -680,5 +702,13 @@ export default {
   .box-card {
     width: 100%;
     height: auto;
+  }
+  .donation-eligibility-alert {
+    margin-top: 12px;
+  }
+  .donation-eligibility-alert .el-alert__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
   }
 </style>
