@@ -21,3 +21,9 @@ selenium-debug.log
 
 yarn.lock
 .idea/
+replit_settings.py
+test_replit_setup.py
+replit.md
+start-replit.sh
+pyproject.toml
+uv.lock
