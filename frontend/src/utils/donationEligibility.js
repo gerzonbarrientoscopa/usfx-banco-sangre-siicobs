@@ -2,16 +2,9 @@ import moment from 'moment'
 
 export function getLastDonationDate(donor) {
   const donations = donor && Array.isArray(donor.donations) ? donor.donations : []
-  const dates = donations
+  const validDates = donations
     .filter(donation => donation && donation.extraction && donation.register_at)
     .map(donation => donation.register_at)
-  const storedLastDonationAt = donor && (donor.last_effective_donation_at || donor.last_donation_at)
-
-  if (storedLastDonationAt) {
-    dates.push(storedLastDonationAt)
-  }
-
-  const validDates = dates
     .map(date => moment(String(date).substring(0, 10), 'YYYY-MM-DD', true))
     .filter(date => date.isValid())
     .sort((a, b) => b.valueOf() - a.valueOf())

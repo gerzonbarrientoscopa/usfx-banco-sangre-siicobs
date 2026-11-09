@@ -20,19 +20,25 @@ describe('eligibilidad de donación', () => {
     expect(getLastDonationDate(donor)).toBe('2026-05-20')
   })
 
-  it('usa la fecha guardada cuando el donante viene precargado', () => {
-    const expectedMessage = 'El donante puede donar, ya transcurrieron más de 3 meses desde su última donación.'
-    const donationAt = '2026-11-09'
-    const donors = [
-      { last_effective_donation_at: '2026-08-08' },
-      { last_donation_at: '2026-08-08' }
-    ]
+  it('obtiene la última fecha de donación desde register_at', () => {
+    const donor = {
+      last_effective_donation_at: '2026-10-10',
+      last_donation_at: '2026-10-11',
+      donations: [
+        { register_at: '2026-01-10', extraction: { id: 1 }},
+        { register_at: '2026-08-08', extraction: { id: 2 }}
+      ]
+    }
 
-    donors.forEach(donor => {
-      const lastDonationAt = getLastDonationDate(donor)
-      expect(lastDonationAt).toBe('2026-08-08')
-      expect(getDonationEligibility(lastDonationAt, donationAt).message).toBe(expectedMessage)
-    })
+    expect(getLastDonationDate(donor)).toBe('2026-08-08')
+    expect(getLastDonationDate({ last_donation_at: '2026-10-11' })).toBeNull()
+  })
+
+  it('no usa la fecha previa almacenada en un donante precargado', () => {
+    expect(getLastDonationDate({
+      last_donation_at: '2026-08-08',
+      donations: []
+    })).toBeNull()
   })
 
   it('avisa para una última donación hace menos de tres meses', () => {

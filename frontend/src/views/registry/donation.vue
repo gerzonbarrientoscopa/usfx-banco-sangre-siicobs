@@ -123,7 +123,7 @@
       </el-table-column>
       <el-table-column :label="$t('models.donation.last_donation_at')" width="200px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.last_donation_at }}</span>
+          <span>{{ formatDonationDate(scope.row.last_donation_at) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('models.donation.employee')" width="300" align="center">
@@ -677,6 +677,10 @@ export default {
   },
   methods: {
     checkPermission,
+    formatDonationDate(value) {
+      const date = moment(value)
+      return date.isValid() ? date.format('DD-MM-YYYY') : ''
+    },
     textReactiveFilter(row) {
       let variable = ''
       if (row.rejected) {
@@ -719,7 +723,52 @@ export default {
       const lastDonationAt = getLastDonationDate(donor)
       this.selectedDonorLastDonationAt = lastDonationAt
       this.temp = Object.assign({}, this.temp, { last_donation_at: lastDonationAt })
+      if (!lastDonationAt) {
+        this.donationEligibility = null
+        this.loadDonorHistory(donor.id)
+        return
+      }
       this.updateDonationEligibility()
+    },
+    loadDonorHistory(id) {
+      this.loadingDonor = true
+      graphqlRequest({
+        from: this.$route.name,
+        service: 'donors',
+        query: donors.showDonor(id)
+      }).then(response => {
+        if (response.errors && response.errors.length) {
+          throw new Error('No se pudo cargar el historial de donaciones.')
+        }
+        const donor = response.data && response.data.donor
+        if (!donor) {
+          throw new Error('No se pudo cargar el historial de donaciones.')
+        }
+        if (String(this.temp.donor_id) !== String(id)) {
+          return
+        }
+        this.donor = donor
+        const donorIndex = (this.donors || []).findIndex(item => String(item.id) === String(id))
+        if (donorIndex !== -1) {
+          this.$set(this.donors, donorIndex, donor)
+        }
+        this.selectedDonorLastDonationAt = getLastDonationDate(donor)
+        this.temp = Object.assign({}, this.temp, {
+          last_donation_at: this.selectedDonorLastDonationAt
+        })
+        this.updateDonationEligibility()
+      }).catch(() => {
+        if (String(this.temp.donor_id) === String(id)) {
+          this.donationEligibility = null
+          this.$notify({
+            title: 'Estado',
+            message: 'No se pudo cargar el historial de donaciones del donante.',
+            type: 'error'
+          })
+        }
+      }).finally(() => {
+        this.loadingDonor = false
+      })
     },
     updateDonationEligibility() {
       if (!this.temp.donor_id || !this.donor || !this.donor.can_donate) {

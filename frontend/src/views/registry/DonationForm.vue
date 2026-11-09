@@ -413,18 +413,72 @@ export default {
       ).then(response => {
         const data = response.data
         this.donors = data.donors.results
+        this.loading = false
 
         if (Cookies.get('donationDonor') !== 'undefined' && Cookies.get('donationDonor') !== undefined) {
           const storedDonor = JSON.parse(Cookies.get('donationDonor'))
-          const donor = this.donors.find(item => String(item.id) === String(storedDonor.id)) || storedDonor
-          this.selectDonor(donor)
+          const donor = this.donors.find(item => String(item.id) === String(storedDonor.id))
+          if (donor && getLastDonationDate(donor)) {
+            this.selectDonor(donor)
+          } else {
+            this.loadStoredDonor(storedDonor.id)
+          }
         }
-        this.loading = false
       })
     },
     canDonate(id) {
       const donor = (this.donors || []).find(item => String(item.id) === String(id))
-      this.selectDonor(donor)
+      if (donor && getLastDonationDate(donor)) {
+        this.selectDonor(donor)
+      } else if (donor) {
+        this.loadStoredDonor(donor.id)
+      } else {
+        this.selectDonor(null)
+      }
+    },
+    loadStoredDonor(id) {
+      const listDonor = (this.donors || []).find(item => String(item.id) === String(id))
+      if (listDonor) {
+        this.donor = listDonor
+      }
+      this.selectedDonorLastDonationAt = null
+      this.temp = Object.assign({}, this.temp, { donor_id: id, last_donation_at: null })
+      this.donationEligibility = null
+      this.loading = true
+      graphqlRequest({
+        from: this.$route.name,
+        service: 'donors',
+        query: donors.showDonor(id)
+      }).then(response => {
+        if (response.errors && response.errors.length) {
+          throw new Error('No se pudo cargar el historial de donaciones.')
+        }
+        const donor = response.data && response.data.donor
+        if (!donor) {
+          throw new Error('No se pudo cargar el historial de donaciones.')
+        }
+        if (String(this.temp.donor_id) !== String(id)) {
+          return
+        }
+        const index = this.donors.findIndex(item => String(item.id) === String(donor.id))
+        if (index === -1) {
+          this.donors.unshift(donor)
+        } else {
+          this.$set(this.donors, index, donor)
+        }
+        this.selectDonor(donor)
+      }).catch(() => {
+        if (String(this.temp.donor_id) === String(id)) {
+          this.donationEligibility = null
+          this.$notify({
+            title: 'Estado',
+            message: 'No se pudo cargar el historial de donaciones del donante.',
+            type: 'error'
+          })
+        }
+      }).finally(() => {
+        this.loading = false
+      })
     },
     selectDonor(donor) {
       if (!donor) {
