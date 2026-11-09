@@ -1,14 +1,22 @@
 import moment from 'moment'
 
 export function getLastDonationDate(donor) {
-  const donations = (donor && donor.donations) || []
-  const completedDonations = donations
+  const donations = donor && Array.isArray(donor.donations) ? donor.donations : []
+  const dates = donations
     .filter(donation => donation && donation.extraction && donation.register_at)
-    .sort((a, b) => moment(b.register_at).valueOf() - moment(a.register_at).valueOf())
+    .map(donation => donation.register_at)
+  const storedLastDonationAt = donor && (donor.last_effective_donation_at || donor.last_donation_at)
 
-  return completedDonations.length
-    ? String(completedDonations[0].register_at).substring(0, 10)
-    : null
+  if (storedLastDonationAt) {
+    dates.push(storedLastDonationAt)
+  }
+
+  const validDates = dates
+    .map(date => moment(String(date).substring(0, 10), 'YYYY-MM-DD', true))
+    .filter(date => date.isValid())
+    .sort((a, b) => b.valueOf() - a.valueOf())
+
+  return validDates.length ? validDates[0].format('YYYY-MM-DD') : null
 }
 
 export function getDonationEligibility(lastDonationAt, donationAt) {
