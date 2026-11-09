@@ -1,0 +1,1 @@
+- [Instalación de Python](python-installation.md) — el instalador puede elegir Python según los metadatos del proyecto, no solo el módulo habilitado.

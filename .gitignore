@@ -1,0 +1,9 @@
+.cache/
+.pythonlibs/
+.upm/
+__pycache__/
+*.py[cod]
+node_modules/
+backend/replit.sqlite3
+backend/replit.sqlite3-*
+/generated-artifacts/

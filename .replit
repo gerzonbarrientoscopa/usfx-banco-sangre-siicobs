@@ -2,7 +2,40 @@ modules = ["vue-node-20", "nodejs-20", "web", "python-3.11"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["unixODBC", "postgresql", "libjpeg", "zlib", "libffi", "openssl", "libxml2", "libxslt"]
+packages = ["cacert", "cargo", "freetype", "glibcLocales", "lcms2", "libffi", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "libxml2", "libxslt", "libyaml", "openjpeg", "openssl", "pandoc", "pgadmin4", "pkg-config", "postgresql", "rustc", "tcl", "tk", "unixODBC", "xcodebuild", "zlib"]
 
 [agent]
 expertMode = true
+
+[userenv]
+
+[userenv.development]
+VUE_APP_BASE_API = "/api/v1"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Iniciar aplicación"
+
+[[workflows.workflow]]
+name = "Iniciar aplicación"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/start-replit.sh"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80

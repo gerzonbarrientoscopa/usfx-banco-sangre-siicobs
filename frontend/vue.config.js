@@ -24,26 +24,39 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: process.env.NODE_ENV === 'development' ? '/static/vue/' : '/static/vue/', // 'https://sucre-siicobs-assets.s3.amazonaws.com/static/vue/',
-  outputDir: path.resolve(__dirname, '../sucre-siicobs-backend/static/vue'),
-  indexPath: path.resolve(__dirname, '../sucre-siicobs-backend/fronts/templates/index.html'),
+  publicPath: process.env.NODE_ENV === 'development' ? '/' : '/static/vue/',
+  outputDir: path.resolve(__dirname, '../backend/static/vue'),
+  indexPath: path.resolve(__dirname, '../backend/fronts/templates/index.html'),
   assetsDir: '',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
+    host: '0.0.0.0',
+    allowedHosts: 'all',
+    open: false,
+    proxy: {
+      '/api': { target: 'http://127.0.0.1:8000' },
+      '/media': { target: 'http://127.0.0.1:8000' },
+      '/admin': { target: 'http://127.0.0.1:8000' },
+      '/static': { target: 'http://127.0.0.1:8000' }
     },
-    before: require('./mock/mock-server.js')
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true
+      },
+      webSocketURL: 'auto://0.0.0.0:0/ws'
+    },
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     name: name,
     resolve: {
+      fallback: {
+        path: require.resolve('path-browserify')
+      },
       alias: {
         '@': resolve('src')
       }
@@ -52,15 +65,6 @@ module.exports = {
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     // it can improve the speed of the first screen, it is recommended to turn on preload
-    config.plugin('preload').tap(() => [
-      {
-        rel: 'preload',
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-        include: 'initial'
-      }
-    ])
 
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
@@ -85,14 +89,6 @@ module.exports = {
     config
       .when(process.env.NODE_ENV !== 'development',
         config => {
-          config
-            .plugin('ScriptExtHtmlWebpackPlugin')
-            .after('html')
-            .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-              inline: /runtime\..*\.js$/
-            }])
-            .end()
           config
             .optimization.splitChunks({
               chunks: 'all',
