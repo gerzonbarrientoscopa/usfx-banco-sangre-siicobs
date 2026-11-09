@@ -10,7 +10,7 @@ const registryRouter = {
   meta: {
     title: 'registrations',
     icon: 'peoples',
-    roles: ['index_donor', 'view_donor', 'index_donation', 'view_donation', 'index_patient']
+    roles: ['index_donor', 'view_donor', 'index_donation', 'view_donation']
   },
   children: [
     {
@@ -25,12 +25,6 @@ const registryRouter = {
       name: 'donorDetail',
       meta: { title: 'Detalle de Donante', noCache: true, roles: ['view_donor'] },
       hidden: true
-    },
-    {
-      path: 'patients',
-      component: () => import('@/views/receptor/ReceptorList'),
-      name: 'receptor',
-      meta: { title: 'receptor', roles: ['index_patient'] }
     },
     {
       path: 'donations',

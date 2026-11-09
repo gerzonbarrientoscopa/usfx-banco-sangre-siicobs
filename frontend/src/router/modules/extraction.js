@@ -10,7 +10,7 @@ const extractionRouter = {
   meta: {
     title: 'extraction',
     icon: 'star',
-    roles: ['index_extraction', 'index_adversereaction', 'index_extractionrefreshment']
+    roles: ['index_extraction', 'index_adversereaction', 'index_extractionrefreshment', 'index_patient']
   },
   children: [
     {
@@ -18,6 +18,12 @@ const extractionRouter = {
       component: () => import('@/views/extractions/extraction/ExtractionList'),
       name: 'extraction',
       meta: { title: 'extractions', roles: ['index_extraction'] }
+    },
+    {
+      path: 'patients',
+      component: () => import('@/views/receptor/ReceptorList'),
+      name: 'extraction-receptor',
+      meta: { title: 'receptor', roles: ['index_patient'] }
     },
     {
       path: 'extractions/:id',
