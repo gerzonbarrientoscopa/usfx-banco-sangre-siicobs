@@ -33,6 +33,17 @@
         prefix-icon="el-icon-search"
         @input="handleFilter"
       />
+      <el-input
+        v-model.number="listQuery.extraction_code"
+        :placeholder="$t('models.extraction.extraction_code')"
+        class="filter-item"
+        clearable
+        min="1"
+        prefix-icon="el-icon-search"
+        style="width: 230px;"
+        type="number"
+        @input="handleFilter"
+      />
       <el-button
         v-if="checkPermission(['add_extraction'])"
         class="filter-item"
@@ -71,6 +82,11 @@
       <el-table-column :label="$t('models.donor.code')" align="center" width="100px">
         <template slot-scope="scope">
           <strong>{{ scope.row.donation.donor.code }}</strong>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('models.extraction.extraction_code')" align="center" width="145px">
+        <template slot-scope="scope">
+          <strong>{{ scope.row.id }}</strong>
         </template>
       </el-table-column>
       <el-table-column :label="$t('models.extraction.type_bag')" align="center" width="120px">
@@ -271,6 +287,7 @@ export default {
         page: 1,
         limit: 20,
         search: '',
+        extraction_code: null,
         offset: 0,
         ordering: '-register_at',
         date_range: [moment().startOf('month').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')]
@@ -313,6 +330,13 @@ export default {
       this.listLoading = true
       let tempListQuery = Object.assign({}, this.listQuery)
 
+      const extractionCode = tempListQuery.extraction_code
+      if (extractionCode !== null && extractionCode !== '' && Number.isInteger(Number(extractionCode))) {
+        tempListQuery.id = Number(extractionCode)
+      } else {
+        delete tempListQuery.id
+      }
+      delete tempListQuery.extraction_code
       tempListQuery = buildBarcodeFilter(tempListQuery, 'donation__id')
       tempListQuery = buildRegisterAtFilter(tempListQuery)
 

@@ -415,12 +415,13 @@ export default {
                 duration: 2000
               })
             } else {
+              const extractionId = response.data.create_extraction.extraction.id
               this.$emit('dialogStatus', false)
-              this.$notify({
-                title: 'Estado',
-                message: 'Registro creado',
-                type: 'success',
-                duration: 2000
+              this.$nextTick(() => {
+                this.$alert(`Número de extracción: ${extractionId}`, 'Extracción creada', {
+                  confirmButtonText: 'Aceptar',
+                  type: 'success'
+                })
               })
             }
           })

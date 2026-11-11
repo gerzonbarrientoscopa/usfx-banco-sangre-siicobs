@@ -575,6 +575,7 @@ export default {
     extraction: {
       id: '#',
       code: 'Código',
+      extraction_code: 'Código de Extracción',
       donation: 'Donante',
       initials_name: 'Iniciales del Donante',
       type_bag: 'Tipo de Bolsa',
