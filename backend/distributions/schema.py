@@ -8,6 +8,7 @@ from graphene_django_extras import DjangoObjectField, DjangoListObjectField, Dja
 from graphene_django_extras.paginations import LimitOffsetGraphqlPagination
 
 from distributions.models import Distribution, DistributionItemFragmentation, DistributionItemFragmentationRefunded
+from distributions.age_groups import filter_by_age_group
 from siicobs_main.services import BigInt
 
 
@@ -23,6 +24,7 @@ class DistributionFilter(django_filters.FilterSet):
     age_patient_type = django_filters.CharFilter()
     age_patient__gte = django_filters.NumberFilter(field_name='age_patient', lookup_expr='gte')
     age_patient__lte = django_filters.NumberFilter(field_name='age_patient', lookup_expr='lte')
+    age_group = django_filters.CharFilter(method='filter_age_group')
     search = django_filters.LookupChoiceFilter(lookup_choices=[('icontains', 'This is a description')],
                                                field_class=forms.CharField)
     ordering = django_filters.LookupChoiceFilter(lookup_choices=[('icontains', 'This is a description')],
@@ -31,6 +33,9 @@ class DistributionFilter(django_filters.FilterSet):
     class Meta:
         model = Distribution
         fields = ['id', 'ordering', 'search']
+
+    def filter_age_group(self, queryset, name, value):
+        return filter_by_age_group(queryset, value)
 
     @property
     def qs(self):

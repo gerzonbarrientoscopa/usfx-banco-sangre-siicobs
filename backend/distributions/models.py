@@ -1,9 +1,8 @@
-from django.db import models
 import uuid
+from dateutil.relativedelta import relativedelta
+from django.db import models
 from fragmentations.models import ItemFragmentation
-from users.models import Patient
-from siicobs_main.utils_global import get_age_from_birthday, get_string_age_from_birthday
-from users.models import Employee, Medical, Institution
+from users.models import Employee, Institution, Medical, Patient
 
 TYPE_PAYMENT = (('CA', 'EFECTIVO'), ('AC', 'CUENTAS POR COBRAR'))
 TYPE_AGE = (('Y', 'Años'), ('D', 'Días'), ('M', 'Meses'),)
@@ -51,13 +50,18 @@ class Distribution(models.Model):
         if not self.pk:
             self.uuid = uuid.uuid4()
 
-        # calculate age
-        distribution = Distribution.objects.filter(pk=self.id).first()
-        if distribution and distribution.patient and distribution.patient.birth_date:
-            today = self.register_at
-            age_string = get_string_age_from_birthday(distribution.patient.birth_date, today).split(' ')
-            self.age_patient = age_string[0]
-            self.age_patient_type = age_string[1]
+        if self.patient and self.patient.birth_date and self.register_at:
+            registered_date = self.register_at.date()
+            age = relativedelta(registered_date, self.patient.birth_date)
+            if age.years > 0:
+                self.age_patient = age.years
+                self.age_patient_type = 'Y'
+            elif age.months > 0:
+                self.age_patient = age.months
+                self.age_patient_type = 'M'
+            else:
+                self.age_patient = max(age.days, 0)
+                self.age_patient_type = 'D'
 
         super(Distribution, self).save(*args, **kwargs)
 

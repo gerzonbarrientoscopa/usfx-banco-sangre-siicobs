@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from distributions.age_groups import filter_by_age_group
 from distributions.models import Distribution, DistributionItemFragmentation
 from fragmentations.models import ItemFragmentation, Release, Fragmentation, Discard
 from laboratories.models import Immunoserology, Immunohematology
@@ -517,16 +518,15 @@ class GeneralDistributionPDF(View):
                 args['institution__is_public'] = False
             else:
                 args['institution__is_public'] = True
-        if request.GET['etary']:
-            full_age = request.GET['etary'].split('-')
-            args['age_patient__gte'] = full_age[0]
-            args['age_patient__lte'] = full_age[1]
-
         date_init = datetime.strptime(data['date_init'], "%Y-%m-%d").date()
         date_end = datetime.strptime(data['date_end'], "%Y-%m-%d").date()
 
-        distributions = Distribution.objects.filter(register_at__date__range=[date_init, date_end], **args).order_by(
-            '-register_at', 'patient__middle_name', 'patient__first_name')
+        distributions = Distribution.objects.filter(
+            register_at__date__range=[date_init, date_end],
+            **args
+        )
+        distributions = filter_by_age_group(distributions, request.GET.get('age_group'))
+        distributions = distributions.order_by('-register_at', 'patient__middle_name', 'patient__first_name')
 
         params = {
             'today': today,

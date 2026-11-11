@@ -170,15 +170,14 @@ const distributions = {
     }
 
     if (listQuery.type_payment && listQuery.type_payment !== '') {
-      query += ', type_payment: "' + listQuery.type_payment +'"'
+      query += ', type_payment: "' + listQuery.type_payment + '"'
     }
 
     if (listQuery.institution__type && listQuery.institution__type !== '') {
-      query += ', institution__type: "' + listQuery.institution__type +'"'
+      query += ', institution__type: "' + listQuery.institution__type + '"'
     }
-    if (listQuery.etary && listQuery.etary !== '') {
-      var etaryOption = listQuery.etary.split('-')
-      query += 'age_patient_type: "Y", age_patient__gte: ' + etaryOption[0] + ', age_patient__lte: ' + etaryOption[1]
+    if (listQuery.age_group && listQuery.age_group !== '') {
+      query += ', age_group: "' + listQuery.age_group + '"'
     }
 
     return `{

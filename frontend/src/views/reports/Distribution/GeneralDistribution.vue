@@ -79,9 +79,9 @@
         <el-col :md="8">
           <span class="demonstration">Grupo Etario</span>
           <div class="block">
-            <el-select v-model="listQuery.etary" clearable placeholder="Por favor seleccione" @change="handleFilter">
+            <el-select v-model="listQuery.age_group" clearable placeholder="Por favor seleccione" @change="handleFilter">
               <el-option
-                v-for="item in [{value: '', label: 'Todos'}, {value: '18-25', label: '18-25'}, {value: '26-30', label: '26-30'} , {value: '31-40', label: '31-40'}, {value: '41-50', label: '41-50'}, {value: '51-60', label: '51-60'}, {value: '61-65', label: '61-65'} ]"
+                v-for="item in AGE_GROUP_OPTIONS"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -183,7 +183,20 @@ import { printGeneralDistribution } from '@/api/report'
 import { mapGetters } from 'vuex'
 import institutions from '@/query/institution'
 import TableDistribution from '@/components/Reports/TableDistribution'
-import {INSTITUTION_TYPE_OPTIONS, RECEIPT_OPTIONS, TYPE_PAYMENT_OPTIONS} from '@/utils/const'
+import { INSTITUTION_TYPE_OPTIONS, TYPE_PAYMENT_OPTIONS } from '@/utils/const'
+
+const AGE_GROUP_OPTIONS = [
+  { value: '', label: 'Todos' },
+  { value: 'NEONATE', label: 'Neonato (hasta 28 días)' },
+  { value: 'UNDER_1', label: 'Menor a 1 Año' },
+  { value: 'AGE_1_4', label: '1 - 4 Años' },
+  { value: 'AGE_5_9', label: '5 - 9 Años' },
+  { value: 'AGE_10_19', label: '10 - 19 Años' },
+  { value: 'AGE_20_34', label: '20 - 34 Años' },
+  { value: 'AGE_35_49', label: '35 - 49 Años' },
+  { value: 'AGE_50_64', label: '50 - 64 Años' },
+  { value: 'AGE_OVER_64', label: '> 64 Años' }
+]
 
 export default {
   name: 'GeneralDistribution',
@@ -211,7 +224,7 @@ export default {
         institution_id: '',
         type_payment: '',
         institution__is_public: '',
-        etary: '',
+        age_group: '',
         extra: {
           date_init: moment().startOf('month').format('YYYY-MM-DD'),
           date_end: moment().format('YYYY-MM-DD')
@@ -222,6 +235,7 @@ export default {
       institutions: null,
       institutionLoading: false,
       listInstitutionQuery: { page: 1, limit: 20, offset: 0, search: '', ordering: '-id', id: undefined },
+      AGE_GROUP_OPTIONS,
       INSTITUTION_TYPE_OPTIONS,
       TYPE_PAYMENT_OPTIONS
     }
