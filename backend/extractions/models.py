@@ -7,6 +7,22 @@ from users.models import Employee
 
 ARM = (('I', 'IZQUIERDA'), ('D', 'DERECHA'))
 TYPE_PLACE = (('PF', 'PUESTO FIJO'), ('PM', 'PUESTO MOVIL'))
+TYPE_BAG = (
+    ('SIMPLE', 'SIMPLE'),
+    ('DOBLE', 'DOBLE'),
+    ('TRIPLE', 'TRIPLE'),
+    ('CUADRUPLE', 'CUADRUPLE'),
+    ('CUADRUPLE_CON_FILTRO', 'CUADRUPLE CON FILTRO'),
+    ('SET_AFERESIS', 'SET DE AFERESIS'),
+)
+BAGS_QUANTITY_BY_TYPE = {
+    'SIMPLE': 1,
+    'DOBLE': 2,
+    'TRIPLE': 3,
+    'CUADRUPLE': 4,
+    'CUADRUPLE_CON_FILTRO': 4,
+    'SET_AFERESIS': 2,
+}
 
 
 class TypeAnticoagulant(models.Model):
@@ -29,11 +45,16 @@ class TypeAnticoagulant(models.Model):
 
 
 class Extraction(models.Model):
+    TYPE_BAG = TYPE_BAG
+    BAGS_QUANTITY_BY_TYPE = BAGS_QUANTITY_BY_TYPE
+
     donation = models.OneToOneField(Donation, unique=True, related_name='extraction', on_delete=models.PROTECT,
                                     verbose_name='Donación')
     type_place = models.CharField(max_length=2, default='PF', choices=TYPE_PLACE, verbose_name='Lugar de Extracción')
     bags_quantity = models.SmallIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(4)],
-                                             verbose_name='Tipo de Bolsa')  # cantidad de bolsas
+                                             verbose_name='Cantidad de bolsas')
+    type_bag = models.CharField(max_length=24, choices=TYPE_BAG, default='SIMPLE',
+                                verbose_name='Tipo de bolsa')
     lot = models.CharField(max_length=15, verbose_name='Nro. de Lote')
     tubing = models.CharField(max_length=15, null=True, verbose_name='Nro. de Tubuladura')
     barcode = models.CharField(max_length=10, null=True, verbose_name='Código de barras')
@@ -64,6 +85,27 @@ class Extraction(models.Model):
         permissions = (
             ('index_extraction', 'Can List Extraction'),
         )
+
+        constraints = [
+            models.CheckConstraint(
+                check=(
+                    models.Q(type_bag='SIMPLE', bags_quantity=1) |
+                    models.Q(type_bag='DOBLE', bags_quantity=2) |
+                    models.Q(type_bag='TRIPLE', bags_quantity=3) |
+                    models.Q(type_bag='CUADRUPLE', bags_quantity=4) |
+                    models.Q(type_bag='CUADRUPLE_CON_FILTRO', bags_quantity=4) |
+                    models.Q(type_bag='SET_AFERESIS', bags_quantity=2)
+                ),
+                name='extraction_type_bag_quantity_valid',
+            ),
+        ]
+
+    def save(self, *args, **kwargs):
+        try:
+            self.bags_quantity = self.BAGS_QUANTITY_BY_TYPE[self.type_bag]
+        except KeyError:
+            raise ValueError('El tipo de bolsa seleccionado no es válido.')
+        super(Extraction, self).save(*args, **kwargs)
 
 
 class SelfExclusion(models.Model):

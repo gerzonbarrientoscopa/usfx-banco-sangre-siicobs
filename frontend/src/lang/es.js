@@ -965,6 +965,8 @@ export default {
         double: 'Doble',
         triple: 'Triple',
         quadruple: 'Cuadruple',
+        quadruple_filtered: 'Cuadruple con filtro',
+        apheresis_set: 'Set de aféresis',
         type_hemocomponent: 'Tipo de hemocomponente',
         pg: 'PG',
         pfc: 'PFC',

@@ -23,6 +23,7 @@ const itemFragmentations = {
                 id
                 tubing
                 bags_quantity
+                type_bag
                 donation
                 {
                     id
@@ -64,6 +65,7 @@ const itemFragmentations = {
                 id
                 tubing
                 bags_quantity
+                type_bag
                 donation {
                     id
                     register_at
@@ -393,7 +395,6 @@ const itemFragmentations = {
       }`
   },
   listAddingDistributions(listQuery) {
-
     return `query queryListAddingDistributions(
         $fragmentation__extraction__donation__id: Int,
         $fragmentation__id: Decimal,

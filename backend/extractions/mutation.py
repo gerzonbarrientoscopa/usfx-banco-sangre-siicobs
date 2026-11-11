@@ -15,7 +15,7 @@ class CreateExtraction(graphene.Mutation):
 
     class Arguments:
         donation_id = graphene.Int(required=True)
-        bags_quantity = graphene.Int(required=True)
+        type_bag = graphene.String(required=True)
         type_place = graphene.String(required=True)
         lot = graphene.String(required=True)
         tubing = graphene.String()
@@ -32,14 +32,14 @@ class CreateExtraction(graphene.Mutation):
         typeanticoagulant_id = graphene.Int(required=True)
 
     @permission_required(['extractions.add_extraction'])
-    def mutate(self, info, donation_id, type_place, bags_quantity, lot, initial_time, employee_id, register_id,
+    def mutate(self, info, donation_id, type_bag, type_place, lot, initial_time, employee_id, register_id,
                register_at, typeanticoagulant_id, **kwargs):
         _extraction = Extraction.objects.filter(donation_id=donation_id).first()
 
         if _extraction is not None:
             raise ValueError('donation_id: debe ser unico')
 
-        extraction = Extraction(donation_id=donation_id, type_place=type_place, bags_quantity=bags_quantity,
+        extraction = Extraction(donation_id=donation_id, type_place=type_place, type_bag=type_bag,
                                 lot=lot, initial_time=initial_time, employee_id=employee_id,
                                 register_id=register_id, typeanticoagulant_id=typeanticoagulant_id,
                                 register_at=register_at)
@@ -71,7 +71,7 @@ class UpdateExtraction(graphene.Mutation):
         id = graphene.Int(required=True)
         donation_id = graphene.Int()
         type_place = graphene.String()
-        bags_quantity = graphene.Int()
+        type_bag = graphene.String()
         lot = graphene.String()
         tubing = graphene.String()
         barcode = graphene.String()
@@ -93,8 +93,8 @@ class UpdateExtraction(graphene.Mutation):
 
         if kwargs.get('donation_id', None) is not None:
             extraction.donation_id = kwargs.get('donation_id')
-        if kwargs.get('bags_quantity', None) is not None:
-            extraction.bags_quantity = kwargs.get('bags_quantity')
+        if kwargs.get('type_bag', None) is not None:
+            extraction.type_bag = kwargs.get('type_bag')
         if kwargs.get('type_place', None) is not None:
             extraction.type_place = kwargs.get('type_place')
         if kwargs.get('lot', None) is not None:

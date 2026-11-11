@@ -37,7 +37,7 @@
             <tr>
                 <td class="border text-center" width="150" rowspan="2"><b>FECHA</b></td>
                 <td class="border text-center" width="150" rowspan="2"><b>CODIGO</b></td>
-                <td class="border text-center" width="160" colspan="4"><b>TIPO DE BOLSA</b></td>
+                <td class="border text-center" width="240" colspan="6"><b>TIPO DE BOLSA</b></td>
                 <td class="border text-center" width="160" colspan="15"><b>TIPO DE HEMOCOMPONENTE</b></td>
             </tr>
             <tr>
@@ -45,6 +45,8 @@
                 <td class="border text-center" width="80"><b>DOBLE</b></td>
                 <td class="border text-center" width="80"><b>TRIPLE</b></td>
                 <td class="border text-center" width="80"><b>CUADR.</b></td>
+                <td class="border text-center" width="80"><b>CUADR. FILTRO</b></td>
+                <td class="border text-center" width="80"><b>SET AFERESIS</b></td>
                 <td class="border text-center" width="80"><b>PG</b></td>
                 <td class="border text-center" width="80"><b>PFC</b></td>
                 <td class="border text-center" width="80"><b>PC</b></td>
@@ -70,22 +72,32 @@
                         {{ fragmentation.extraction.donation.donor.code }}
                     </td>
                     <td class="border text-center">
-                        {% if fragmentation.extraction.bags_quantity == 1 %}
+                        {% if fragmentation.extraction.type_bag == 'SIMPLE' %}
                             X
                         {% endif %}
                     </td>
                     <td class="border text-center">
-                        {% if fragmentation.extraction.bags_quantity == 2 %}
+                        {% if fragmentation.extraction.type_bag == 'DOBLE' %}
                             X
                         {% endif %}
                     </td>
                     <td class="border text-center">
-                        {% if fragmentation.extraction.bags_quantity == 3 %}
+                        {% if fragmentation.extraction.type_bag == 'TRIPLE' %}
                             X
                         {% endif %}
                     </td>
                     <td class="border text-center">
-                        {% if fragmentation.extraction.bags_quantity == 4 %}
+                        {% if fragmentation.extraction.type_bag == 'CUADRUPLE' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.type_bag == 'CUADRUPLE_CON_FILTRO' %}
+                            X
+                        {% endif %}
+                    </td>
+                    <td class="border text-center">
+                        {% if fragmentation.extraction.type_bag == 'SET_AFERESIS' %}
                             X
                         {% endif %}
                     </td>

@@ -5,8 +5,6 @@ const SINGLE_MODEL = 'extraction'
 
 const extractions = {
   listExtraction(listQuery) {
-    const query = generics.buildParams(listQuery)
-
     return `
       query queryExtractions($limit: Int, $offset: Int, $apheresis__isnull: Boolean, $donation__donor__age: Decimal,
         $donation__donor__age__gte: Decimal, $donation__donor__age__lte: Decimal, $donation__donor__gender: String,
@@ -32,6 +30,7 @@ const extractions = {
           	lot
           	weight
             bags_quantity
+            type_bag
             arm
             initial_time
             end_time
@@ -78,6 +77,7 @@ const extractions = {
             weight
             lot
             bags_quantity
+            type_bag
             arm
             initial_time
             end_time
@@ -229,6 +229,7 @@ const extractions = {
             created_at
             register_at
             bags_quantity
+            type_bag
             tubing
             weight
             donation {
@@ -275,9 +276,9 @@ const extractions = {
     return this.buildExtraction('update')
   },
   buildExtraction(action) {
-    let paramsGraphqlArgument = '$type_place: String!, $arm: String, $bags_quantity: Int!, $barcode: String, $donation_id: Int!, $employee_id: Int!, $end_time: Time, $initial_time: Time!, $lot: String!, $observations: String, $register_at: Date!, $register_id: Int!, $total_time: Float, $tubing: String, $weight: Float, $typeanticoagulant_id: Int!'
+    let paramsGraphqlArgument = '$type_place: String!, $arm: String, $type_bag: String!, $barcode: String, $donation_id: Int!, $employee_id: Int!, $end_time: Time, $initial_time: Time!, $lot: String!, $observations: String, $register_at: Date!, $register_id: Int!, $total_time: Float, $tubing: String, $weight: Float, $typeanticoagulant_id: Int!'
     if (action === 'update') {
-      paramsGraphqlArgument = '$type_place: String, $arm: String, $bags_quantity: Int, $barcode: String, $donation_id: Int, $employee_id: Int, $end_time: Time, $id: Int!, $initial_time: Time, $lot: String, $observations: String, $register_at: Date, $register_id: Int, $total_time: Float, $tubing: String, $weight: Float'
+      paramsGraphqlArgument = '$type_place: String, $arm: String, $type_bag: String, $barcode: String, $donation_id: Int, $employee_id: Int, $end_time: Time, $id: Int!, $initial_time: Time, $lot: String, $observations: String, $register_at: Date, $register_id: Int, $total_time: Float, $tubing: String, $weight: Float'
     }
     const paramsResolve = generics.buildGraphqlParams(paramsGraphqlArgument)
 

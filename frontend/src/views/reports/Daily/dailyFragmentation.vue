@@ -86,22 +86,32 @@
         <el-table-column :label="$t('models.report.fragmentation.type_bag')" align="center">
           <el-table-column :label="$t('models.report.fragmentation.simple')" align="center" width="100px">
             <template slot-scope="scope">
-              <span v-if="scope.row.extraction.bags_quantity===1">X</span>
+              <span v-if="scope.row.extraction.type_bag==='SIMPLE'">X</span>
             </template>
           </el-table-column>
           <el-table-column :label="$t('models.report.fragmentation.double')" align="center" width="100px">
             <template slot-scope="scope">
-              <span v-if="scope.row.extraction.bags_quantity===2">X</span>
+              <span v-if="scope.row.extraction.type_bag==='DOBLE'">X</span>
             </template>
           </el-table-column>
           <el-table-column :label="$t('models.report.fragmentation.triple')" align="center" width="100px">
             <template slot-scope="scope">
-              <span v-if="scope.row.extraction.bags_quantity===3">X</span>
+              <span v-if="scope.row.extraction.type_bag==='TRIPLE'">X</span>
             </template>
           </el-table-column>
           <el-table-column :label="$t('models.report.fragmentation.quadruple')" align="center" width="100px">
             <template slot-scope="scope">
-              <span v-if="scope.row.extraction.bags_quantity===4">X</span>
+              <span v-if="scope.row.extraction.type_bag==='CUADRUPLE'">X</span>
+            </template>
+          </el-table-column>
+          <el-table-column :label="$t('models.report.fragmentation.quadruple_filtered')" align="center" width="150px">
+            <template slot-scope="scope">
+              <span v-if="scope.row.extraction.type_bag==='CUADRUPLE_CON_FILTRO'">X</span>
+            </template>
+          </el-table-column>
+          <el-table-column :label="$t('models.report.fragmentation.apheresis_set')" align="center" width="130px">
+            <template slot-scope="scope">
+              <span v-if="scope.row.extraction.type_bag==='SET_AFERESIS'">X</span>
             </template>
           </el-table-column>
         </el-table-column>
@@ -244,28 +254,33 @@ export default {
   },
   methods: {
     getSummaries(param) {
-      const sums = ['Totales', '-', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      const sums = ['Totales', '-', ...Array(21).fill(0)]
       for (const l in this.list) {
-        if (this.list[l].extraction.bags_quantity === 1) sums[2]++
-        if (this.list[l].extraction.bags_quantity === 2) sums[3]++
-        if (this.list[l].extraction.bags_quantity === 3) sums[4]++
-        if (this.list[l].extraction.bags_quantity === 4) sums[5]++
+        const bagTypeSummaryIndex = {
+          SIMPLE: 2,
+          DOBLE: 3,
+          TRIPLE: 4,
+          CUADRUPLE: 5,
+          CUADRUPLE_CON_FILTRO: 6,
+          SET_AFERESIS: 7
+        }[this.list[l].extraction.type_bag]
+        if (bagTypeSummaryIndex !== undefined) sums[bagTypeSummaryIndex]++
 
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 1, true)) sums[6]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 2, true)) sums[7]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 3, true)) sums[8]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 4, true)) sums[9]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 5, true)) sums[10]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 6, true)) sums[11]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 7, true)) sums[12]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 8, true)) sums[13]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 9, true)) sums[14]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 10, true)) sums[15]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 11, true)) sums[16]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 12, true)) sums[17]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 13, true)) sums[18]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 15, true)) sums[19]++
-        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 16, true)) sums[20]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 1, true)) sums[8]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 2, true)) sums[9]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 3, true)) sums[10]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 4, true)) sums[11]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 5, true)) sums[12]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 6, true)) sums[13]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 7, true)) sums[14]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 8, true)) sums[15]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 9, true)) sums[16]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 10, true)) sums[17]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 11, true)) sums[18]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 12, true)) sums[19]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 13, true)) sums[20]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 15, true)) sums[21]++
+        if (this.isTypeHecomponent(this.list[l].itemfragmentations, 16, true)) sums[22]++
       }
       return sums
     },

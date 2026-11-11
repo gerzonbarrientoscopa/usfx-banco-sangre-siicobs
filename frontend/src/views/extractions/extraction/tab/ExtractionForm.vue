@@ -64,8 +64,8 @@
               />
             </el-form-item>
 
-            <el-form-item :label="$t('models.extraction.type_bag')" prop="bags_quantity">
-              <el-radio-group v-model="temp.bags_quantity" :disabled="dialogStatus === 'update' && !checkPermission(['edit_type_bag_extraction'])">
+            <el-form-item :label="$t('models.extraction.type_bag')" prop="type_bag">
+              <el-radio-group v-model="temp.type_bag" :disabled="dialogStatus === 'update' && !checkPermission(['edit_type_bag_extraction'])" @change="handleTypeBagChange">
                 <el-radio-button v-for="item in typeBagOptions" :key="item.key" :disabled="!isEditing" :label="item.key">
                   {{ item.display_name }}
                 </el-radio-button>
@@ -201,15 +201,7 @@ import { graphqlRequest } from '@/api/graphql'
 import extractions from '@/query/extraction'
 import donations from '@/query/donation'
 import typeAnticoagulant from '@/query/type-anticoagulant'
-
-const typeBagOptions = [
-  { key: 1, display_name: 'SIMPLE' },
-  { key: 2, display_name: 'DOBLE' },
-  { key: 3, display_name: 'TRIPLE' },
-  { key: 4, display_name: 'CUADRUPLE' },
-  { key: 5, display_name: 'CUADRUPLE CON FILTRO' },
-  { key: 6, display_name: 'SET DE AFERESIS' }
-]
+import { TYPE_BAG_OPTIONS, BAGS_QUANTITY_BY_TYPE } from '@/constants/type-bag'
 
 const armOptions = [
   { key: 'I', display_name: 'IZQUIERDO' },
@@ -241,7 +233,7 @@ export default {
       donations: null,
       loadingDonation: false,
       listDonationQuery: { page: 1, limit: 20, offset: 0, search: '', ordering: '-register_at, donor__code', from: 'EXT' },
-      typeBagOptions,
+      typeBagOptions: TYPE_BAG_OPTIONS,
       armOptions,
       typePlaceOptions,
       temp: {
@@ -265,7 +257,7 @@ export default {
         type_place: [{ required: true, message: this.$t('is_required'), trigger: 'change' }],
         register_at: [{ required: true, message: this.$t('is_required'), trigger: 'blur' }],
         donation_id: [{ required: true, message: this.$t('is_required'), trigger: 'change' }],
-        bags_quantity: [{ required: true, message: this.$t('is_required'), trigger: 'change' }],
+        type_bag: [{ required: true, message: this.$t('is_required'), trigger: 'change' }],
         lot: [{ required: true, message: this.$t('is_required'), trigger: 'blur' }],
         arm: [{ required: false, message: this.$t('is_required'), trigger: 'change' }],
         tubing: [{ required: false, message: this.$t('is_required'), trigger: 'blur' }],
@@ -371,12 +363,17 @@ export default {
       this.temp = {
         id: undefined,
         type_place: 'PF',
+        type_bag: 'SIMPLE',
+        bags_quantity: 1,
         observations: '',
         lot: '',
         tubing: '',
         weight: undefined,
         register_at: moment().format('YYYY-MM-DD')
       }
+    },
+    handleTypeBagChange(typeBag) {
+      this.temp.bags_quantity = BAGS_QUANTITY_BY_TYPE[typeBag]
     },
     handleCreate() {
       this.resetTemp()
@@ -396,6 +393,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
+          delete tempData.bags_quantity
           tempData.register_id = this.employee_id
           tempData.initial_time = moment(this.temp.initial_time).format('HH:mm')
           if (this.temp.end_time) {
@@ -452,6 +450,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
+          delete tempData.bags_quantity
           tempData.register_id = this.temp.register.id
           tempData.initial_time = moment(this.temp.initial_time).format('HH:mm')
 

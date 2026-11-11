@@ -75,7 +75,7 @@
       </el-table-column>
       <el-table-column :label="$t('models.extraction.type_bag')" align="center" width="120px">
         <template slot-scope="scope">
-          <span>{{ scope.row.bags_quantity | typeBagFilter }}</span>
+          <span>{{ scope.row.type_bag | typeBagFilter }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('models.extraction.lot')" align="center" width="110px">
@@ -221,25 +221,12 @@ import ExtractionRefreshmentForm from '@/views/extractions/refreshment/Extractio
 import ExtractionForm from '@/views/extractions/extraction/tab/ExtractionForm'
 import { defaultshorcouts } from '@/utils/date-utils'
 import { buildBarcodeFilter, buildRegisterAtFilter } from '@/utils/general'
-
-const typeBagOptions = [
-  { key: 1, display_name: 'SIMPLE' },
-  { key: 2, display_name: 'DOBLE' },
-  { key: 3, display_name: 'TRIPLE' },
-  { key: 4, display_name: 'CUADRUPLE' },
-  { key: 5, display_name: 'CUADRUPLE CON FILTRO' },
-  { key: 6, display_name: 'SET DE AFERESIS' }
-]
+import { TYPE_BAG_LABELS } from '@/constants/type-bag'
 
 const armOptions = [
   { key: 'I', display_name: 'IZQUIERDO' },
   { key: 'D', display_name: 'DERECHA' }
 ]
-
-const typeBagKeyValue = typeBagOptions.reduce((acc, cur) => {
-  acc[cur.key] = cur.display_name
-  return acc
-}, {})
 
 const armKeyValue = armOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
@@ -257,7 +244,7 @@ export default {
   directives: {},
   filters: {
     typeBagFilter(type) {
-      return typeBagKeyValue[type]
+      return TYPE_BAG_LABELS[type]
     },
     armFilter(type) {
       return armKeyValue[type]
@@ -279,7 +266,6 @@ export default {
       list: null,
       total: null,
       listLoading: true,
-      typeBagOptions,
       armOptions,
       listQuery: {
         page: 1,

@@ -765,49 +765,50 @@ class DailyFragmentationPDF(View):
             args['employee_id'] = data['employee_id']
 
         fragmentations = Fragmentation.objects.filter(register_at__range=[date_init, date_end], **args).order_by('-id')
-        totals = []
-        for i in range(1, 20):
-            totals.append(0)
+        totals = [0] * 21
+        bag_type_indexes = {
+            'SIMPLE': 0,
+            'DOBLE': 1,
+            'TRIPLE': 2,
+            'CUADRUPLE': 3,
+            'CUADRUPLE_CON_FILTRO': 4,
+            'SET_AFERESIS': 5,
+        }
 
         for fragmentation in fragmentations:
-            if fragmentation.extraction.bags_quantity == 1:
-                totals[0] = totals[0] + 1
-            if fragmentation.extraction.bags_quantity == 2:
-                totals[1] = totals[1] + 1
-            if fragmentation.extraction.bags_quantity == 3:
-                totals[2] = totals[2] + 1
-            if fragmentation.extraction.bags_quantity == 4:
-                totals[3] = totals[3] + 1
+            bag_type_index = bag_type_indexes.get(fragmentation.extraction.type_bag)
+            if bag_type_index is not None:
+                totals[bag_type_index] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=1) == 'X':
-                totals[4] = totals[4] + 1
+                totals[6] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=2) == 'X':
-                totals[5] = totals[5] + 1
+                totals[7] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=3) == 'X':
-                totals[6] = totals[6] + 1
+                totals[8] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=4) == 'X':
-                totals[7] = totals[7] + 1
+                totals[9] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=5) == 'X':
-                totals[8] = totals[8] + 1
+                totals[10] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=6) == 'X':
-                totals[9] = totals[9] + 1
+                totals[11] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=7) == 'X':
-                totals[10] = totals[10] + 1
+                totals[12] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=8) == 'X':
-                totals[11] = totals[11] + 1
+                totals[13] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=9) == 'X':
-                totals[12] = totals[12] + 1
+                totals[14] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=10) == 'X':
-                totals[13] = totals[13] + 1
+                totals[15] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=11) == 'X':
-                totals[14] = totals[14] + 1
+                totals[16] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=12) == 'X':
-                totals[15] = totals[15] + 1
+                totals[17] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=13) == 'X':
-                totals[16] = totals[16] + 1
+                totals[18] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=15) == 'X':
-                totals[17] = totals[17] + 1
+                totals[19] += 1
             if get_hemocomponent_from_fragmentation(fragmentation.id, hemocomponent_id=16) == 'X':
-                totals[18] = totals[18] + 1
+                totals[20] += 1
         params = {
             'today': today,
             'request': request,

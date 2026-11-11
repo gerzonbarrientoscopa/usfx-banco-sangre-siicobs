@@ -5,8 +5,6 @@ const SINGLE_MODEL = 'fragmentation'
 
 const fragmentations = {
   list(listQuery) {
-    const query = generics.buildParams(listQuery)
-
     return `query queryFragmentations(
     $employee_id: Decimal, $extraction__donation__donor__age: Decimal, $extraction__donation__donor__age__gte: Decimal,
     $extraction__donation__donor__age__lte: Decimal, $extraction__donation__donor__gender: String,
@@ -56,6 +54,7 @@ const fragmentations = {
                 tubing
                 weight
                 bags_quantity
+                type_bag
                 register_at
                 donation {
                   id
@@ -120,6 +119,7 @@ const fragmentations = {
                 tubing
                 weight
                 bags_quantity
+                type_bag
                 register_at
                 donation
                 {
@@ -206,6 +206,7 @@ const fragmentations = {
                 id
                 tubing
                 bags_quantity
+                type_bag
                 weight
                 donation
                 {

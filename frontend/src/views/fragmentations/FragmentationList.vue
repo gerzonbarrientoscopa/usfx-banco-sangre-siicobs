@@ -71,7 +71,7 @@
       </el-table-column>
       <el-table-column :label="$t('models.fragmentation.type_bag')" align="center" width="100px">
         <template slot-scope="scope">
-          <span v-if="scope.row.extraction">{{ scope.row.extraction.bags_quantity | typeBagFilter }}</span>
+          <span v-if="scope.row.extraction">{{ scope.row.extraction.type_bag | typeBagFilter }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('models.fragmentation.weight')" align="right" width="80px">
@@ -154,23 +154,13 @@ import { graphqlRequest } from '@/api/graphql'
 import fragmentations from '@/query/fragmentation'
 import { debounce } from 'debounce'
 import { defaultshorcouts } from '@/utils/date-utils'
-import {buildBarcodeFilter, buildRegisterAtFilter} from "@/utils/general";
+import { buildBarcodeFilter, buildRegisterAtFilter } from '@/utils/general'
+import { TYPE_BAG_LABELS } from '@/constants/type-bag'
 
-const typeBagOptions = [
-  { key: 1, display_name: 'SIMPLE' },
-  { key: 2, display_name: 'DOBLE' },
-  { key: 3, display_name: 'TRIPLE' },
-  { key: 4, display_name: 'CUADRUPLE' }
-]
 const qualityBagOptions = [
   { key: 'AP', display_name: 'APTO' },
   { key: 'NA', display_name: 'NO APTO' }
 ]
-
-const typeBagKeyValue = typeBagOptions.reduce((acc, cur) => {
-  acc[cur.key] = cur.display_name
-  return acc
-}, {})
 
 const qualityBagKeyValue = qualityBagOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
@@ -183,7 +173,7 @@ export default {
   directives: {},
   filters: {
     typeBagFilter(type) {
-      return typeBagKeyValue[type]
+      return TYPE_BAG_LABELS[type]
     },
     qualityBagFilter(type) {
       return qualityBagKeyValue[type]
@@ -212,7 +202,6 @@ export default {
         search: '',
         ordering: '-id'
       },
-      typeBagOptions,
       qualityBagOptions,
       listQuery: {
         page: 1,
