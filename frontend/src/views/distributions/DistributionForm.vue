@@ -6,6 +6,7 @@
       destroy-on-close
       title="Hemocomponentes"
       width="90%"
+      @closed="notifyAddedItem"
     >
       <div class="filter-container">
         <el-row :gutter="10" style="width: 100%">
@@ -255,7 +256,7 @@
                 width="250"
               >
                 <template slot-scope="scope">
-                  <el-button size="mini" @click="handleRemoveItem(scope.row)">Quitar {{ scope.rowIndex }}</el-button>
+                  <el-button size="mini" @click="handleRemoveItem(scope.$index)">Quitar</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -368,6 +369,7 @@ export default {
       downloadLoading: false,
       totalHC: 0,
       innerVisible: false,
+      pendingItemNotification: null,
       itemFragmentations: [],
       listTypeHemocomponents: [],
       typeHemocomponentLoading: false,
@@ -717,21 +719,34 @@ export default {
         is_expired = false
       }
 
-      this.$notify(
-        {
-          title: 'Estado',
-          message: is_expired ? 'Hemocomponente vencido, no se puede agregar' : 'Hemocomponente Agregado',
-          type: is_expired ? 'error' : 'success',
-          duration: 2000
-        }
-      )
-    },
-    handleRemoveItem(row) {
-      const tempData = Object.assign({}, this.temp)
-      const oldItems = tempData.itemfragmentations
-      tempData.itemfragmentations = oldItems.filter(element => element.id !== row.id)
+      const notification = {
+        title: 'Estado',
+        message: is_expired ? 'Hemocomponente vencido, no se puede agregar' : 'Hemocomponente Agregado',
+        type: is_expired ? 'error' : 'success',
+        duration: 2000
+      }
 
-      this.temp = tempData
+      if (is_expired) {
+        this.$notify(notification)
+        return
+      }
+
+      this.pendingItemNotification = notification
+      this.innerVisible = false
+    },
+    notifyAddedItem() {
+      if (!this.pendingItemNotification) return
+
+      const notification = this.pendingItemNotification
+      this.pendingItemNotification = null
+      this.$notify(notification)
+    },
+    handleRemoveItem(index) {
+      const itemfragmentations = this.temp.itemfragmentations.slice()
+      if (index < 0 || index >= itemfragmentations.length) return
+
+      itemfragmentations.splice(index, 1)
+      this.temp = Object.assign({}, this.temp, { itemfragmentations })
     },
     isItemAdded(itemId) {
       const arrKeys = this.temp.itemfragmentations.map(el => (el.itemfragmentation.id).toString())
