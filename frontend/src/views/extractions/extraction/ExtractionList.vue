@@ -66,16 +66,10 @@
       style="width: 100%;"
       @row-click="handleEdit"
     >
-      <el-table-column :label="$t('models.extraction.register_at')" align="center" fixed width="120px">
+      <el-table-column label="Fecha Extracción" align="center" fixed width="140px">
         <template slot-scope="scope">
-          <span>
+          <span class="date-nowrap">
             {{ scope.row.register_at | toHumanDate }}
-            <br>
-            <el-tooltip class="item" content="Fecha Tamizaje" effect="dark" placement="right-start">
-              <small :class="scope.row.register_at === scope.row.donation.register_at ? '': 'fg-orange'">
-                {{ scope.row.donation.register_at | toHumanDate }}
-              </small>
-            </el-tooltip>
           </span>
         </template>
       </el-table-column>
@@ -435,5 +429,9 @@ export default {
 <style>
 .fg-orange {
   color: #bd3739;
+}
+
+.date-nowrap {
+  white-space: nowrap;
 }
 </style>
