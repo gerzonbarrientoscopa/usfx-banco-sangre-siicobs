@@ -40,9 +40,10 @@
             <table class="table">
                 <tr>
                     <td class="border text-center" width="30"><b>#</b></td>
-                    <td class="border text-center" width="60"><b>FECHA</b></td>
+                    <td class="border text-center" width="75"><b>FECHA EXTRACCIÓN</b></td>
                     <td class="border text-center" width="80"><b>RESPONSABLE</b></td>
                     <td class="border text-center" width="50"><b>CODIGO</b></td>
+                    <td class="border text-center" width="65"><b>NO. TUBULADURA</b></td>
                     <td class="border text-center" width="50"><b>VOLUMEN</b></td>
                     <td class="border text-center" width="80"><b>GRUPO SANGUINEO</b></td>
                     <td class="border text-center" width="80"><b>F. VENCIMIENTO</b></td>
@@ -54,13 +55,20 @@
                             {{ forloop.counter }}
                         </td>
                         <td class="border text-center">
-                            {{ release.register_at | date:'d-m-Y' }}
+                            {% if release.itemfragmentation.fragmentation.extraction %}
+                                {{ release.itemfragmentation.fragmentation.extraction.register_at | date:'d-m-Y' }}
+                            {% else %}
+                                —
+                            {% endif %}
                         </td>
                         <td class="border text-center">
                             {{ release.employee | fullInitialName }}
                         </td>
                         <td class="border text-center">
                             {{ release.itemfragmentation.donor_code }}
+                        </td>
+                        <td class="border text-center">
+                            {{ release.itemfragmentation.tubing | default:'—' }}
                         </td>
                         <td class="border text-center">
                             {{ release.itemfragmentation.weight }} ml.

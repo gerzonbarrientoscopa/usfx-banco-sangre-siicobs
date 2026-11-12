@@ -286,7 +286,11 @@ class DailyReleasePDF(View):
         date_init = datetime.strptime(data['date_init'], "%Y-%m-%d").date()
         date_end = datetime.strptime(data['date_end'], "%Y-%m-%d").date()
 
-        releases = Release.objects.filter(register_at__range=[date_init, date_end]).order_by(
+        releases = Release.objects.filter(register_at__range=[date_init, date_end])
+        typehemocomponent_id = request.GET.get('typehemocomponent_id')
+        if typehemocomponent_id and typehemocomponent_id.isdigit():
+            releases = releases.filter(itemfragmentation__typehemocomponent_id=typehemocomponent_id)
+        releases = releases.order_by(
             'itemfragmentation__typehemocomponent__name', 'itemfragmentation__donor_code')
 
         params = {

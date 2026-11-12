@@ -161,7 +161,10 @@ const releases = {
       }`
   },
   listDailyReleaseReport(listQuery) {
-    const query = generics.buildParams(listQuery)
+    let query = generics.buildParams(listQuery)
+    if (listQuery.typehemocomponent_id && listQuery.typehemocomponent_id !== 'all') {
+      query += (query !== '' ? ', ' : '') + 'typehemocomponent_id: ' + listQuery.typehemocomponent_id
+    }
 
     return `{` +
       MODEL + `(` + query + `) {` +

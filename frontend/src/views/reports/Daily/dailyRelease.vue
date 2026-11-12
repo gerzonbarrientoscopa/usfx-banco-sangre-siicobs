@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="filter-container">
       <el-row :gutter="20">
-        <el-col :md="16">
+        <el-col :md="8">
           <div class="block">
             <span class="demonstration">Fecha</span>
             <el-date-picker
@@ -15,6 +15,27 @@
               value-format="yyyy-MM-dd"
               @change="handleFilter"
             />
+          </div>
+        </el-col>
+        <el-col :md="8">
+          <div class="block">
+            <span class="demonstration">Hemocomponente</span>
+            <el-select
+              v-model="listQuery.typehemocomponent_id"
+              filterable
+              @change="handleFilter"
+            >
+              <el-option label="Todos" value="all" />
+              <el-option
+                v-for="item in typeHemocomponents"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              >
+                <span style="float: left">{{ item.name }}</span>
+                <span style="float: right; color: #8492a6; font-size: 13px">{{ item.acronym }}</span>
+              </el-option>
+            </el-select>
           </div>
         </el-col>
         <el-col :md="8">
@@ -109,6 +130,7 @@ import moment from 'moment/moment'
 import { reportToday } from '@/api/release'
 import { graphqlRequest } from '@/api/graphql'
 import releases from '@/query/release'
+import typehemocomponents from '@/query/type-hemocomponent'
 
 export default {
   name: 'DailyRelease',
@@ -137,16 +159,26 @@ export default {
         search: '',
         ordering: '-id',
         only_event: false,
+        typehemocomponent_id: 'all',
         extra: {
           date_init: moment().startOf('day').format('YYYY-MM-DD'),
           date_end: moment().add(1, 'days').format('YYYY-MM-DD')
         }
       },
       downloadLoading: false,
-      reasons: []
+      reasons: [],
+      typeHemocomponents: [],
+      listTypeHemocomponentQuery: {
+        page: 1,
+        limit: 100,
+        offset: 0,
+        search: '',
+        ordering: 'position,name'
+      }
     }
   },
   created() {
+    this.getTypeHemocomponents()
     this.getList()
   },
   methods: {
@@ -164,6 +196,15 @@ export default {
         this.listLoading = false
       })
     },
+    getTypeHemocomponents() {
+      graphqlRequest({
+        from: this.$route.name,
+        service: 'typehemocomponents',
+        query: typehemocomponents.package_select(this.listTypeHemocomponentQuery)
+      }).then(response => {
+        this.typeHemocomponents = response.data.typehemocomponents.results
+      })
+    },
     handleSizeChange(val) {
       this.listQuery.limit = val
       this.getList()
@@ -175,6 +216,8 @@ export default {
     },
     handleFilter() {
       this.listQuery.extra.date_end = moment(this.listQuery.extra.date_init, 'YYYY-MM-DD').add(0, 'days').format('YYYY-MM-DD')
+      this.listQuery.page = 1
+      this.listQuery.offset = 0
       this.getList()
     },
     handleDownload(response, filename) {
