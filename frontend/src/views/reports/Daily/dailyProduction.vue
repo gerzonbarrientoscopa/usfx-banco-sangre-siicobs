@@ -53,15 +53,15 @@
         stripe
         style="width: 100%;"
       >
-        <el-table-column label="Fecha Extracción" align="center">
+        <el-table-column label="Fecha Extracción" align="center" width="150px">
           <template slot-scope="scope">
-            <span v-if="scope.row.fragmentation && scope.row.fragmentation.extraction && scope.row.fragmentation.extraction.register_at">
+            <span v-if="scope.row.fragmentation && scope.row.fragmentation.extraction && scope.row.fragmentation.extraction.register_at" class="date-nowrap">
               {{ scope.row.fragmentation.extraction.register_at | toHumanDate }}
             </span>
-            <span v-else>—</span>
+            <span v-else class="date-nowrap">—</span>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('models.donor.code')" align="center" width="110px">
+        <el-table-column :label="$t('models.donor.code')" align="center" width="90px">
           <template slot-scope="scope">
             <strong>{{ scope.row.donor_code }}</strong>
           </template>
@@ -283,3 +283,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.date-nowrap {
+  white-space: nowrap;
+}
+</style>
