@@ -53,10 +53,12 @@
         stripe
         style="width: 100%;"
       >
-        <el-table-column :label="$t('models.report.production.register_at')" align="center">
+        <el-table-column label="Fecha Extracción" align="center">
           <template slot-scope="scope">
-            <span v-if="scope.row.release">{{ scope.row.release.register_at | toHumanDate }}</span>
-            <span v-if="scope.row.discard">{{ scope.row.discard.register_at | toHumanDate }}</span>
+            <span v-if="scope.row.fragmentation && scope.row.fragmentation.extraction && scope.row.fragmentation.extraction.register_at">
+              {{ scope.row.fragmentation.extraction.register_at | toHumanDate }}
+            </span>
+            <span v-else>—</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('models.donor.code')" align="center" width="110px">

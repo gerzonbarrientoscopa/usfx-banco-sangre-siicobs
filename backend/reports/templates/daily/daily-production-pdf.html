@@ -35,7 +35,7 @@
     <div class="card">
         <table class="table">
             <tr>
-                <td class="border text-center" width="150" rowspan="2"><b>FECHA</b></td>
+                <td class="border text-center" width="150" rowspan="2"><b>FECHA EXTRACCIÓN</b></td>
                 <td class="border text-center" width="150" rowspan="2"><b>CODIGO</b></td>
                 <td class="border text-center" width="160" colspan="15"><b>TIPO DE HEMOCOMPONENTE</b></td>
                 <td class="border text-center" width="150" rowspan="2"><b>LIBERADO</b></td>
@@ -63,10 +63,10 @@
                     {% get_release_for_item production as release %}
                     {% get_discard_for_item production as discard %}
                     <td class="border text-center">
-                        {% if release %}
-                            {{ release.register_at | date:'d-m-Y' }}
+                        {% if production.fragmentation.extraction %}
+                            {{ production.fragmentation.extraction.register_at | date:'d-m-Y' }}
                         {% else %}
-                            {{ discard.register_at | date:'d-m-Y' }}
+                            —
                         {% endif %}
                     </td>
                     <td class="border text-center">

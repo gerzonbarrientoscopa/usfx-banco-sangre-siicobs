@@ -86,6 +86,7 @@ const immunoserologies = {
                 last_donation_at
                 extraction {
                     id
+                    register_at
                 }
                 donor {
                     id

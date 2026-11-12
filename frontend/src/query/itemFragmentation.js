@@ -137,6 +137,9 @@ const itemFragmentations = {
             donor_code
             fragmentation {
               id
+              extraction {
+                register_at
+              }
             }
             typehemocomponent {
               id

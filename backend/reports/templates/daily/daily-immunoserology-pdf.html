@@ -36,7 +36,7 @@
         <table class="table">
             <tr>
                 <td class="border text-center" width="30"><b>#</b></td>
-                <td class="border text-center" width="60"><b>FECHA</b></td>
+                <td class="border text-center" width="70"><b>FECHA EXTRACCIÓN</b></td>
                 <td class="border text-center" width="50"><b>CODIGO</b></td>
                 <td class="border text-center" width="80"><b>CHAGAS HAI</b></td>
                 <td class="border text-center" width="80"><b>HIV</b></td>
@@ -52,7 +52,11 @@
                         {{ forloop.counter }}
                     </td>
                     <td class="border text-center">
-                        {{ immunoserology.register_at | date:'d-m-Y' }}
+                        {% if immunoserology.donation.extraction %}
+                            {{ immunoserology.donation.extraction.register_at | date:'d-m-Y' }}
+                        {% else %}
+                            —
+                        {% endif %}
                     </td>
                     <td class="border text-center">
                         {{ immunoserology.donation.donor.code }}

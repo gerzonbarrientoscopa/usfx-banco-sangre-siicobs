@@ -8,9 +8,12 @@
     highlight-current-row
     style="width: 100%;"
   >
-    <el-table-column :label="$t('models.immunohematology.register_at')" align="center" fixed width="120px">
+    <el-table-column label="Fecha Extracción" align="center" fixed width="140px">
       <template slot-scope="scope">
-        <span>{{ scope.row.register_at | toHumanDate }}</span>
+        <span v-if="scope.row.donation && scope.row.donation.extraction && scope.row.donation.extraction.register_at">
+          {{ scope.row.donation.extraction.register_at | toHumanDate }}
+        </span>
+        <span v-else>—</span>
       </template>
     </el-table-column>
     <el-table-column :label="$t('models.immunohematology.code')" align="center" width="100px">
