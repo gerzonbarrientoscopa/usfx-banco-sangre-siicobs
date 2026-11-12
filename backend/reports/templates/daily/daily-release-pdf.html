@@ -1,4 +1,4 @@
-{% extends 'layouts/pdf_base_cleaned_letter_portrait.html' %}
+{% extends 'layouts/pdf_base_cleaned_letter_landscape.html' %}
 {% load utils %}
 {% block title %}
     Liberación
@@ -47,7 +47,7 @@
                     <td class="border text-center" width="50"><b>VOLUMEN</b></td>
                     <td class="border text-center" width="80"><b>GRUPO SANGUINEO</b></td>
                     <td class="border text-center" width="80"><b>F. VENCIMIENTO</b></td>
-                    <td class="border text-center"><b>OBSERVACIONES</b></td>
+                    <td class="border text-center" width="180"><b>OBSERVACIONES</b></td>
                 </tr>
                 {% for release in group.list %}
                     <tr>
