@@ -15,6 +15,10 @@ class TypeHemocomponent(models.Model):
     show_in_billing = models.BooleanField(default=True, verbose_name='Mostrar en facturación')
     show_in_fragmentation = models.BooleanField(default=True, verbose_name='Mostrar en fraccionamiento')
     show_in_request_release = models.BooleanField(default=True, verbose_name='Mostrar en Solicitud de Liberacion')
+    blocks_release_with_irregular_antibodies = models.BooleanField(
+        default=False,
+        verbose_name='Bloquear liberación con anticuerpos irregulares positivos'
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
 
     def __unicode__(self):

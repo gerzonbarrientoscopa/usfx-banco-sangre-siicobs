@@ -126,7 +126,7 @@
       </el-table-column>
       <el-table-column :label="$t('models.storage.type_irregular_antibody')" align="center" width="255px">
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type_irregular_antibody" >{{ scope.row.type_irregular_antibody.name }}</el-tag>
+          <el-tag v-if="scope.row.type_irregular_antibody">{{ scope.row.type_irregular_antibody.name }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column :label="$t('models.storage.weight')" align="right" width="80px">
@@ -164,6 +164,14 @@
       </el-table-column>
       <el-table-column :label="$t('actions')" align="center" class-name="small-padding" fixed="right" width="320">
         <template slot-scope="scope">
+          <el-tooltip
+            v-if="isBlockedByIrregularAntibodies(scope.row)"
+            content="No se puede liberar: el resultado de Anticuerpos Irregulares es positivo."
+            effect="dark"
+            placement="top"
+          >
+            <el-tag type="danger">BLOQUEADO POR ANTICUERPOS</el-tag>
+          </el-tooltip>
           <el-button
             v-if="checkPermission(['add_discard'])"
             :disabled="scope.row.release!==null || scope.row.discard!==null"
@@ -243,8 +251,7 @@ import { debounce } from 'debounce'
 import { defaultshorcouts } from '@/utils/date-utils'
 import moment from 'moment'
 import typehemocomponents from '@/query/type-hemocomponent'
-import { PROCESS_AFERESIS } from '@/utils/const'
-import {buildBarcodeFilter, buildRegisterAtFilter} from "@/utils/general";
+import { buildBarcodeFilter, buildRegisterAtFilter } from '@/utils/general'
 
 export default {
   name: 'Storage',
@@ -328,9 +335,18 @@ export default {
     },
     isRelease(row) {
       if (row !== null) {
-        return row.release !== null || row.discard !== null || row.typediscard !== null || this.isReactiveInmunoserology(row.fragmentation.extraction.donation.immunoserology)
+        return row.release !== null || row.discard !== null || row.typediscard !== null ||
+          this.isReactiveInmunoserology(row.fragmentation.extraction.donation.immunoserology) ||
+          this.isBlockedByIrregularAntibodies(row)
       }
       return false
+    },
+    isBlockedByIrregularAntibodies(row) {
+      const typehemocomponent = row && row.typehemocomponent
+      const immunohematology = row && row.fragmentation && row.fragmentation.extraction &&
+        row.fragmentation.extraction.donation && row.fragmentation.extraction.donation.immunohematology
+      return Boolean(typehemocomponent && typehemocomponent.blocks_release_with_irregular_antibodies &&
+        immunohematology && immunohematology.exist_irregular_antibody)
     },
     isReactiveInmunoserology(immunoserology) {
       if (immunoserology === null) {
@@ -448,17 +464,19 @@ export default {
         this.massiveReleaseItems[row.id] = row
         this.massiveReleaseItemsCount = Object.keys(this.massiveReleaseItems).length
         message += 'Liberar'
+      } else if (checkPermission(['add_release']) && this.isBlockedByIrregularAntibodies(row)) {
+        message += 'No se agregó para Liberación: Anticuerpos Irregulares positivos'
       }
       if (checkPermission(['add_discard']) && row.release === null && row.discard === null) {
         this.massiveDiscardItems[row.id] = row
         this.massiveDiscardItemsCount = Object.keys(this.massiveDiscardItems).length
-        message += message !== '' ? ' o Descartar' : 'Descartar'
+        message += message !== '' ? '; también se agregó para Descarte' : 'Descartar'
       }
 
       this.$notify({
         title: 'Estado',
-        message: `Hemocomponente Agregado para ${message}`,
-        type: 'success',
+        message: message || 'El hemocomponente no se agregó a ninguna acción.',
+        type: message.startsWith('No se agregó para Liberación') ? 'warning' : 'success',
         duration: 2000
       })
     }

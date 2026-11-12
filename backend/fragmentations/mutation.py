@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 import json
 
 import graphene
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import transaction
 from graphene.types import generic
 from graphql_jwt.decorators import permission_required
 
@@ -11,6 +13,35 @@ from fragmentations.models import Release, Discard, Fragmentation, ItemFragmenta
 from fragmentations.schema import FragmentationType, DiscardType, ReleaseType, ReleaseRequestType
 from packages.models import TypeHemocomponent
 from users.models import Employee
+
+
+def release_is_blocked_by_irregular_antibodies(itemfragmentation):
+    if not itemfragmentation.typehemocomponent.blocks_release_with_irregular_antibodies:
+        return False
+
+    extraction = itemfragmentation.fragmentation.extraction
+    if extraction is None:
+        return False
+    donation = extraction.donation
+    try:
+        immunohematology = donation.immunohematology
+    except ObjectDoesNotExist:
+        return False
+
+    return immunohematology.exists_irregular_antibodies
+
+
+def validate_release_items(items):
+    blocked_items = [item for item in items if release_is_blocked_by_irregular_antibodies(item)]
+    if blocked_items:
+        hemocomponents = ', '.join(
+            '{} ({})'.format(item.typehemocomponent.name, item.donor_code)
+            for item in blocked_items
+        )
+        raise ValueError(
+            'No se puede liberar: hay anticuerpos irregulares positivos para '
+            'los siguientes hemocomponentes: {}.'.format(hemocomponents)
+        )
 
 
 class MassiveReleaseItemInput(graphene.InputObjectType):
@@ -36,15 +67,27 @@ class CreateMassiveRelease(graphene.Mutation):
         if len(hemocomponents) == 0:
             raise ValueError("Not exist Hemocomponents")
 
+        item_ids = [item.id for item in hemocomponents]
+        items = list(
+            ItemFragmentation.objects.filter(id__in=item_ids).select_related(
+                'typehemocomponent',
+                'fragmentation__extraction__donation__immunohematology'
+            )
+        )
+        if len(items) != len(set(item_ids)):
+            raise ValueError('No se encontraron todos los hemocomponentes seleccionados.')
+        validate_release_items(items)
+
         release = Release()
-        for item in hemocomponents:
-            release = Release(itemfragmentation_id=item.id, employee_id=employee_id, register_at=register_at,
-                              register_id=register_id)
+        with transaction.atomic():
+            for item in hemocomponents:
+                release = Release(itemfragmentation_id=item.id, employee_id=employee_id, register_at=register_at,
+                                  register_id=register_id)
 
-            if kwargs.get('observations', None) is not None:
-                release.observations = kwargs.get('observations')
+                if kwargs.get('observations', None) is not None:
+                    release.observations = kwargs.get('observations')
 
-            release.save()
+                release.save()
 
         return CreateMassiveRelease(release=release)
 
@@ -337,6 +380,12 @@ class CreateRelease(graphene.Mutation):
 
     @permission_required(['fragmentations.add_release'])
     def mutate(self, info, itemfragmentation_id, employee_id, register_id, register_at, **kwargs):
+        itemfragmentation = ItemFragmentation.objects.select_related(
+            'typehemocomponent',
+            'fragmentation__extraction__donation__immunohematology'
+        ).get(pk=itemfragmentation_id)
+        validate_release_items([itemfragmentation])
+
         release = Release(itemfragmentation_id=itemfragmentation_id, register_at=register_at,
                           register_id=register_id, employee_id=employee_id)
 
@@ -367,6 +416,11 @@ class UpdateRelease(graphene.Mutation):
             raise ValueError('Release not found')
 
         if kwargs.get('itemfragmentation_id', None) is not None:
+            itemfragmentation = ItemFragmentation.objects.select_related(
+                'typehemocomponent',
+                'fragmentation__extraction__donation__immunohematology'
+            ).get(pk=kwargs.get('itemfragmentation_id'))
+            validate_release_items([itemfragmentation])
             release.itemfragmentation_id = kwargs.get('itemfragmentation_id')
         if kwargs.get('employee_id', None) is not None:
             release.employee_id = kwargs.get('employee_id')

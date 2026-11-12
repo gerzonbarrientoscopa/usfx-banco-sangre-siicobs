@@ -7,4 +7,4 @@ Para bloquear ciertos hemocomponentes cuando Anticuerpos Irregulares resulte pos
 
 **Why:** el usuario eligió esta opción frente a mantener nombres hardcodeados; el catálogo existente permite configurarlo por tipo y evitar depender de IDs o nombres idénticos entre entornos.
 
-**How to apply:** al implementar la regla, agregar el indicador al modelo/catálogo existente y usarlo en la interfaz y las validaciones del servidor. Esta decisión no autoriza por sí sola iniciar la implementación.
+**How to apply:** usar el indicador del catálogo existente para controlar la interfaz y validar todas las rutas de liberación en el servidor.

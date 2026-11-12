@@ -18,6 +18,7 @@ class CreateTypeHemocomponent(graphene.Mutation):
         show_in_billing = graphene.Boolean(required=True)
         show_in_fragmentation = graphene.Boolean(required=True)
         show_in_request_release = graphene.Boolean(required=True)
+        blocks_release_with_irregular_antibodies = graphene.Boolean()
 
     @permission_required(['packages.add_typehemocomponent'])
     def mutate(self, info, name, typecoagulation, acronym, temperature_save, show_in_billing, show_in_fragmentation,
@@ -34,6 +35,9 @@ class CreateTypeHemocomponent(graphene.Mutation):
             typehemocomponent.description = kwargs.get('description')
         if kwargs.get('position', None) is not None:
             typehemocomponent.position = kwargs.get('position')
+        if kwargs.get('blocks_release_with_irregular_antibodies', None) is not None:
+            typehemocomponent.blocks_release_with_irregular_antibodies = kwargs.get(
+                'blocks_release_with_irregular_antibodies')
 
         typehemocomponent.save()
 
@@ -55,6 +59,7 @@ class UpdateTypeHemocomponent(graphene.Mutation):
         show_in_billing = graphene.Boolean()
         show_in_fragmentation = graphene.Boolean()
         show_in_request_release = graphene.Boolean()
+        blocks_release_with_irregular_antibodies = graphene.Boolean()
 
     @permission_required(['packages.change_typehemocomponent'])
     def mutate(self, info, id, **kwargs):
@@ -82,6 +87,9 @@ class UpdateTypeHemocomponent(graphene.Mutation):
             typehemocomponent.show_in_fragmentation = kwargs.get('show_in_fragmentation')
         if kwargs.get('show_in_request_release', None) is not None:
             typehemocomponent.show_in_request_release = kwargs.get('show_in_request_release')
+        if kwargs.get('blocks_release_with_irregular_antibodies', None) is not None:
+            typehemocomponent.blocks_release_with_irregular_antibodies = kwargs.get(
+                'blocks_release_with_irregular_antibodies')
 
         typehemocomponent.save()
 

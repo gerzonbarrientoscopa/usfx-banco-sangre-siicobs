@@ -244,6 +244,7 @@ const itemFragmentations = {
                         id
                         name
                         acronym
+                        blocks_release_with_irregular_antibodies
                     }
                     typediscard {
                         id

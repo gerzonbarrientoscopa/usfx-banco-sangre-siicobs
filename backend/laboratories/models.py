@@ -60,10 +60,13 @@ class Immunohematology(models.Model):
 
     @property
     def exists_irregular_antibodies(self):
-        return self.fsi != '-' or self.liss != '-' or self.alb != '-' or self.coombs != '-' \
-            or self.p2fsi != '-' or self.p2liss != '-' or self.p2alb != '-' or self.p2coombs != '-' \
-            or (self.p3fsi is not None and self.p3fsi != '-') or (self.p3liss is not None and self.p3liss != '-') \
-            or (self.p3alb is not None and self.p3alb != '-') or (self.p3coombs is not None and self.p3coombs != '-')
+        positive_results = {'+', '++', '+++', '++++'}
+        panel_results = (
+            self.fsi, self.liss, self.alb, self.coombs,
+            self.p2fsi, self.p2liss, self.p2alb, self.p2coombs,
+            self.p3fsi, self.p3liss, self.p3alb, self.p3coombs,
+        )
+        return any(result in positive_results for result in panel_results if result is not None)
 
     class Meta:
         verbose_name = 'Inmunohematologia'
