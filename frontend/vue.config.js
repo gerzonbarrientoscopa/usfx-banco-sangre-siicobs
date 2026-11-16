@@ -66,6 +66,18 @@ module.exports = {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     // it can improve the speed of the first screen, it is recommended to turn on preload
 
+    // Vue CLI 5 no registra el plugin preload por defecto.
+    // Configurarlo solo cuando la versión de Vue CLI lo incluya.
+    if (config.plugins.has('preload')) {
+      config.plugin('preload').tap(() => [
+        {
+          rel: 'preload',
+          fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+          include: 'initial'
+        }
+      ])
+    }
+
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
 
