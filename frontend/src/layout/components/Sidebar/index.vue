@@ -22,7 +22,13 @@
 import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
-import variables from '@/styles/variables.scss'
+// Los valores SCSS se usan para estilos, pero no se exportan como objeto JS
+// de forma fiable en la compilación de producción de Vue CLI.
+const sidebarVariables = {
+  menuBg: '#000000',
+  menuText: '#bfcbd9',
+  menuActiveText: '#409EFF'
+}
 
 export default {
   components: { SidebarItem, Logo },
@@ -44,7 +50,7 @@ export default {
       return this.$store.state.settings.sidebarLogo
     },
     variables() {
-      return variables
+      return sidebarVariables
     },
     isCollapse() {
       return !this.sidebar.opened
