@@ -19,6 +19,8 @@ module.exports = {
    */
   fixedHeader: false,
 
+  theme: '#008080',
+
   /**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
