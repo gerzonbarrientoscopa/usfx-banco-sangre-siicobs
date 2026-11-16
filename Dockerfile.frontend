@@ -3,8 +3,14 @@ FROM node:20-alpine AS build
 WORKDIR /app/frontend
 
 COPY frontend/package.json frontend/package-lock.json ./
-RUN npm ci --include=dev --legacy-peer-deps \
-    && test -x node_modules/.bin/vue-cli-service
+RUN npm ci --include=dev --legacy-peer-deps --loglevel=verbose \
+    || { resultado=$?; \
+         echo "Falló la instalación de dependencias. Últimas líneas del diagnóstico de npm:"; \
+         for archivo in /root/.npm/_logs/*debug-0.log; do \
+             if [ -f "$archivo" ]; then tail -n 100 "$archivo"; fi; \
+         done; \
+         exit "$resultado"; }
+RUN test -x node_modules/.bin/vue-cli-service
 
 COPY frontend/ ./
 RUN mkdir -p /app/backend/fronts/templates /app/backend/static/vue \

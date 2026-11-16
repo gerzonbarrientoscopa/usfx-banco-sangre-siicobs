@@ -1,2 +1,3 @@
 - [Instalación de Python](python-installation.md) — el instalador puede elegir Python según los metadatos del proyecto, no solo el módulo habilitado.
+- [Diagnóstico de npm en Docker](docker-npm-diagnostics.md) — el error genérico de npm puede ocultar fallos DNS; comprobar el registro antes de cambiar versiones.
 - [Bloqueo por anticuerpos irregulares](bloqueo-anticuerpos-irregulares.md) — configurar los hemocomponentes restringidos con un indicador en el catálogo existente.
