@@ -13,3 +13,5 @@ replit.md
 start-replit.sh
 pyproject.toml
 uv.lock
+/.env
+/backend/.env
