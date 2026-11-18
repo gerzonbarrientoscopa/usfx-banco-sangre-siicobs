@@ -68,7 +68,11 @@
                             {{ release.itemfragmentation.donor_code }}
                         </td>
                         <td class="border text-center">
-                            {{ release.itemfragmentation.tubing | default:'—' }}
+                            {% if release.itemfragmentation.fragmentation.extraction and release.itemfragmentation.fragmentation.extraction.tubing %}
+                                {{ release.itemfragmentation.fragmentation.extraction.tubing }}
+                            {% else %}
+                                —
+                            {% endif %}
                         </td>
                         <td class="border text-center">
                             {{ release.itemfragmentation.weight }} ml.
