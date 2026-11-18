@@ -1,6 +1,11 @@
+import os
+import tempfile
+
 from django.test import SimpleTestCase
+from django.test import override_settings
 
 from laboratories.models import Immunohematology
+from siicobs_main.utils_billing import build_picture_barcode_bg
 
 
 class IrregularAntibodyDetectionTests(SimpleTestCase):
@@ -21,3 +26,13 @@ class IrregularAntibodyDetectionTests(SimpleTestCase):
         )
 
         self.assertFalse(result.exists_irregular_antibodies)
+
+
+class BloodBagBarcodeTests(SimpleTestCase):
+    def test_barcode_creates_missing_media_subdirectory(self):
+        with tempfile.TemporaryDirectory() as media_root:
+            with override_settings(MEDIA_ROOT=media_root):
+                build_picture_barcode_bg('192368', '192368')
+
+            barcode_path = os.path.join(media_root, 'laboratory', '192368.png')
+            self.assertTrue(os.path.isfile(barcode_path))

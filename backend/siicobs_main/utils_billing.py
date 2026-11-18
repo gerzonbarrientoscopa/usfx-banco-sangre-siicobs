@@ -126,6 +126,12 @@ def get_qr_code(setting, nit_client, code_control, total, invoice, id):
     return text_value
 
 
+def _media_output_path(folder, file_name):
+    output_directory = os.path.join(settings.MEDIA_ROOT, folder)
+    os.makedirs(output_directory, exist_ok=True)
+    return os.path.join(output_directory, str(file_name))
+
+
 def build_picture_qr(qr_string, file_name, type):
     qrw = QrCodeWidget(qr_string, barBorder=1)
     b = qrw.getBounds()
@@ -133,8 +139,6 @@ def build_picture_qr(qr_string, file_name, type):
     h = b[3] - b[1]
     d = Drawing(480, 480, transform=[480. / w, 0, 0, 480. / h, 0, 0])
     d.add(qrw)
-    dir = settings.BASE_DIR
-
     default_folder = ''
     if type == 'donor':
         default_folder = 'media/donor'
@@ -153,7 +157,9 @@ def build_picture_qr(qr_string, file_name, type):
     elif type == 'apheresis':
         default_folder = 'media/apheresis'
 
-    d.save(formats=['png'], outDir=os.path.join(dir, default_folder), fnRoot=str(file_name))
+    output_directory = os.path.join(settings.BASE_DIR, default_folder)
+    os.makedirs(output_directory, exist_ok=True)
+    d.save(formats=['png'], outDir=output_directory, fnRoot=str(file_name))
 
 
 def build_picture_barcode(text, file_name, label):
@@ -164,10 +170,10 @@ def build_picture_barcode(text, file_name, label):
     if len(new_text) == 4:
         module_with = 0.9
 
-    fullname = ean.save('media/extraction/' + file_name,
-                        options={'write_text': False, 'text': label, 'font_size': 12,
-                                 'module_width': module_with, },
-                        text=False)
+    ean.save(_media_output_path('extraction', file_name),
+             options={'write_text': False, 'text': label, 'font_size': 12,
+                      'module_width': module_with},
+             text=False)
 def build_picture_barcode_bg(text, file_name):
     text_0_missing = 14 - len(text)
     new_text = '01' + (text_0_missing * '0') + text
@@ -177,10 +183,10 @@ def build_picture_barcode_bg(text, file_name):
     if len(new_text) == 4:
         module_with = 0.9
 
-    fullname = ean.save('media/laboratory/' + file_name,
-                        options={'write_text': False, 'text': new_text, 'font_size': 12,
-                                 'module_width': module_with, },
-                        text=False)
+    ean.save(_media_output_path('laboratory', file_name),
+             options={'write_text': False, 'text': new_text, 'font_size': 12,
+                      'module_width': module_with},
+             text=False)
 def build_picture_barcode_prod_bg(text, file_name):
     new_text = '0' + text
     EAN = barcode.get_barcode_class('code128')
@@ -189,7 +195,7 @@ def build_picture_barcode_prod_bg(text, file_name):
     if len(new_text) == 4:
         module_with = 0.9
 
-    fullname = ean.save('media/laboratory/' + file_name,
-                        options={'write_text': False, 'text': new_text, 'font_size': 12,
-                                 'module_width': module_with, },
-                        text=False)
+    ean.save(_media_output_path('laboratory', file_name),
+             options={'write_text': False, 'text': new_text, 'font_size': 12,
+                      'module_width': module_with},
+             text=False)
